@@ -77,6 +77,4 @@ public class Album {
 		return "Album [id=" + id + ", nomeAlbum=" + nomeAlbum + ", artista=" + artista + ", anoLancamento="
 				+ anoLancamento + ", qtdMusicas=" + qtdMusicas + ", avaliacaoAlmbum=" + avaliacaoAlmbum + "]";
 	}
-	
-	
 }
