@@ -49,4 +49,16 @@ public class Usuario {
 		return id;
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
+				+ "]";
+	}
+
+	public void criaUsuario(String nome, int idade, String login, String senha) {
+		setNome(nome);
+		setIdade(idade);
+		setLogin(login);
+		setSenha(senha);
+	}
 }
