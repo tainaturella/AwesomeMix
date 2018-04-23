@@ -1,21 +1,28 @@
 /*Classe: PlayList
  *Autora: Naomi Takemoto
+ *Atualizacao: corrigindo bug em adiconarMusica, atualizando
+ *atributo duracao da Playlist. Inicializando quantidadeMusicas e duracao
+ *no construtor.
  **/
 import java.util.ArrayList;
 
 public class PlayList {
+	
 	private static int geradorId = 0;
 	private final int id;
 	private String nome;
 	private Usuario autor;
 	private ArrayList <Musica> musicas;
+	private int quantidadeMusicas;
+	private double duracao;			
+	
 	public PlayList(){
 		this.id = geradorId++;
+		duracao = 0;
+		quantidadeMusicas = 0;
+		musicas = new ArrayList<Musica>();
 	}
-	private int quantidadeMusicas;
-	private double duracao;			/*esse atributo depende do atribuito duracao que
-	 								 que estaria presente em Musica*/
-
+	
 	public PlayList(String nome, Usuario autor){
 		this();
 		this.nome = nome;
@@ -42,11 +49,18 @@ public class PlayList {
 		this.autor = autor;
 	}
 
+	/*Metodo adicionarMusica
+	 *Parametro: musica a ser incluida na playlist
+	 *Verifica se musica ja esta na playlist, se nao adiciona, caso contrario,
+	 *nao.
+	 *Retorno: boolean, true se a musica foi colocada com sucesso, false se nao.
+	 **/
 	public boolean adicionarMusica(Musica musica){
-		boolean adiciona;
+		boolean adiciona ;
 		adiciona = musicas.contains(musica);
-		if(adiciona == true){
+		if(adiciona == false){
 			adiciona = musicas.add(musica);
+			this.duracao += musica.getTempoDuracao();
 		}
 		return adiciona;
 	}
