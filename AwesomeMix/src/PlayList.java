@@ -1,3 +1,6 @@
+/*Classe: PlayList
+ *Autora: Naomi Takemoto
+ **/
 import java.util.ArrayList;
 
 public class PlayList {
@@ -10,7 +13,8 @@ public class PlayList {
 		this.id = geradorId++;
 	}
 	private int quantidadeMusicas;
-	private double duracao;
+	private double duracao;			/*esse atributo depende do atribuito duracao que
+	 								 que estaria presente em Musica*/
 
 	public PlayList(String nome, Usuario autor){
 		this();
@@ -38,7 +42,6 @@ public class PlayList {
 		this.autor = autor;
 	}
 
-	//Fazer toString
 	public boolean adicionarMusica(Musica musica){
 		boolean adiciona;
 		adiciona = musicas.contains(musica);
@@ -58,7 +61,7 @@ public class PlayList {
 				out += musicas.get(i);
 			}
 		}
-		out +=  "]]";
+		out +=  "]";
 		return out;
 	}
 	
