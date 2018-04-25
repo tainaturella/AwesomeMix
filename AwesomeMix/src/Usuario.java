@@ -54,6 +54,7 @@ public class Usuario {
 		return id;
 	}
 	
+	//Metodos que criam playlists publica ou privada, caso ja exista uma playlist com o nome retorna falso
 	public boolean criaPlayListPublica(String nome) {
 		for(int i=0; i<playlistsPublicas.size(); i++) {
 			if(playlistsPublicas.get(i).getNome() == nome) {
@@ -74,6 +75,7 @@ public class Usuario {
 		return true;
 	}
 	
+	//metodos que removem playlists publicas ou privadas, caso as playlists nao existam retorna falso
 	public boolean removePlayListPublica(String nome) {
 		for(int i=0; i<playlistsPublicas.size(); i++) {
 			if(playlistsPublicas.get(i).getNome() == nome) {
@@ -94,6 +96,7 @@ public class Usuario {
 		return false;
 	}
 
+	//metodo que cria um usuario e altera os campos nome, idade, login e senha
 	public void criaUsuario(String nome, int idade, String login, String senha) {
 		setNome(nome);
 		setIdade(idade);
@@ -101,6 +104,7 @@ public class Usuario {
 		setSenha(senha);
 	}
 	
+	//Adiciona Musica a uma playlist publica (codigo 0) ou a uma playlist privada(codigo 1)
 	public boolean adicionaMusicaPlaylist(String nome, int tipo, Musica musica) {
 		//Playlist publica
 		if(tipo == 0) {
@@ -123,6 +127,7 @@ public class Usuario {
 		return false;
 	}
 
+	//Adiciona todas as musicas de um album em uma playlist puclica (codigo 0) ou privada (codigo 1)
 	public void adicionaAlbumPlaylist(String nome, int tipo, Album album) {
 		for(int i=0; i<album.getMusicas().size(); i++) {
 			adicionaMusicaPlaylist(nome, tipo, album.getMusicas().get(i));

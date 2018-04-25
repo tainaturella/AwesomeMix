@@ -7,7 +7,7 @@ public class Album {
 	private String nomeAlbum;
 	private String artista;
 	private int anoLancamento;
-	private static int qtdMusicas;
+	private int qtdMusicas;
 	private double avaliacaoAlbum;
 	private EstilosMusicais estiloMusical;
 	private ArrayList<Musica> musicas;
@@ -72,6 +72,11 @@ public class Album {
 		return qtdMusicas;
 	}
 
+	
+	public void setAvaliacaoAlbum(double avaliacaoAlbum) {
+		this.avaliacaoAlbum = avaliacaoAlbum;
+	}
+
 	public double getAvaliacaoAlbum() {
 		return avaliacaoAlbum;
 	}
@@ -117,6 +122,6 @@ public class Album {
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", nomeAlbum=" + nomeAlbum + ", artista=" + artista + ", anoLancamento="
-				+ anoLancamento + ", estiloMusical=" + estiloMusical + ", musicas=" + musicas + "]";
+				+ anoLancamento + ", estiloMusical=" + estiloMusical + ",quantidadeMusicas=" + qtdMusicas + ", musicas=" + musicas + "]";
 	}
 }

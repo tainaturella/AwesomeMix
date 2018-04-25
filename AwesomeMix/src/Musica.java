@@ -7,7 +7,6 @@ public class Musica{
 	private Album album;
 	
 	//Metodo Construtor
-	//O album ja existe e so precisamos criar a musica que pertence ao album
 	public Musica(String nomeMusica, double tempoDuracao, Album album){
 		this.id = qtdMusicasTotal;
 		this.nomeMusica = nomeMusica;
@@ -40,11 +39,18 @@ public class Musica{
 		this.tempoDuracao = tempoDuracao;
 	}
 
-	public double getAvaliacao() {
+	
+	public double getAvaliacaoMusica() {
 		return avaliacaoMusica;
 	}
 
-	public int getId() {
+
+	public void setAvaliacaoMusica(double avaliacaoMusica) {
+		this.avaliacaoMusica = avaliacaoMusica;
+	}
+
+
+	int getId() {
 		return id;
 	}	
 	
@@ -56,6 +62,7 @@ public class Musica{
 		this.album = album;
 	}
 
+	//Metodo que atribui uma nota a musica
 	public void atribuirNota(double avaliacao) {
 		if(this.avaliacaoMusica > 0) {
 			this.avaliacaoMusica = (this.avaliacaoMusica + avaliacao)/2;
@@ -64,8 +71,7 @@ public class Musica{
 		}
 	}
 	
-	
-
+	//metodo toString
 	@Override
 	public String toString() {
 		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="

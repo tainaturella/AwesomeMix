@@ -21,8 +21,6 @@ public class Main {
 		m2.atribuirNota(5.0);
 		
 		usuario1.adicionaAlbumPlaylist("ouvir no banho", 0, album);
-		//usuario1.adicionaMusicaPlaylist("ouvir no banho", 0, new Musica("do i wanna know?", 4.32, new Album("AM", "Arctic Monkeys", 2013, 9.0, EstilosMusicais.Indie)));
-		//usuario1.adicionaMusicaPlaylist("favoritos", 1, new Musica("do i wanna know?", 4.32, new Album("AM", "Arctic Monkeys", 2013, 9.0, EstilosMusicais.Indie)));
 		System.out.println(album);
 		System.out.println(usuario1);
 		
