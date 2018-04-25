@@ -1,12 +1,13 @@
 
 public class Album {
+	
 	private final int id;
-	private static int qtdAlbuns=0;
+	private static int qtdAlbuns = 0;
 	private String nomeAlbum;
 	private String artista;
 	private int anoLancamento;
 	private int qtdMusicas;
-	private double avaliacaoAlmbum;
+	private double avaliacaoAlbum;
 	
 	//Metodo Construtor
 	public Album() {
@@ -16,6 +17,15 @@ public class Album {
 		this.anoLancamento=0;
 		this.qtdMusicas=0;
 		this.avaliacaoAlmbum=0.0;
+		qtdAlbuns++;
+	}
+	
+	public Album(String nomeAlbum, String artista, int anoLancamento, int qtdMusicas, double avaliacaoAlbum) {
+		this.nomeAlbum = nomeAlbum;
+		this.artista = artista;
+		this.anoLancamento = anoLancamento;
+		this.qtdMusicas = qtdMusicas;
+		this.avaliacaoAlbum = avaliacaoAlbum;
 		qtdAlbuns++;
 	}
 
@@ -60,12 +70,12 @@ public class Album {
 		this.qtdMusicas = qtdMusicas;
 	}
 
-	public double getAvaliacaoAlmbum() {
+	public double getAvaliacaoAlbum() {
 		return avaliacaoAlmbum;
 	}
 
-	public void setAvaliacaoAlmbum(double avaliacaoAlmbum) {
-		this.avaliacaoAlmbum = avaliacaoAlmbum;
+	public void setAvaliacaoAlbum(double avaliacaoAlbum) {
+		this.avaliacaoAlbum = avaliacaoAlbum;
 	}
 
 	public int getId() {
