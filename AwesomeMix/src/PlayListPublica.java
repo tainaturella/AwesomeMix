@@ -2,13 +2,13 @@ public class PlayListPublica  extends PlayList {
 	public PlayListPublica(){
 		super();
 	}
+	public PlayListPublica(String nome, Usuario autor){
+		super(nome, autor);
+	}
 
 	@Override
 	public String toString() {
-		return "PlayListPublica [getId()=" + getId() + ", getNome()="
-				+ getNome() + ", getAutor()=" + getAutor() + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + "]";
+		return super.toString();
 	}
 	
 }

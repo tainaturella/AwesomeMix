@@ -1,29 +1,19 @@
 
-public class Musica extends Album{
+public class Musica{
 	private final int id;
 	private static int qtdMusicasTotal;
 	private String nomeMusica;
 	private double tempoDuracao;
-	private double avaliacao;
+	private static double avaliacaoMusica;
+	private Album album;
 	
 	//Metodo Construtor
-	//Recebe alem dos atributos da musica os atributos para criacao do album
-	public Musica(String nomeAlbum, String artista, int anoLancamento, double avaliacaoAlbum, String nomeMusica, double tempoDuracao, double avaliacaoMusica){
-		super(nomeAlbum, artista, anoLancamento, avaliacaoAlbum);
-		this.id = qtdMusicasTotal;
-		this.nomeMusica = nomeMusica;
-		this.tempoDuracao = tempoDuracao;
-		this.avaliacao = avaliacaoMusica;
-		qtdMusicasTotal++;
-	}
-	
 	//O album ja existe e so precisamos criar a musica que pertence ao album
-	public Musica(String nomeMusica, double tempoDuracao, double avaliacaoMusica){
-		super();
+	public Musica(String nomeMusica, double tempoDuracao, Album album){
 		this.id = qtdMusicasTotal;
 		this.nomeMusica = nomeMusica;
 		this.tempoDuracao = tempoDuracao;
-		this.avaliacao = avaliacaoMusica;
+		this.album = album;
 		qtdMusicasTotal++;
 	}
 	
@@ -48,26 +38,32 @@ public class Musica extends Album{
 		this.tempoDuracao = tempoDuracao;
 	}
 
-	public double getAvaliacao() {
-		return avaliacao;
-	}
-
-	public void setAvaliacao(double avaliacao) {
-		this.avaliacao = avaliacao;
+	public static double getAvaliacao() {
+		return avaliacaoMusica;
 	}
 
 	public int getId() {
 		return id;
 	}	
 	
-	public void atribuirNota(double avaliacao) {
-		this.avaliacao = (this.avaliacao + avaliacao)/2;
+	public Album getAlbum() {
+		return album;
 	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	public void atribuirNota(double avaliacao) {
+		avaliacaoMusica = (avaliacaoMusica + avaliacao)/2;
+	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="
-				+ avaliacao + "]";
+				+ avaliacaoMusica + "]";
 	}
 	
 	

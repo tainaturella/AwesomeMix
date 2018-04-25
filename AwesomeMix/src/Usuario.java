@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Usuario {
 	private final int id;
@@ -6,9 +7,13 @@ public class Usuario {
 	private String login;
 	private String senha;
 	private static int qtdUsuarios;
+	private ArrayList<PlayListPublica> playlistsPublicas;
+	private ArrayList<PlayListPrivada> playlistsPrivadas;
 	
 	//Metodo Construtor
 	public Usuario() {
+		playlistsPrivadas = new ArrayList<PlayListPrivada>();
+		playlistsPublicas = new ArrayList<PlayListPublica>();
 		this.id=qtdUsuarios;
 		this.nome=" ";
 		this.idade=0;
@@ -49,10 +54,44 @@ public class Usuario {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
-				+ "]";
+	public boolean criaPlayListPublica(String nome) {
+		for(int i=0; i<playlistsPublicas.size(); i++) {
+			if(playlistsPublicas.get(i).getNome() == nome) {
+				return false;
+			}
+		}
+		playlistsPublicas.add(new PlayListPublica(nome, this));
+		return true;
+	}
+	
+	public boolean criaPlayListPrivada(String nome) {
+		for(int i=0; i<playlistsPrivadas.size(); i++) {
+			if(playlistsPrivadas.get(i).getNome() == nome) {
+				return false;
+			}
+		}
+		playlistsPrivadas.add(new PlayListPrivada(nome, this));
+		return true;
+	}
+	
+	public boolean removePlayListPublica(String nome) {
+		for(int i=0; i<playlistsPublicas.size(); i++) {
+			if(playlistsPublicas.get(i).getNome() == nome) {
+				playlistsPublicas.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removePlayListPrivada(String nome) {
+		for(int i=0; i<playlistsPrivadas.size(); i++) {
+			if(playlistsPrivadas.get(i).getNome() == nome) {
+				playlistsPrivadas.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void criaUsuario(String nome, int idade, String login, String senha) {
@@ -60,5 +99,33 @@ public class Usuario {
 		setIdade(idade);
 		setLogin(login);
 		setSenha(senha);
+	}
+	
+	public boolean adicionaMusicaPlaylist(String nome, int tipo, Musica musica) {
+		//Playlist publica
+		if(tipo == 0) {
+			for(int i=0; i<playlistsPublicas.size(); i++) {
+				if(playlistsPublicas.get(i).getNome() == nome) {
+					playlistsPublicas.get(i).adicionarMusica(musica);
+					return true;
+				}
+			}
+		}
+		//PlayListPrivada
+		if(tipo == 1	) {
+			for(int i=0; i<playlistsPrivadas.size(); i++) {
+				if(playlistsPrivadas.get(i).getNome() == nome) {
+					playlistsPrivadas.get(i).adicionarMusica(musica);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
+				+ ", playlistsPublicas=" + playlistsPublicas + ", playlistsPrivadas=" + playlistsPrivadas + "]";
 	}
 }

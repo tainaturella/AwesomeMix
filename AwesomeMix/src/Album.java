@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Album {
 	
@@ -6,26 +7,31 @@ public class Album {
 	private String nomeAlbum;
 	private String artista;
 	private int anoLancamento;
-	private int qtdMusicas;
-	private double avaliacaoAlbum;
+	private static int qtdMusicas;
+	private static double avaliacaoAlbum;
+	private EstilosMusicais estiloMusical;
+	private ArrayList<Musica> musicas;
 	
 	//Metodo Construtor
 	public Album() {
+		musicas = new ArrayList<Musica>();
 		this.id=qtdAlbuns;
 		this.nomeAlbum=" ";
 		this.artista=" ";
 		this.anoLancamento=0;
-		this.qtdMusicas=0;
-		this.avaliacaoAlmbum=0.0;
+		qtdMusicas=0;
+		this.estiloMusical = null;
 		qtdAlbuns++;
 	}
 	
-	public Album(String nomeAlbum, String artista, int anoLancamento, int qtdMusicas, double avaliacaoAlbum) {
+	public Album(String nomeAlbum, String artista, int anoLancamento, double avaliacaoAlbum, EstilosMusicais estiloMusical) {
+		musicas = new ArrayList<Musica>();
+		this.id = qtdAlbuns;
 		this.nomeAlbum = nomeAlbum;
 		this.artista = artista;
 		this.anoLancamento = anoLancamento;
-		this.qtdMusicas = qtdMusicas;
-		this.avaliacaoAlbum = avaliacaoAlbum;
+		qtdMusicas = 0;
+		this.estiloMusical = estiloMusical;
 		qtdAlbuns++;
 	}
 
@@ -66,25 +72,43 @@ public class Album {
 		return qtdMusicas;
 	}
 
-	public void setQtdMusicas(int qtdMusicas) {
-		this.qtdMusicas = qtdMusicas;
-	}
-
-	public double getAvaliacaoAlbum() {
-		return avaliacaoAlmbum;
-	}
-
-	public void setAvaliacaoAlbum(double avaliacaoAlbum) {
-		this.avaliacaoAlbum = avaliacaoAlbum;
+	public static double getAvaliacaoAlbum() {
+		return avaliacaoAlbum;
 	}
 
 	public int getId() {
 		return id;
 	}
+	
+	public EstilosMusicais getEstiloMusical() {
+		return estiloMusical;
+	}
 
+	public void setEstiloMusical(EstilosMusicais estiloMusical) {
+		this.estiloMusical = estiloMusical;
+	}
+
+	public ArrayList<Musica> getMusicas() {
+		return musicas;
+	}
+	
+	public boolean adicionarMusica(Musica musica) {
+		if(musicas.contains(musica)) {
+			return false;
+		}else {
+			musicas.add(musica);
+			qtdMusicas++;
+			return true;
+		}
+	}
+
+	public void atribuirNota(double avaliacao) {
+		avaliacaoAlbum = (avaliacaoAlbum + avaliacao)/2;
+	}
+	
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", nomeAlbum=" + nomeAlbum + ", artista=" + artista + ", anoLancamento="
-				+ anoLancamento + ", qtdMusicas=" + qtdMusicas + ", avaliacaoAlmbum=" + avaliacaoAlmbum + "]";
+				+ anoLancamento + ", estiloMusical=" + estiloMusical + ", musicas=" + musicas + "]";
 	}
 }

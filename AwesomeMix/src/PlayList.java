@@ -67,7 +67,7 @@ public class PlayList {
 
 	@Override
 	public String toString() {
-		String out =  "PlayList [id=" + id + ", nome=" + nome + ", autor=" + autor
+		String out =  "PlayList [id=" + id + ", nome=" + nome
 				+ ", quantidadeMusicas=" + quantidadeMusicas +  ", duracao=" + duracao;
 		out += ", musicas=[ ";
 		if(musicas != null){
