@@ -5,6 +5,7 @@ public class Musica extends Album{
 	private String nomeMusica;
 	private double tempoDuracao;
 	private double avaliacao;
+	private EstiloMusical estiloMusical;
 	
 	//Metodo Construtor
 	public Musica(){
@@ -15,6 +16,7 @@ public class Musica extends Album{
 		this.avaliacao=0.0;
 		qtdMusicasTotal++;
 	}
+	
 	//Metodos Getters e Setters da classe Musica
 	public static int getQtdMusicasTotal() {
 		return qtdMusicasTotal;
@@ -46,6 +48,12 @@ public class Musica extends Album{
 
 	public int getId() {
 		return id;
+	}
+	public EstiloMusical getEstiloMusical() {
+		return estiloMusical;
+	}
+	public void setEstiloMusical(EstiloMusical estiloMusical) {
+		this.estiloMusical = estiloMusical;
 	}	
 	
 }
