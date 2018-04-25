@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+/Users/thrabbit/Documents/programacao/MC302/trabalho1/AwesomeMix/AwesomeMix/.metadata/.plugins/org.eclipse.jdt.core
+3632878119.index
