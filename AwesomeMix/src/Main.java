@@ -13,12 +13,17 @@ public class Main {
 		
 		usuario1.removePlayListPrivada("ble");
 		
-		Musica musica = new Musica("do i wanna know?", 4.32, new Album("AM", "Arctic Monkeys", 2013, 9.0, EstilosMusicais.Indie));
-		usuario1.adicionaMusicaPlaylist("ouvir no banho", 0, musica);
-		usuario1.adicionaMusicaPlaylist("ouvir no banho", 1, musica);
+		Album album = new Album("AM", "Arctic Monkeys", 2013, EstilosMusicais.Indie);
+		album.atribuirNota(9.0);
+		Musica m1 = new Musica("do i wanna know?", 4.32, album);
+		Musica m2 = new Musica("Are U Mine?", 3.21, album);
+		m1.atribuirNota(7.0);
+		m2.atribuirNota(5.0);
+		
+		usuario1.adicionaAlbumPlaylist("ouvir no banho", 0, album);
 		//usuario1.adicionaMusicaPlaylist("ouvir no banho", 0, new Musica("do i wanna know?", 4.32, new Album("AM", "Arctic Monkeys", 2013, 9.0, EstilosMusicais.Indie)));
 		//usuario1.adicionaMusicaPlaylist("favoritos", 1, new Musica("do i wanna know?", 4.32, new Album("AM", "Arctic Monkeys", 2013, 9.0, EstilosMusicais.Indie)));
-		
+		System.out.println(album);
 		System.out.println(usuario1);
 		
 	}

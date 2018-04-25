@@ -8,7 +8,7 @@ public class Album {
 	private String artista;
 	private int anoLancamento;
 	private static int qtdMusicas;
-	private static double avaliacaoAlbum;
+	private double avaliacaoAlbum;
 	private EstilosMusicais estiloMusical;
 	private ArrayList<Musica> musicas;
 	
@@ -24,7 +24,7 @@ public class Album {
 		qtdAlbuns++;
 	}
 	
-	public Album(String nomeAlbum, String artista, int anoLancamento, double avaliacaoAlbum, EstilosMusicais estiloMusical) {
+	public Album(String nomeAlbum, String artista, int anoLancamento, EstilosMusicais estiloMusical) {
 		musicas = new ArrayList<Musica>();
 		this.id = qtdAlbuns;
 		this.nomeAlbum = nomeAlbum;
@@ -72,7 +72,7 @@ public class Album {
 		return qtdMusicas;
 	}
 
-	public static double getAvaliacaoAlbum() {
+	public double getAvaliacaoAlbum() {
 		return avaliacaoAlbum;
 	}
 
@@ -98,12 +98,20 @@ public class Album {
 		}else {
 			musicas.add(musica);
 			qtdMusicas++;
+			musica.atribuirNota(avaliacaoAlbum);
 			return true;
 		}
 	}
 
-	public void atribuirNota(double avaliacao) {
-		avaliacaoAlbum = (avaliacaoAlbum + avaliacao)/2;
+	public void atribuirNota(double avaliacao) {	
+		if(this.avaliacaoAlbum > 0) {
+			this.avaliacaoAlbum = (this.avaliacaoAlbum + avaliacao)/2;
+		}else {
+			this.avaliacaoAlbum = avaliacao;
+		}
+		for(int i=0; i<musicas.size(); i++) {
+			musicas.get(i).atribuirNota(avaliacao);
+		}
 	}
 	
 	@Override

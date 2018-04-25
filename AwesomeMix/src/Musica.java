@@ -1,10 +1,9 @@
-
 public class Musica{
 	private final int id;
 	private static int qtdMusicasTotal;
 	private String nomeMusica;
 	private double tempoDuracao;
-	private static double avaliacaoMusica;
+	private double avaliacaoMusica;
 	private Album album;
 	
 	//Metodo Construtor
@@ -15,7 +14,10 @@ public class Musica{
 		this.tempoDuracao = tempoDuracao;
 		this.album = album;
 		qtdMusicasTotal++;
+		
+		album.adicionarMusica(this);
 	}
+	
 	
 	//Metodos Getters e Setters da classe Musica
 	public static int getQtdMusicasTotal() {
@@ -38,7 +40,7 @@ public class Musica{
 		this.tempoDuracao = tempoDuracao;
 	}
 
-	public static double getAvaliacao() {
+	public double getAvaliacao() {
 		return avaliacaoMusica;
 	}
 
@@ -55,7 +57,11 @@ public class Musica{
 	}
 
 	public void atribuirNota(double avaliacao) {
-		avaliacaoMusica = (avaliacaoMusica + avaliacao)/2;
+		if(this.avaliacaoMusica > 0) {
+			this.avaliacaoMusica = (this.avaliacaoMusica + avaliacao)/2;
+		}else {
+			this.avaliacaoMusica = avaliacao;
+		}
 	}
 	
 	

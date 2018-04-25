@@ -123,6 +123,12 @@ public class Usuario {
 		return false;
 	}
 
+	public void adicionaAlbumPlaylist(String nome, int tipo, Album album) {
+		for(int i=0; i<album.getMusicas().size(); i++) {
+			adicionaMusicaPlaylist(nome, tipo, album.getMusicas().get(i));
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
