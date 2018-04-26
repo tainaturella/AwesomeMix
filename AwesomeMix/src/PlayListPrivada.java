@@ -83,6 +83,7 @@ public class PlayListPrivada  extends PlayList {
 		return removeu;
 	}
 	
+
 	/*Metodo: adicionarContribuinte
 	 *Parametros:o usuario que deve ser adicionado na lista contribuintes da PlayList
 	 *O que faz: cria um objeto da classe associativa UsuarioPlayList e adiciona o objeto
@@ -90,11 +91,18 @@ public class PlayListPrivada  extends PlayList {
 	 *na lista de contribuintes do objeto de tipo PlayList.
 	 *Retorno: true se adicionou o objeto com sucesso */
 	public boolean adicionarContribuinte(Usuario usuario) {
-		boolean adicionou = false;
-		if(getContribuintesPlayList().contains(usuario) == false) {
+		boolean adicionou = true;
+		
+		/*se o usuario ja estiver na lista de contribuintes*/
+		for (int i = 0; i < getContribuintesPlayList().size(); i++){
+			if(getContribuintesPlayList().get(i).getUsuario() == usuario){
+				adicionou = false;
+			}
+		}
+		if(adicionou == true) {
 			UsuarioPlayList associativo = new UsuarioPlayList(usuario,this);
 			getContribuintesPlayList().add(associativo);
-			usuario.getPlaylistsPublicas().add(associativo);
+			usuario.getPlaylistsPrivadas().add(associativo);
 			adicionou = true;
 		}
 		return adicionou;

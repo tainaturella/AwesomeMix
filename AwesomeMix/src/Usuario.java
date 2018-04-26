@@ -89,12 +89,15 @@ public class Usuario {
 	
 	//metodos que removem playlists publicas ou privadas, caso as playlists nao existam retorna falso
 	public boolean removePlayListPublica(String nome) {
-		
+		int index;
 		for(int i=0; i<playlistsPublicas.size(); i++) {
 			/*acha o a playlist na lista de playlist dos usuarios*/
 			if(playlistsPublicas.get(i).getPlayList().getNome() == nome) {
 				/*retira a referencia do usuario da lista de contribuintes da playList*/
-				playlistsPublicas.get(i).getPlayList().getContribuintesPlayList().remove(this);
+				index = playlistsPublicas.get(i).getPlayList().getContribuintesPlayList().indexOf(this);
+				if(index >0 ){
+					playlistsPublicas.get(i).getPlayList().getContribuintesPlayList().remove(index);
+				}
 				playlistsPublicas.remove(i);
 				return true;
 			}
@@ -103,11 +106,15 @@ public class Usuario {
 	}
 	
 	public boolean removePlayListPrivada(String nome) {
+		int index = 0; 
 		for(int i=0; i<playlistsPrivadas.size(); i++) {
-			/*acha o a playlist na lista de playlist dos usuarios*/
+			/*acha a playlist na lista de playlist dos usuarios*/
 			if(playlistsPrivadas.get(i).getPlayList().getNome() == nome) {
 				/*retira a referencia do usuario da lista de contribuintes da playList*/
-				playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().remove(this);
+				index = playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().indexOf(this);
+				if (index >= 0){
+					playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().remove(index);
+				}
 				playlistsPrivadas.remove(i);
 				return true;
 			}
