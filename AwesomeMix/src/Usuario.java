@@ -7,13 +7,13 @@ public class Usuario {
 	private String login;
 	private String senha;
 	private static int qtdUsuarios;
-	private ArrayList<PlayListPublica> playlistsPublicas;
-	private ArrayList<PlayListPrivada> playlistsPrivadas;
+	private ArrayList<UsuarioPlayList> playlistsPublicas;
+	private ArrayList<UsuarioPlayList> playlistsPrivadas;
 	
 	//Metodo Construtor
 	public Usuario() {
-		playlistsPrivadas = new ArrayList<PlayListPrivada>();
-		playlistsPublicas = new ArrayList<PlayListPublica>();
+		playlistsPrivadas = new ArrayList<UsuarioPlayList>();
+		playlistsPublicas = new ArrayList<UsuarioPlayList>();
 		this.id=qtdUsuarios;
 		this.nome=" ";
 		this.idade=0;
@@ -54,31 +54,47 @@ public class Usuario {
 		return id;
 	}
 	
+	public ArrayList<UsuarioPlayList> getPlaylistsPublicas() {
+		return playlistsPublicas;
+	}
+
+	public ArrayList<UsuarioPlayList> getPlaylistsPrivadas() {
+		return playlistsPrivadas;
+	}
+
 	//Metodos que criam playlists publica ou privada, caso ja exista uma playlist com o nome retorna falso
 	public boolean criaPlayListPublica(String nome) {
 		for(int i=0; i<playlistsPublicas.size(); i++) {
-			if(playlistsPublicas.get(i).getNome() == nome) {
+			if(playlistsPublicas.get(i).getPlayList().getNome() == nome) {
 				return false;
 			}
 		}
-		playlistsPublicas.add(new PlayListPublica(nome, this));
+		PlayListPublica novaPlayList= new PlayListPublica(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
+		UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
+		playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
 		return true;
 	}
 	
 	public boolean criaPlayListPrivada(String nome) {
 		for(int i=0; i<playlistsPrivadas.size(); i++) {
-			if(playlistsPrivadas.get(i).getNome() == nome) {
+			if(playlistsPrivadas.get(i).getPlayList().getNome() == nome) {
 				return false;
 			}
 		}
-		playlistsPrivadas.add(new PlayListPrivada(nome, this));
+		PlayListPrivada novaPlayList= new PlayListPrivada(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
+		UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
+		playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
 		return true;
 	}
 	
 	//metodos que removem playlists publicas ou privadas, caso as playlists nao existam retorna falso
 	public boolean removePlayListPublica(String nome) {
+		
 		for(int i=0; i<playlistsPublicas.size(); i++) {
-			if(playlistsPublicas.get(i).getNome() == nome) {
+			/*acha o a playlist na lista de playlist dos usuarios*/
+			if(playlistsPublicas.get(i).getPlayList().getNome() == nome) {
+				/*retira a referencia do usuario da lista de contribuintes da playList*/
+				playlistsPublicas.get(i).getPlayList().getContribuintesPlayList().remove(this);
 				playlistsPublicas.remove(i);
 				return true;
 			}
@@ -88,7 +104,10 @@ public class Usuario {
 	
 	public boolean removePlayListPrivada(String nome) {
 		for(int i=0; i<playlistsPrivadas.size(); i++) {
-			if(playlistsPrivadas.get(i).getNome() == nome) {
+			/*acha o a playlist na lista de playlist dos usuarios*/
+			if(playlistsPrivadas.get(i).getPlayList().getNome() == nome) {
+				/*retira a referencia do usuario da lista de contribuintes da playList*/
+				playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().remove(this);
 				playlistsPrivadas.remove(i);
 				return true;
 			}
@@ -109,17 +128,17 @@ public class Usuario {
 		//Playlist publica
 		if(tipo == 0) {
 			for(int i=0; i<playlistsPublicas.size(); i++) {
-				if(playlistsPublicas.get(i).getNome() == nome) {
-					playlistsPublicas.get(i).adicionarMusica(musica);
+				if(playlistsPublicas.get(i).getPlayList().getNome() == nome) {
+					playlistsPublicas.get(i).getPlayList().adicionarMusica(musica);
 					return true;
 				}
 			}
 		}
 		//PlayListPrivada
-		if(tipo == 1	) {
+		if(tipo == 1) {
 			for(int i=0; i<playlistsPrivadas.size(); i++) {
-				if(playlistsPrivadas.get(i).getNome() == nome) {
-					playlistsPrivadas.get(i).adicionarMusica(musica);
+				if(playlistsPrivadas.get(i).getPlayList().getNome() == nome) {
+					playlistsPrivadas.get(i).getPlayList().adicionarMusica(musica);
 					return true;
 				}
 			}

@@ -9,9 +9,10 @@ import java.util.ArrayList;
 
 public class PlayListPrivada  extends PlayList {
 	
+	//Atibutos
 	private ArrayList <Musica> listaMusicasPrivadas;
 	
-	
+	//Construtores
 	public PlayListPrivada(){
 		super();
 		listaMusicasPrivadas = new ArrayList<Musica>();
@@ -20,6 +21,7 @@ public class PlayListPrivada  extends PlayList {
 	public PlayListPrivada(String nome, Usuario usuario){
 		super(nome, usuario);
 		listaMusicasPrivadas = new ArrayList<Musica>();
+		this.adicionarContribuinte(usuario);
 	}
 	
 	//Getters e Setters
@@ -81,6 +83,47 @@ public class PlayListPrivada  extends PlayList {
 		return removeu;
 	}
 	
+	/*Metodo: adicionarContribuinte
+	 *Parametros:o usuario que deve ser adicionado na lista contribuintes da PlayList
+	 *O que faz: cria um objeto da classe associativa UsuarioPlayList e adiciona o objeto
+	 *do tipo Playlist aa lista de PlayLists do usuario contribuinte e adiciona o usuario
+	 *na lista de contribuintes do objeto de tipo PlayList.
+	 *Retorno: true se adicionou o objeto com sucesso */
+	public boolean adicionarContribuinte(Usuario usuario) {
+		boolean adicionou = false;
+		if(getContribuintesPlayList().contains(usuario) == false) {
+			UsuarioPlayList associativo = new UsuarioPlayList(usuario,this);
+			getContribuintesPlayList().add(associativo);
+			usuario.getPlaylistsPublicas().add(associativo);
+			adicionou = true;
+		}
+		return adicionou;
+	}
+	
+	/*Metodo: removerContribuinte
+	 *Parametros: o usuario 
+	 *O que faz: remove um usuario da lista de contribuintes de uma playLis
+	 *e retira a playList da lista de playLists do usuario
+	 *Saida: true se achou e romoveu com sucesso o usuario da playList, false caso
+	 *contrario.*/
+	public boolean removerContribuinte(Usuario usuario){
+		boolean removeu = false;
+		//remove a playList da lista de playLists do usuario
+		for(int i = 0; i < usuario.getPlaylistsPrivadas().size(); i++){
+			if(usuario.getPlaylistsPrivadas().get(i).getPlayList() == this){
+				usuario.getPlaylistsPrivadas().remove(i);
+				removeu = true;
+			}
+		}
+		//remove o usuario da lista de contribuintes de uma playList
+		for(int i = 0; i < getContribuintesPlayList().size(); i++){
+			/*se achou o usuario na lista de contribuintes*/
+			if(getContribuintesPlayList().get(i).getUsuario() == usuario){
+				getContribuintesPlayList().remove(i);
+			}
+		}
+		return removeu;
+	}
 	
 
 }
