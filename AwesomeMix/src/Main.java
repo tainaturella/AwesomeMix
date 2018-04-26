@@ -27,7 +27,6 @@ public class Main {
 		System.out.println(usuario1);
 		
 		
-		
 		//-------------------------------------------------------------------------------//
 		//      TESTANDO FUNCIONALIDADES DAS CLASSES PLAYLIST E SUBLCASSES               //
 		//-------------------------------------------------------------------------------//
@@ -55,23 +54,37 @@ public class Main {
 		usuarioC.setIdade(30);
 		usuarioC.setSenha("green");
 		
-		//Cria e instancia uma PlayListPublica, o usuario 1 eh o autor
-		String out = "";
-		PlayListPublica playList1 = new PlayListPublica("My AwesomeMix vol1", usuario1);
+		//Cria e instancia uma PlayListPublica, o usuario A eh o autor
 		System.out.println("\n\nTESTANDO FUNCIONALIDADES DAS PLAYLISTS\n");
-		System.out.println("Adiconando musica anotherBrick na playList1" + " " + playList1.adicionarMusica(anotherBrick));	 	//esperamos true		
-		System.out.println("Adiconando musica m1 na playList1" + " " + playList1.adicionarMusica(m1));	 						//esperamos true		
-		System.out.println("Adiconando anotherBrick na playList1 novamante" + " " + playList1.adicionarMusica(anotherBrick));	//esperamos false		
-		System.out.println("Adiconando usuarioA" + " " + playList1.adicionarContribuinte(usuarioA));							//esperamos true
-		System.out.println("Adiconando usuarioB" + " " + playList1.adicionarContribuinte(usuarioB));							//esperamos true
+		String out = "";
+		PlayListPublica playList1 = new PlayListPublica("My AwesomeMix vol1", usuarioA);
+		
+		//Imprime os dados dos usuarios
+		System.out.println("Dados dos usuarios A, B e C resectivamente");
+		System.out.println("A " + usuarioA);
+		System.out.println("B " + usuarioB);
+		System.out.println("C " + usuarioC);
+		
+		//Adiciona Musicas nas playlist Publica
+		System.out.println("\nAdiconando musica anotherBrick na Plalist Publica playList1"
+						  + " " + playList1.adicionarMusica(anotherBrick));	 	//esperamos true		
+		System.out.println("Adiconando musica m1 na playList1" + " " + playList1.adicionarMusica(m1));//esperamos true		
+		System.out.println("Adiconando anotherBrick na playList1 novamante"
+						  + " " + playList1.adicionarMusica(anotherBrick));	//esperamos false
+		
+		//Adiciona Contribuintes na playlist publica
+		System.out.println("Adiconando usuarioA" + " " + playList1.adicionarContribuinte(usuarioA));	//esperamos true
+		System.out.println("Adiconando usuarioB" + " " + playList1.adicionarContribuinte(usuarioB));	//esperamos true
 		System.out.println(playList1);
 		System.out.print("Lista de playLists do usuario B: ");
 		for (int i = 0; i < usuarioB.getPlaylistsPublicas().size(); i++){
 			out += usuarioB.getPlaylistsPublicas().get(i).getPlayList().getNome();
-			}
+		}
 		System.out.print(out + "\n");
 		out = "";
-		System.out.println("Removendo o usuario B" + " " + playList1.removerContribuinte(usuarioB));				//esperamos true
+		
+		//Remove o usuario B da lista de Contribuintes
+		System.out.println("Removendo o usuario B" + " " + playList1.removerContribuinte(usuarioB));	//esperamos true
 		System.out.print("Lista de playLists do usuario B depois da remocao: ");
 		for (int i = 0; i < usuarioB.getPlaylistsPublicas().size(); i++){
 			out += usuarioB.getPlaylistsPublicas().get(i).getPlayList().getNome();
@@ -80,11 +93,15 @@ public class Main {
 		out = "";
 		System.out.println(playList1);
 		
+		
 		//Cria e instancia uma PlayListPrivada
 		PlayListPrivada playList2 = new PlayListPrivada("My Private AwesomeMix vol2", usuarioC);
-		System.out.println("\nAdiconando musica1 na playList2" +playList2.adicionarMusica(anotherBrick));              //esperamos true		
-		System.out.println("Adiconando usuario " + usuarioA.getId() + " " + playList2.adicionarContribuinte(usuarioA));//esperamos true
-		System.out.println("Adiconando usuario " + usuarioB.getId() + " " + playList2.adicionarContribuinte(usuarioB));//esperamos true
+		System.out.println("\nAdiconando anotherBrick Privada na playList2 "
+						  +playList2.adicionarMusica(anotherBrick)); 			//esperamos true		
+		System.out.println("Adiconando usuario A " + usuarioA.getId() + " " 
+						  + playList2.adicionarContribuinte(usuarioA));			//esperamos true
+		System.out.println("Adiconando usuario B " + usuarioB.getId() + " " 
+						  + playList2.adicionarContribuinte(usuarioB));			//esperamos true
 		System.out.println(playList2);
 		System.out.print("Lista de playLists do usuario 1:");
 		for (int i = 0; i < usuario1.getPlaylistsPrivadas().size(); i++){
@@ -92,9 +109,11 @@ public class Main {
 		}
 		System.out.print(out + "\n");
 		out = "";
-		System.out.println("Removendo o usuario 1" + " " + playList2.removerContribuinte(usuario1));				//esperamos true
-		System.out.println("Lista de playLists do usuarioA: " + " " + playList2.removerContribuinte(usuario1));
-		System.out.print("Lista de playLists do usuarioA depois da remocao:");
+		
+		//Remove o usuarioA da lista de Contribuintes
+		System.out.println("Removendo o usuario A " + " " + playList2.removerContribuinte(usuario1));			//esperamos true
+		System.out.println("Lista de playLists do usuario A: " + " " + playList2.removerContribuinte(usuario1));
+		System.out.print("Lista de playLists do usuario A depois da remocao:");
 		for (int i = 0; i < usuario1.getPlaylistsPrivadas().size(); i++){
 			out += usuarioA.getPlaylistsPrivadas().get(i).getPlayList().getNome();
 		}
