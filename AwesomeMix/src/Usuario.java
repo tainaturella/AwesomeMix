@@ -106,21 +106,22 @@ public class Usuario {
 		return removeu;
 	}
 	
-	public boolean removePlayListPrivada(String nome) {
-		int index = 0; 
-		for(int i=0; i<playlistsPrivadas.size(); i++) {
-			/*acha a playlist na lista de playlist dos usuarios*/
-			if(playlistsPrivadas.get(i).getPlayList().getNome() == nome) {
-				/*retira a referencia do usuario da lista de contribuintes da playList*/
-				index = playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().indexOf(this);
-				if (index >= 0){
-					playlistsPrivadas.get(i).getPlayList().getContribuintesPlayList().remove(index);
-				}
-				playlistsPrivadas.remove(i);
-				return true;
+	public boolean removePlayListPrivada(PlayListPrivada playlist) {
+		boolean removeu = false;
+		//remove o usuario de lista de  contribuintes da playList
+		for(int i = 0; i < playlist.getContribuintesPlayList().size(); i++){
+			if(playlist.getContribuintesPlayList().get(i).getUsuario() == this){
+				playlist.getContribuintesPlayList().remove(i);
+				removeu = true;
 			}
 		}
-		return false;
+		//remove a playList da lista de playlists do usuario
+		for(int i = 0; i < playlistsPublicas.size(); i++){
+			if( playlistsPublicas.get(i).getPlayList() == playlist){
+				playlistsPublicas.remove(i);
+			}
+		}
+		return removeu;
 	}
 
 	//metodo que cria um usuario e altera os campos nome, idade, login e senha

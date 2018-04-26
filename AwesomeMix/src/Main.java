@@ -11,7 +11,7 @@ public class Main {
 		usuario1.criaPlayListPublica("ouvir no banho");
 		usuario1.criaPlayListPrivada("ble");
 		usuario1.criaPlayListPrivada("ble");
-		usuario1.removePlayListPrivada("ble");
+	
 		
 		//instanciando albuns e musicas e atribuindo notas a eles
 		Album album = new Album("AM", "Arctic Monkeys", 2013, EstilosMusicais.Indie);
