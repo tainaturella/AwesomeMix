@@ -1,34 +1,34 @@
-import java.util.ArrayList;
-
 /*Classe: PlayList
  *Autora: Naomi Takemoto
+ *Atualizacao: corrigindo bug em adiconarMusica, atualizando
+ *atributo duracao da Playlist. Inicializando quantidadeMusicas e duracao
+ *no construtor.
  **/
+import java.util.ArrayList;
 
-public abstract class PlayList {
+public class PlayList {
 	
-	//Atributos
 	private static int geradorId = 0;
 	private final int id;
 	private String nome;
 	private Usuario autor;
+	private ArrayList <Musica> musicas;
 	private int quantidadeMusicas;
-	private ArrayList <UsuarioPlayList> contribuintesPlayList;
+	private double duracao;			
 	
-	//Metodos construtores
 	public PlayList(){
 		this.id = geradorId++;
+		duracao = 0;
 		quantidadeMusicas = 0;
-		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
+		musicas = new ArrayList<Musica>();
 	}
 	
 	public PlayList(String nome, Usuario autor){
 		this();
 		this.nome = nome;
 		this.autor = autor;
-		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
 	}
 	
-	//Getters e Setters
 	public int getId() {
 		return id;
 	}
@@ -48,63 +48,34 @@ public abstract class PlayList {
 	public void setAutor(Usuario autor) {
 		this.autor = autor;
 	}
-	
-	public ArrayList<UsuarioPlayList> getContribuintesPlayList() {
-		return contribuintesPlayList;
+
+	/*Metodo adicionarMusica
+	 *Parametro: musica a ser incluida na playlist
+	 *Verifica se musica ja esta na playlist, se nao adiciona, caso contrario,
+	 *nao.
+	 *Retorno: boolean, true se a musica foi colocada com sucesso, false se nao.
+	 **/
+	public boolean adicionarMusica(Musica musica){
+		boolean adiciona ;
+		adiciona = musicas.contains(musica);
+		if(adiciona == false){
+			adiciona = musicas.add(musica);
+			this.duracao += musica.getTempoDuracao();
+		}
+		return adiciona;
 	}
 
-	public void setContribuintesPlayList(ArrayList<UsuarioPlayList> contribuintesPlayList) {
-		this.contribuintesPlayList = contribuintesPlayList;
-	}
-	
-	public abstract boolean adicionarMusica(Musica musica);
-	public abstract boolean removerMusica(Musica musica);
-	
-	/*Metodo: adicionarContribuinte
-	 *Parametros:o usuario que deve ser adicionado na lista contribuintes da PlayList
-	 *O que faz: cria um objeto da classe associativa UsuarioPlayList e adiciona o objeto
-	 *do tipo Playlist aa lista de PlayLists do usuario contribuinte e adiciona o usuario
-	 *na lista de contribuintes do objeto de tipo PlayList.
-	 *Retorno: true se adicionou o objeto com sucesso */
-	public boolean adicionarContribuinte(Usuario usuario) {
-		boolean adicionou = false;
-		if(contribuintesPlayList.contains(usuario) == false) {
-			UsuarioPlayList associativo = new UsuarioPlayList(usuario,this);
-			contribuintesPlayList.add(associativo);
-			usuario.getPlayLists().add(associativo);
-			adicionou = true;
-		}
-		return adicionou;
-	}
-	
-	/*Metodo: removerContribuinte
-	 *Parametros: o usuario 
-	 *O que faz: remove um usuario da lista de contribuintes de uma playLis
-	 *e retira a playList da lista de playLists do usuario
-	 *Saida: true se achou e romoveu com sucesso o usuario da playList, false caso
-	 *contrario.*/
-	public boolean removerContribuinte(Usuario usuario){
-		boolean removeu = false;
-		//remove a playList da lista de playLists do usuario
-		for(int i = 0; i < usuario.getPlayLists().size(); i++){
-			if(usuario.getPlayLists().get(i).getPlayList() == this){
-				usuario.getPlayLists().remove(i);
-			}
-		}
-		//remove o usuario da lista de contribuintes de uma playList
-		for(int i = 0; i < contribuintesPlayList.size(); i++){
-			/*se achou o usuario na lista de contribuintes*/
-			if(contribuintesPlayList.get(i).getUsuario() == usuario){
-				contribuintesPlayList.remove(i);
-			}
-		}
-		return removeu;
-	}
-	
 	@Override
 	public String toString() {
-		String out =  "PlayList [id=" + id + ", nome=" + nome + ", autor=" + autor
-				+ ", quantidadeMusicas=" + quantidadeMusicas  + "]";
+		String out =  "PlayList [id=" + id + ", nome=" + nome
+				+ ", quantidadeMusicas=" + quantidadeMusicas +  ", duracao=" + duracao;
+		out += ", musicas=[ ";
+		if(musicas != null){
+			for(int i = 0; i < musicas.size(); i++){
+				out += musicas.get(i);
+			}
+		}
+		out +=  "]";
 		return out;
 	}
 	
