@@ -1,0 +1,63 @@
+SHOW databases;
+CREATE database awesomemix;
+USE awesomemix;
+
+CREATE TABLE usuario (
+
+idUsuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+nomeUsuario VARCHAR(60) NOT NULL,
+idadeUsuario INT(3),
+loginUsuario VARCHAR(60) NOT NULL,
+senhaUsuario VARCHAR(30) NOT NULL,
+qtdUsuarios INT
+); 
+
+CREATE TABLE playList (
+idPlayList INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nomePlayList VARCHAR(60),
+autorPlayList VARCHAR(30),
+qtdMusicasPlayList INT,
+tipoPlayList INT(1)
+);
+
+CREATE TABLE usuarioPlayList (
+idUsuarioPlayList INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idUsuario INT NOT NULL,
+idPlayList INT NOT NULL,
+CONSTRAINT usuario_IdUsuario_fk FOREIGN KEY (idUsuario)
+REFERENCES usuario (idUsuario),
+CONSTRAINT playList_IdPlayList_fk FOREIGN KEY (idPlayList)
+REFERENCES playList (idPlayList)
+);
+
+CREATE TABLE album (
+idAlbum INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nomeAlbum VARCHAR(30) NOT NULL,
+artistaAlbum VARCHAR(60),
+anoLancamentoAlbum INT(4),
+qtdMusicas INT,
+avaliacaoAlbum DECIMAL(3,2),
+estiloMusicalAlbum INT
+);
+
+CREATE TABLE musica (
+idMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+qtdMusicas INT,
+nomeMusica VARCHAR(30) NOT NULL,
+tempoDuracaoMusica DECIMAL(3,3),
+avaliacaoMusica DECIMAL(3,2),
+idAlbum INT,
+CONSTRAINT album_IdAlbum_fk FOREIGN KEY (idAlbum)
+REFERENCES album (idAlbum)
+);
+
+CREATE TABLE playListMusica (
+idPlayListMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPlayList INT NOT NULL,
+idMusica INT NOT NULL,
+CONSTRAINT playList_IdPlayListMusica_fk FOREIGN KEY (idPlayList)
+REFERENCES playList (idPlayList),
+CONSTRAINT musica_IdMusica_fk FOREIGN KEY (idMusica)
+REFERENCES musica (idMusica)
+);
