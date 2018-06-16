@@ -1,4 +1,10 @@
 /Album.class
+/EstilosMusicais.class
+/Main.class
 /Musica.class
 /PlayList.class
+/PlayListPrivada.class
+/PlayListPublica.class
 /Usuario.class
+/UsuarioPlayList.class
+/Conexao.class
