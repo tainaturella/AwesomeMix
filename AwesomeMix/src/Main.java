@@ -123,6 +123,9 @@ public class Main {
 		Conexao conector = new Conexao();
 		conector.conectar();
 		if(conector != null) conector.desconectar();
+		
+		Inicio janela = new Inicio();
+		janela.setVisible(true);
 	}
 
 }
