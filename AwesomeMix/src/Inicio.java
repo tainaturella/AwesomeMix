@@ -56,6 +56,7 @@ public class Inicio extends JFrame {
 	               buttonLoginActionPerformed(evt);
 	               //aqui, quando o botao for pressionado, ele manda pra esse metodo, mas eu poderia ter feito diferente
 	               //podemos deixar um metodo pra cuidar de todos os botoes da janela se quiserem, ou fazer um pra cada
+	               //botao
 	            }
 	        });
 		
