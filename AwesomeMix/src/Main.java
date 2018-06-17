@@ -120,11 +120,11 @@ public class Main {
 		System.out.print(out + "\n");
 		System.out.println(playList2);
 		
-		Conexao conector = new Conexao();
-		conector.conectar();
-		if(conector != null) conector.desconectar();
+		//Conexao conector = new Conexao();
+		//conector.conectar();
+		//if(conector != null) conector.desconectar();
 		
-		Inicio janela = new Inicio();
+		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
 	}
 
