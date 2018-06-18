@@ -23,6 +23,7 @@ public class JanelaAwesomeMix extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //fecha o programa ao fechar a janela
 		setSize(700, 500); //tamanho da janela
+		setResizable(false);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));

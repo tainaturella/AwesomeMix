@@ -14,12 +14,16 @@ public class UsuarioDAO {
     
     public int inserirUsuario(Usuario usuario)  {
 
-        int resultado = 0; //numero de registros alterados
+        int resultado = 0; //numero de registros alterados com a insercao
         String sql;
         Conexao conector = new Conexao();
         
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para insercao!");
+        	return 0;
+        }
+        
         try {
-        	conector.conectar();
             sql = "INSERT INTO usuario (idUsuario, nomeUsuario, idadeUsuario, loginUsuario,"+
             	  " senhaUsuario) VALUES (?,?,?,?,?)";
             pstmt = conector.getConexao().prepareStatement(sql);  
@@ -29,23 +33,30 @@ public class UsuarioDAO {
             pstmt.setString(4, usuario.getLogin());
             pstmt.setString(5, usuario.getSenha());
             resultado = pstmt.executeUpdate(); 
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
+        } catch (SQLException exSQL) { //erro ao inserir no banco
+        	System.err.println("\nExcecao na Insercao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
 		} finally {
-        	try{
+        	try {
         		if (pstmt != null) pstmt.close();
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement - SQLException que ocorreu: \n" + se );
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
         	}
-            
-        	if (conector.getConexao() != null) conector.desconectar();
-	    	
+        	conector.desconectar();
         }
 		
         return resultado;
-	
     }
     /*
     public ArrayList<Usuario> buscarUsuarios() {

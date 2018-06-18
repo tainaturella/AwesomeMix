@@ -48,29 +48,46 @@ public class Conexao {
 		return senha;
 	}
 
-	public void conectar() {
+	public boolean conectar() {
         try {
             Class.forName(driver);
-            System.out.println("Registro do driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace(); //erro ao registrar
-        }
-        
-        try {
+            System.out.println("Registro do driver!");
             conexao = DriverManager.getConnection(url + bancoNome+ "?useTimezone=true&serverTimezone=UTC&useSSL=false", usuario, senha);
-            System.out.println("Conexao foi!!!!!");
-        } catch (SQLException se) {
-        	se.printStackTrace();
-            System.out.println("Erro na conexao!!!!!");
+            System.out.println("Conexao estabelecida!");
+            return true;
+        } catch (ClassNotFoundException exClass) { //erro ao registrar o driver
+        	System.err.println("\nExcecao no Registro do Driver: "+exClass);
+        	exClass.getMessage();
+            exClass.printStackTrace(); 
+            return false;
+        } catch (SQLException exSQL) { //erro ao conectar ao banco de dados
+        	System.err.println("\nExcecao na Conexao ao Banco: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        	return false;
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+        	return false;
         }
     }
 
-    public void desconectar() {
+    public boolean desconectar() {
         try {
             conexao.close();
-            System.out.println("Desconectou!!!");
-        } catch (SQLException se) {
-            System.out.println("Erro ao desconetar");
+            System.out.println("Desconectado!");
+            return true;
+        } catch (SQLException exSQL) { //erro ao desconectar do banco
+        	System.err.println("\nExcecao na Desconexao ao Banco: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        	return false;
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+        	return false;
         }
     }
 	
