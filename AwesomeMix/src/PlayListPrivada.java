@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PlayListPrivada  extends PlayList {
 	
 	//Atibutos
-	private ArrayList <Musica> listaMusicasPrivadas;
+	private ArrayList<Musica> listaMusicasPrivadas;
 	
 	//Construtores
 	public PlayListPrivada(){
@@ -18,10 +18,9 @@ public class PlayListPrivada  extends PlayList {
 		listaMusicasPrivadas = new ArrayList<Musica>();
 	}
 	
-	public PlayListPrivada(String nome, Usuario usuario){
-		super(nome, usuario);
+	public PlayListPrivada(String nome){
+		super(nome);
 		listaMusicasPrivadas = new ArrayList<Musica>();
-		this.adicionarContribuinte(usuario);
 	}
 	
 	//Getters e Setters
@@ -39,7 +38,7 @@ public class PlayListPrivada  extends PlayList {
 	public String toString() {
 		int i;
 		String out = "";
-		out += "PlayListPrivada [ Nome= " + super.getNome() + " Id= " + super.getId() + " Autor= " + super.getAutor().getNome() +"]";
+		out += "PlayListPrivada [ Nome= " + super.getNome() + " Id= " + super.getId() + "]";
 		out += "\nLista de Musicas da PlayListPrivada [";
 		if(listaMusicasPrivadas.size() == 1) {
 			out += listaMusicasPrivadas.get(0).getNomeMusica() + "]";

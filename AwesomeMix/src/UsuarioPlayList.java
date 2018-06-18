@@ -3,6 +3,7 @@
  *Ususario e PlayListPrivada*/
 public class UsuarioPlayList {
 	
+	private int id;
 	private Usuario usuario;
 	private PlayList playList;
 	
@@ -19,6 +20,14 @@ public class UsuarioPlayList {
 		this.setPlayList(playList);
 	}
 
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}

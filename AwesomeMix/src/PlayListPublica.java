@@ -7,24 +7,23 @@ import java.util.ArrayList;
 
 public class PlayListPublica  extends PlayList {
 	
-	private ArrayList <Musica> listaMusicasPublicas;
+	private ArrayList<Musica> listaMusicasPublicas;
 	
 	//metodos construtores
 	public PlayListPublica(){
 		super();
 		listaMusicasPublicas = new ArrayList<Musica>();
 	}
-	public PlayListPublica(String nome, Usuario usuario){
-		super(nome, usuario);
+	public PlayListPublica(String nome){
+		super(nome);
 		listaMusicasPublicas = new ArrayList<Musica>();
-		this.adicionarContribuinte(usuario);
 	}
 
 	@Override 
 	public String toString() {
 		int i;
 		String out = "";
-		out += "PlayListPublica [ Nome= " + super.getNome() + " Id= " + super.getId() + " Autor= " + super.getAutor().getNome() +"]";
+		out += "PlayListPublica [ Nome= " + super.getNome() + " Id= " + super.getId() + "]";
 		out += "\nLista de Musicas da PlayListPublica [";
 		if(listaMusicasPublicas.size() == 1) {
 			out += listaMusicasPublicas.get(0).getNomeMusica() + "]";

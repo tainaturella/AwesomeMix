@@ -72,9 +72,9 @@ public class Usuario {
 				return false;
 			}
 		}
-		PlayListPublica novaPlayList= new PlayListPublica(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
-		UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
-		playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
+		//PlayListPublica novaPlayList= new PlayListPublica(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
+		//UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
+		//playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
 		return true;
 	}
 	
@@ -84,9 +84,9 @@ public class Usuario {
 				return false;
 			}
 		}
-		PlayListPrivada novaPlayList= new PlayListPrivada(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
-		UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
-		playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
+		//PlayListPrivada novaPlayList= new PlayListPrivada(nome, this);//adiciona este usuario como contribuinte da novaPlaylist
+		//UsuarioPlayList novaPlayListAssociativa = new UsuarioPlayList(this, novaPlayList);//Cria um objeto associando playlist e usuario
+		//playlistsPublicas.add(novaPlayListAssociativa);//Adciona a playList criada a listaa de playLists do usuario.
 		return true;
 	}
 	
