@@ -8,9 +8,8 @@ public abstract class PlayList {
 	
 	//Atributos
 	private static int geradorId = 0;
-	private final int id;
+	private int id;
 	private String nome;
-	private Usuario autor;
 	private int quantidadeMusicas;
 	private ArrayList <UsuarioPlayList> contribuintesPlayList;
 	
@@ -21,14 +20,17 @@ public abstract class PlayList {
 		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
 	}
 	
-	public PlayList(String nome, Usuario autor){
+	public PlayList(String nome){
 		this();
 		this.nome = nome;
-		this.autor = autor;
 		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
 	}
 	
 	//Getters e Setters
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -40,13 +42,13 @@ public abstract class PlayList {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Usuario getAutor() {
-		return autor;
+	
+	public void setQuantidadeMusicas(int qtd) {
+		quantidadeMusicas = qtd;
 	}
-
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
+	
+	public int getQuantidadeMusicas() {
+		return this.quantidadeMusicas;
 	}
 	
 	public ArrayList<UsuarioPlayList> getContribuintesPlayList() {
@@ -62,7 +64,7 @@ public abstract class PlayList {
 	
 	@Override
 	public String toString() {
-		String out =  "PlayList [id=" + id + ", nome=" + nome + ", autor=" + autor
+		String out =  "PlayList [id=" + id + ", nome=" + nome
 				+ ", quantidadeMusicas=" + quantidadeMusicas  + "]";
 		return out;
 	}

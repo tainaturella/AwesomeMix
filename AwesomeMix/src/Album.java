@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Album {
 	
-	private final int id;
+	private int id;
 	private static int qtdAlbuns = 0;
 	private String nomeAlbum;
 	private String artista;
@@ -68,6 +68,10 @@ public class Album {
 		this.anoLancamento = anoLancamento;
 	}
 
+	public void setQtdMusicas(int qtdMusicas) {
+		this.qtdMusicas = qtdMusicas;
+	}
+	
 	public int getQtdMusicas() {
 		return qtdMusicas;
 	}
@@ -81,6 +85,10 @@ public class Album {
 		return avaliacaoAlbum;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
