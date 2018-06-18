@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Usuario {
-	private final int id;
+	private int id;
 	private String nome;
 	private int idade;
 	private String login;
@@ -49,6 +49,9 @@ public class Usuario {
 	}
 	public static int getQtdUsuarios() {
 		return qtdUsuarios;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getId() {
 		return id;

@@ -1,6 +1,7 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UsuarioDAO {
 	
@@ -58,484 +59,256 @@ public class UsuarioDAO {
 		
         return resultado;
     }
-    /*
+  
+    //retorna todos os usuarios do banco de dados
     public ArrayList<Usuario> buscarUsuarios() {
     	
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para busca!");
+        	return null;
+        }
+        
         try {
-            connection = Conexao.getConnection();
-            String sql = "SELECT id_usuario, nome_usuario, email_usuario,"
-            		+ "senha_usuario, telefone_usuario, celular_usuario,"
-            		+ "ativo_usuario, habilitado_usuario, confirmacao_usuario, "
-            		+ "data_acesso_usuario, admin_usuario FROM usuario";
-            pstmt = connection.prepareStatement(sql);
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ " loginUsuario, senhaUsuario FROM usuario";
+            pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	
             	Usuario usuario = new Usuario();
-            	usuario.setIdUsuario(resultado.getInt(1)); 
-            	usuario.setNomeUsuario(resultado.getString(2));
-            	usuario.setEmailUsuario(resultado.getString(3));
-            	usuario.setSenhaUsuario(resultado.getString(4));
-            	usuario.setTelefoneUsuario(resultado.getString(5));
-            	usuario.setCelularUsuario(resultado.getString(6));
-            	usuario.setAtivoUsuario(resultado.getBoolean(7));
-            	usuario.setHabilitadoUsuario(resultado.getBoolean(8));
-            	usuario.setConfirmacaoUsuario(resultado.getString(9));
-            	
-            	Calendar calendario = Calendar.getInstance();
-                calendario.setTime(resultado.getDate(10));   
-                usuario.setDataAcessoUsuario(calendario.getTime());
-            	
-                usuario.setAdminUsuario(resultado.getBoolean(11));
-                
-            	usuarios.add(usuario);
-            	
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
+            	usuarios.add(usuario);         	
             }
-
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-			
-        } finally {
-            
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Statement - SQLException que ocorreu: \n" + se);
-            }
-            
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Connection - SQLException que ocorreu: \n" + se);
-            }
-            
+        } catch (SQLException exSQL) { //erro ao buscar no banco
+        	System.err.println("\nExcecao na Busca: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
         }
 
         return usuarios;
-
     } 
     
-    
+ 
     public ArrayList<Usuario> buscarUsuarioId(int idUsuario) {
 
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para busca!");
+        	return null;
+        }
+        
         try {
-            connection = Conexao.getConnection();
-            String sql = "SELECT id_usuario, nome_usuario, email_usuario,"
-            		+ "senha_usuario, telefone_usuario, celular_usuario,"
-            		+ "ativo_usuario, habilitado_usuario, confirmacao_usuario, "
-            		+ "data_acesso_usuario, admin_usuario FROM usuario WHERE id_usuario="+idUsuario;
-            pstmt = connection.prepareStatement(sql);
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ "loginUsuario, senhaUsuario FROM usuario WHERE idUsuario="+idUsuario;
+            pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	
             	Usuario usuario = new Usuario();
-            	usuario.setIdUsuario(resultado.getInt(1)); 
-            	usuario.setNomeUsuario(resultado.getString(2));
-            	usuario.setEmailUsuario(resultado.getString(3));
-            	usuario.setSenhaUsuario(resultado.getString(4));
-            	usuario.setTelefoneUsuario(resultado.getString(5));
-            	usuario.setCelularUsuario(resultado.getString(6));
-            	usuario.setAtivoUsuario(resultado.getBoolean(7));
-            	usuario.setHabilitadoUsuario(resultado.getBoolean(8));
-            	usuario.setConfirmacaoUsuario(resultado.getString(9));
-            	
-            	Calendar calendario = Calendar.getInstance();
-                calendario.setTime(resultado.getDate(10));   
-                usuario.setDataAcessoUsuario(calendario.getTime());
-            	
-                usuario.setAdminUsuario(resultado.getBoolean(11));
-                
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
             	usuarios.add(usuario);
-            	
             }
 
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-			
-        } finally {
-            
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Statement - SQLException que ocorreu: \n" + se);
-            }
-            
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Connection - SQLException que ocorreu: \n" + se);
-            }
-            
+        } catch (SQLException exSQL) { //erro ao buscar no banco
+        	System.err.println("\nExcecao na Busca: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
         }
 
         return usuarios;
 
     }
     
-    public ArrayList<Usuario> buscarUsuarioEmail(String emailUsuario) {
+    public ArrayList<Usuario> buscarUsuarioLogin(String login) {
 
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para busca!");
+        	return null;
+        }
+        
         try {
-            connection = Conexao.getConnection();
-            String sql = "SELECT id_usuario, nome_usuario, email_usuario,"
-            		+ "senha_usuario, telefone_usuario, celular_usuario,"
-            		+ "ativo_usuario, habilitado_usuario, confirmacao_usuario, "
-            		+ "data_acesso_usuario, admin_usuario FROM usuario WHERE email_usuario='"+emailUsuario+"'";
-            pstmt = connection.prepareStatement(sql);
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ "loginUsuario, senhaUsuario FROM usuario WHERE loginUsuario='"+login+"'";
+            pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	
             	Usuario usuario = new Usuario();
-            	usuario.setIdUsuario(resultado.getInt(1)); 
-            	usuario.setNomeUsuario(resultado.getString(2));
-            	usuario.setEmailUsuario(resultado.getString(3));
-            	usuario.setSenhaUsuario(resultado.getString(4));
-            	usuario.setTelefoneUsuario(resultado.getString(5));
-            	usuario.setCelularUsuario(resultado.getString(6));
-            	usuario.setAtivoUsuario(resultado.getBoolean(7));
-            	usuario.setHabilitadoUsuario(resultado.getBoolean(8));
-            	usuario.setConfirmacaoUsuario(resultado.getString(9));
-            	
-            	Calendar calendario = Calendar.getInstance();
-                calendario.setTime(resultado.getDate(10));   
-                usuario.setDataAcessoUsuario(calendario.getTime());
-            	
-                usuario.setAdminUsuario(resultado.getBoolean(11));
-                
-            	usuarios.add(usuario);
-            	
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
+            	usuarios.add(usuario);            	
             }
 
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-			
-        } finally {
-            
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Statement - SQLException que ocorreu: \n" + se);
-            }
-            
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                System.out.print("Erro Connection - SQLException que ocorreu: \n" + se);
-            }
-            
+        } catch (SQLException exSQL) { //erro ao buscar no banco
+        	System.err.println("\nExcecao na Busca: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
         }
 
         return usuarios;
 
     }
     
-    //alterar tudo menos o atributo ativo, id e data
-    public int alterarUsuarioId(int idUsuario, Usuario usuario)  {
-        
-    	String sql;
-    	int resultado = 0;
+    //alterar tudo menos o atributo id
+    public int alterarUsuarioId(int idUsuario, Usuario novoUsuario)  {
    
-        try {
-            
-            connection = Conexao.getConnection();  
+    	String sql;
+    	int resultado = 0; //retorna qtd de registros alterados no banco
+    	Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para alteracao!");
+        	return 0;
+        }
+        
+        try { 
             sql = "UPDATE usuario SET "
-            		+ "nome_usuario = ?, email_usuario = ?, senha_usuario = ?, "
-            		+ "celular_usuario = ?, telefone_usuario = ?, habilitado_usuario = ?, "
-            		+ "confirmacao_usuario = ? WHERE id_usuario = "+idUsuario;
-            pstmt = connection.prepareStatement(sql); 
-            pstmt.setString(1, usuario.getNomeUsuario()); 
-            pstmt.setString(2, usuario.getEmailUsuario());
-            pstmt.setString(3, usuario.getSenhaUsuario());
-            pstmt.setString(4, usuario.getCelularUsuario());
-            pstmt.setString(5, usuario.getTelefoneUsuario());
-            pstmt.setBoolean(6, usuario.isHabilitadoUsuario());
-            pstmt.setString(7, usuario.getConfirmacaoUsuario());
+            		+ "nomeUsuario = ?, idadeUsuario = ?, loginUsuario = ?, "
+            		+ "senhaUsuario = ? WHERE idUsuario = "+idUsuario;
+            pstmt = conector.getConexao().prepareStatement(sql); 
+            pstmt.setString(1, novoUsuario.getNome()); 
+            pstmt.setInt(2, novoUsuario.getIdade());
+            pstmt.setString(3, novoUsuario.getLogin());
+            pstmt.setString(4, novoUsuario.getSenha());
             resultado = pstmt.executeUpdate(); 
             
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
+        } catch (SQLException exSQL) { //erro ao buscar no banco
+        	System.err.println("\nExcecao na Alteracao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
 		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
         	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
+        	conector.desconectar();
         }
 		
         return resultado;
-	
-    }
-    
-    //parâmetros: atributo id do usuario e o ativo a ser inserido
-    public int alterarUsuarioAtivoId(int idUsuario, boolean ativoUsuario)  {
-        
-    	String sql;
-    	int resultado = 0;
-   
-        try {
-            
-            connection = Conexao.getConnection();   
-            sql = "UPDATE usuario SET ativo_usuario = ? WHERE id_usuario = "+idUsuario;
-            pstmt = connection.prepareStatement(sql);  
-            pstmt.setBoolean(1, ativoUsuario); 
-            resultado = pstmt.executeUpdate(); 
-            
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
-		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
-        	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
-        }
-		
-        return resultado;
-	
-    }
-    
-    //parâmetros: atributo id do usuario e a data a ser inserida
-    public int alterarUsuarioDataAcessoId(int idUsuario, Date dataAcessoUsuario)  {
-        
-    	String sql;
-    	int resultado = 0;
-   
-        try {
-            
-            connection = Conexao.getConnection();   
-            sql = "UPDATE usuario SET data_acesso_usuario = ? WHERE id_usuario = "+idUsuario;
-            pstmt = connection.prepareStatement(sql);  
-            pstmt.setDate(1, new java.sql.Date(dataAcessoUsuario.getTime()));
-            resultado = pstmt.executeUpdate(); 
-            
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
-		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
-        	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
-        }
-		
-        return resultado;
-	
-    }
-    
-  
-    public int alterarUsuarioHabilitadoId(int idUsuario, boolean habilitadoUsuario)  {
-        
-    	String sql;
-    	int resultado = 0;
-   
-        try {
-            
-            connection = Conexao.getConnection();   
-            sql = "UPDATE usuario SET habilitado_usuario = ? WHERE id_usuario = "+idUsuario;
-            pstmt = connection.prepareStatement(sql);  
-            pstmt.setBoolean(1, habilitadoUsuario); 
-            resultado = pstmt.executeUpdate(); 
-            
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
-		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
-        	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
-        }
-		
-        return resultado;
-	
     }
     
     
-    //parâmetros: atributo id do usuario e a String confirmação a ser inserido
-    public int alterarUsuarioConfirmacaoId(int idUsuario, String confirmacaoUsuario)  {
-        
-    	String sql;
-    	int resultado = 0;
-   
-        try {
-            
-            connection = Conexao.getConnection();   
-            sql = "UPDATE usuario SET confirmacao_usuario = ? WHERE id_usuario = '"+idUsuario;
-            pstmt = connection.prepareStatement(sql);  
-            pstmt.setString(1, confirmacaoUsuario); 
-            resultado = pstmt.executeUpdate(); 
-            
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
-		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
-        	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
-        }
-		
-        return resultado;
-	
-    }
     
-    public int apagarUsuarioId(int idUsuario)  {
+    public int apagarUsuarioId(int idUsuario) {
 
         int resultado = 0;
         String sql;
+        Conexao conector = new Conexao();
         
-        try {
-            
-            connection = Conexao.getConnection();   
-            sql = "DELETE FROM usuario WHERE id_usuario="+idUsuario;
-            pstmt = connection.prepareStatement(sql);  
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM usuario WHERE idUsuario="+idUsuario;
+            pstmt = conector.getConexao().prepareStatement(sql);  
             resultado = pstmt.executeUpdate(); 
             
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        } catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-        
+        } catch (SQLException exSQL) { //erro ao buscar no banco
+        	System.err.println("\nExcecao na Alteracao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
 		} finally {
-            
-        	try{
-        		if( pstmt != null ){
-        			pstmt.close(); 
-        		}
-        	}catch (SQLException se){
-        		System.out.print("Erro Statement SQLException que ocorreu: \n" + se );
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
         	}
-            
-        	try{
-        		if( connection != null ) {
-        			connection.close();
-        		}
-        	}catch (SQLException se) {
-        		System.out.print("Erro Connection SQLException que ocorreu: \n" + se );
-        	}
-	    	
+        	conector.desconectar();
         }
 		
         return resultado;
-	
-    }*/
+    }
 }
