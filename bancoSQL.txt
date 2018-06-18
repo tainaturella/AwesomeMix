@@ -4,17 +4,16 @@ USE awesomemix;
 
 CREATE TABLE usuario (
 
-idUsuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idUsuario INT NOT NULL PRIMARY KEY,
 
 nomeUsuario VARCHAR(60) NOT NULL,
 idadeUsuario INT(3),
 loginUsuario VARCHAR(60) NOT NULL,
-senhaUsuario VARCHAR(30) NOT NULL,
-qtdUsuarios INT
+senhaUsuario VARCHAR(30) NOT NULL
 ); 
 
 CREATE TABLE playList (
-idPlayList INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPlayList INT NOT NULL PRIMARY KEY,
 nomePlayList VARCHAR(60),
 autorPlayList VARCHAR(30),
 qtdMusicasPlayList INT,
@@ -22,7 +21,7 @@ tipoPlayList INT(1)
 );
 
 CREATE TABLE usuarioPlayList (
-idUsuarioPlayList INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idUsuarioPlayList INT NOT NULL PRIMARY KEY,
 idUsuario INT NOT NULL,
 idPlayList INT NOT NULL,
 CONSTRAINT usuario_IdUsuario_fk FOREIGN KEY (idUsuario)
@@ -32,7 +31,7 @@ REFERENCES playList (idPlayList)
 );
 
 CREATE TABLE album (
-idAlbum INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idAlbum INT NOT NULL PRIMARY KEY,
 nomeAlbum VARCHAR(30) NOT NULL,
 artistaAlbum VARCHAR(60),
 anoLancamentoAlbum INT(4),
@@ -42,8 +41,7 @@ estiloMusicalAlbum INT
 );
 
 CREATE TABLE musica (
-idMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-qtdMusicas INT,
+idMusica INT NOT NULL PRIMARY KEY,
 nomeMusica VARCHAR(30) NOT NULL,
 tempoDuracaoMusica DECIMAL(3,3),
 avaliacaoMusica DECIMAL(3,2),
