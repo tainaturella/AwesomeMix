@@ -120,9 +120,8 @@ public class Main {
 		System.out.print(out + "\n");
 		System.out.println(playList2);
 		
-		//Conexao conector = new Conexao();
-		//conector.conectar();
-		//if(conector != null) conector.desconectar();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuario1));
 		
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
