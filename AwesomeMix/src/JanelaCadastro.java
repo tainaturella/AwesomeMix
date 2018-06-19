@@ -17,22 +17,6 @@ public class JanelaCadastro extends JFrame {
 	private JTextField txtSenha;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JanelaCadastro frame = new JanelaCadastro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public JanelaCadastro() {
