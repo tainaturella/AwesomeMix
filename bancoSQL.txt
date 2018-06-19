@@ -50,7 +50,7 @@ REFERENCES album (idAlbum)
 );
 
 CREATE TABLE playListMusica (
-idPlayListMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPlayListMusica INT NOT NULL PRIMARY KEY,
 idPlayList INT NOT NULL,
 idMusica INT NOT NULL,
 CONSTRAINT playList_IdPlayListMusica_fk FOREIGN KEY (idPlayList)
