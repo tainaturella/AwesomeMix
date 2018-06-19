@@ -7,6 +7,11 @@ public class UsuarioPlayList {
 	private Usuario usuario;
 	private PlayList playList;
 	
+	public UsuarioPlayList() {
+		usuario = null;
+		playList = null;
+	}
+	
 	public UsuarioPlayList(Usuario usuario){
 		this.setUsuario(usuario);
 	}

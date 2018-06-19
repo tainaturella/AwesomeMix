@@ -3,17 +3,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UsuarioPlayListDAO {
-
+public class MusicaDAO {
+	
 	private PreparedStatement pstmt; 
 	private ResultSet resultado;
     
-    public UsuarioPlayListDAO() {
+    public MusicaDAO() {
         pstmt = null; 
         resultado = null; 
     }
     
-    public int inserirUsuarioPlayList(UsuarioPlayList usuarioPlayList)  {
+    public int inserirMusica(Musica musica)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
         String sql;
@@ -25,11 +25,14 @@ public class UsuarioPlayListDAO {
         }
         
         try {
-            sql = "INSERT INTO usuarioPlayList (idUsuarioPlayList, idUsuario, idPlayList) VALUES (?,?,?)";
+            sql = "INSERT INTO musica (idMusica, nomeMusica, tempoDuracaoMusica, avaliacaoMusica,"+
+            	  " idAlbum) VALUES (?,?,?,?,?)";
             pstmt = conector.getConexao().prepareStatement(sql);  
-            pstmt.setInt(1, usuarioPlayList.getId()); 
-            pstmt.setInt(2, usuarioPlayList.getUsuario().getId());
-            pstmt.setInt(3, usuarioPlayList.getPlayList().getId());
+            pstmt.setInt(1, musica.getId()); 
+            pstmt.setString(2, musica.getNomeMusica());
+            pstmt.setDouble(3, musica.getTempoDuracao());
+            pstmt.setDouble(4, musica.getAvaliacaoMusica());
+            pstmt.setInt(5,  musica.getAlbum().getId());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -57,10 +60,10 @@ public class UsuarioPlayListDAO {
         return resultado;
     }
   
-    //retorna todos os albuns
-    /*public ArrayList<Album> buscarAlbuns() {
+    //retorna todos os usuarios do banco de dados
+    public ArrayList<Usuario> buscarUsuarios() {
     	
-        ArrayList<Album> albuns = new ArrayList<Album>();
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         Conexao conector = new Conexao();
         
         if(conector.conectar() == false) {
@@ -69,21 +72,19 @@ public class UsuarioPlayListDAO {
         }
         
         try {
-            String sql = "SELECT idAlbum, nomeAlbum, artistaAlbum,"
-            		+ " anoLancamentoAlbum, qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum FROM album";
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ " loginUsuario, senhaUsuario FROM usuario";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	Album album = new Album();
-            	album.setId(resultado.getInt(1)); 
-            	album.setNomeAlbum(resultado.getString(2));
-            	album.setArtista(resultado.getString(3));
-            	album.setAnoLancamento(resultado.getInt(4));
-            	album.setQtdMusicas(resultado.getInt(5));
-            	album.setAvaliacaoAlbum(resultado.getDouble(6));
-            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(7)]);
-            	albuns.add(album);         	
+            	Usuario usuario = new Usuario();
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
+            	usuarios.add(usuario);         	
             }
         } catch (SQLException exSQL) { //erro ao buscar no banco
         	System.err.println("\nExcecao na Busca: "+exSQL);
@@ -108,15 +109,12 @@ public class UsuarioPlayListDAO {
         	conector.desconectar();
         }
 
-        return albuns;
+        return usuarios;
     } 
-    */
- 
-    //retorna playList pelo idUsuario
-    /*
-    public ArrayList<PlayList> buscarPlayListUsuario(int idUsuario) {
+    
+    public ArrayList<Usuario> buscarUsuarioId(int idUsuario) {
 
-        ArrayList<PlayList> playLists = new ArrayList<PlayList>();
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         Conexao conector = new Conexao();
         
         if(conector.conectar() == false) {
@@ -125,18 +123,19 @@ public class UsuarioPlayListDAO {
         }
         
         try {
-            String sql = "SELECT idPlayList FROM usuarioPlayList WHERE idUsuario="+idUsuario;
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ "loginUsuario, senhaUsuario FROM usuario WHERE idUsuario="+idUsuario;
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	PlayList playList = new PlayList();
-            	playList.setId(resultado.getInt(1)); 
-            	
-            	//procurar a playList que tem esse id na tabela de playlists e adiciona pro arraylist
-            	usuarioPlayList.setUsuario(resultado.getString(2));
-            	usuarioPlayList.setPlayList(resultado.getString(3));
-            	usuarioPlayLists.add(usuarioPlayList);     
+            	Usuario usuario = new Usuario();
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
+            	usuarios.add(usuario);
             }
 
         } catch (SQLException exSQL) { //erro ao buscar no banco
@@ -162,13 +161,13 @@ public class UsuarioPlayListDAO {
         	conector.desconectar();
         }
 
-        return albuns;
+        return usuarios;
 
     }
     
-    public ArrayList<Album> buscarAlbumArtista(String artista) {
+    public ArrayList<Usuario> buscarUsuarioLogin(String login) {
 
-        ArrayList<Album> albuns = new ArrayList<Album>();
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         Conexao conector = new Conexao();
         
         if(conector.conectar() == false) {
@@ -177,21 +176,19 @@ public class UsuarioPlayListDAO {
         }
         
         try {
-            String sql = "SELECT idAlbum, nomeAlbum, artistaAlbum,"
-            		+ " anoLancamentoAlbum, qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum FROM album WHERE artistaAlbum='"+artista+"'";
+            String sql = "SELECT idUsuario, nomeUsuario, idadeUsuario,"
+            		+ "loginUsuario, senhaUsuario FROM usuario WHERE loginUsuario='"+login+"'";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	Album album = new Album();
-            	album.setId(resultado.getInt(1)); 
-            	album.setNomeAlbum(resultado.getString(2));
-            	album.setArtista(resultado.getString(3));
-            	album.setAnoLancamento(resultado.getInt(4));
-            	album.setQtdMusicas(resultado.getInt(5));
-            	album.setAvaliacaoAlbum(resultado.getDouble(6));
-            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(7)]);
-            	albuns.add(album);               	
+            	Usuario usuario = new Usuario();
+            	usuario.setId(resultado.getInt(1)); 
+            	usuario.setNome(resultado.getString(2));
+            	usuario.setIdade(resultado.getInt(3));
+            	usuario.setLogin(resultado.getString(4));
+            	usuario.setSenha(resultado.getString(5));
+            	usuarios.add(usuario);            	
             }
 
         } catch (SQLException exSQL) { //erro ao buscar no banco
@@ -217,12 +214,12 @@ public class UsuarioPlayListDAO {
         	conector.desconectar();
         }
 
-        return albuns;
+        return usuarios;
 
     }
     
     //alterar tudo menos o atributo id
-    public int alterarAlbumId(int idAlbum, Album novoAlbum)  {
+    public int alterarUsuarioId(int idUsuario, Usuario novoUsuario)  {
    
     	String sql;
     	int resultado = 0; //retorna qtd de registros alterados no banco
@@ -234,16 +231,14 @@ public class UsuarioPlayListDAO {
         }
         
         try { 
-            sql = "UPDATE album SET "
-            		+ "nomeAlbum = ?, artistaAlbum = ?, anoLancamentoAlbum = ?, "
-            		+ "qtdMusicas = ?, avaliacaoAlbum = ?, estiloMusicalAlbum = ? WHERE idAlbum = "+idAlbum;
+            sql = "UPDATE usuario SET "
+            		+ "nomeUsuario = ?, idadeUsuario = ?, loginUsuario = ?, "
+            		+ "senhaUsuario = ? WHERE idUsuario = "+idUsuario;
             pstmt = conector.getConexao().prepareStatement(sql); 
-            pstmt.setString(1, novoAlbum.getNomeAlbum()); 
-            pstmt.setString(2, novoAlbum.getArtista());
-            pstmt.setInt(3, novoAlbum.getAnoLancamento());
-            pstmt.setInt(4, novoAlbum.getQtdMusicas());
-            pstmt.setDouble(5, novoAlbum.getAvaliacaoAlbum());
-            pstmt.setInt(6, novoAlbum.getEstiloMusical().ordinal());
+            pstmt.setString(1, novoUsuario.getNome()); 
+            pstmt.setInt(2, novoUsuario.getIdade());
+            pstmt.setString(3, novoUsuario.getLogin());
+            pstmt.setString(4, novoUsuario.getSenha());
             resultado = pstmt.executeUpdate(); 
             
         } catch (SQLException exSQL) { //erro ao buscar no banco
@@ -272,7 +267,7 @@ public class UsuarioPlayListDAO {
         return resultado;
     }
     
-    public int apagarAlbumId(int idAlbum) {
+    public int apagarUsuarioId(int idUsuario) {
 
         int resultado = 0;
         String sql;
@@ -284,10 +279,9 @@ public class UsuarioPlayListDAO {
         }
         
         try { 
-            sql = "DELETE FROM album WHERE idAlbum="+idAlbum;
+            sql = "DELETE FROM usuario WHERE idUsuario="+idUsuario;
             pstmt = conector.getConexao().prepareStatement(sql);  
             resultado = pstmt.executeUpdate(); 
-            
         } catch (SQLException exSQL) { //erro ao excluir do banco
         	System.err.println("\nExcecao na Exclusao: "+exSQL);
         	exSQL.getMessage();
@@ -312,5 +306,5 @@ public class UsuarioPlayListDAO {
         }
 		
         return resultado;
-    }*/
+    }
 }
