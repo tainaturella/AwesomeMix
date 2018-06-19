@@ -15,7 +15,6 @@ senhaUsuario VARCHAR(30) NOT NULL
 CREATE TABLE playList (
 idPlayList INT NOT NULL PRIMARY KEY,
 nomePlayList VARCHAR(60),
-autorPlayList VARCHAR(30),
 qtdMusicasPlayList INT,
 tipoPlayList INT(1)
 );
