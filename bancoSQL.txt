@@ -12,21 +12,10 @@ loginUsuario VARCHAR(60) NOT NULL,
 senhaUsuario VARCHAR(30) NOT NULL
 ); 
 
-CREATE TABLE playList (
-idPlayList INT NOT NULL PRIMARY KEY,
-nomePlayList VARCHAR(60),
-qtdMusicasPlayList INT,
-tipoPlayList INT(1)
-);
-
-CREATE TABLE usuarioPlayList (
-idUsuarioPlayList INT NOT NULL PRIMARY KEY,
-idUsuario INT NOT NULL,
-idPlayList INT NOT NULL,
-CONSTRAINT usuario_IdUsuario_fk FOREIGN KEY (idUsuario)
-REFERENCES usuario (idUsuario),
-CONSTRAINT playList_IdPlayList_fk FOREIGN KEY (idPlayList)
-REFERENCES playList (idPlayList)
+CREATE TABLE playListPublica (
+idPlayListPublica INT NOT NULL PRIMARY KEY,
+nomePlayListPublica VARCHAR(60),
+qtdMusicasPlayListPublica INT
 );
 
 CREATE TABLE album (
@@ -39,6 +28,26 @@ avaliacaoAlbum DECIMAL(3,2),
 estiloMusicalAlbum INT
 );
 
+CREATE TABLE usuarioPlayListPublica (
+idUsuarioPlayListPublica INT NOT NULL PRIMARY KEY,
+idUsuario INT NOT NULL,
+idPlayListPublica INT NOT NULL,
+CONSTRAINT usuario_IdUsuario_fk1 FOREIGN KEY (idUsuario)
+REFERENCES usuario (idUsuario),
+CONSTRAINT playListPublica_IdPlayListPublica_fk1 FOREIGN KEY (idPlayListPublica)
+REFERENCES playListPublica (idPlayListPublica)
+);
+
+CREATE TABLE playListPrivada (
+idUsuarioPlayListPrivada INT NOT NULL PRIMARY KEY,
+idUsuario INT NOT NULL,
+idPlayListPrivada INT NOT NULL,
+CONSTRAINT usuario_IdUsuario_fk2 FOREIGN KEY (idUsuario)
+REFERENCES usuario (idUsuario),
+CONSTRAINT playListPrivada_IdPlayListPrivada_fk FOREIGN KEY (idPlayListPrivada)
+REFERENCES playListPrivada (idPlayListPrivada)
+);
+
 CREATE TABLE musica (
 idMusica INT NOT NULL PRIMARY KEY,
 nomeMusica VARCHAR(30) NOT NULL,
@@ -49,12 +58,23 @@ CONSTRAINT album_IdAlbum_fk FOREIGN KEY (idAlbum)
 REFERENCES album (idAlbum)
 );
 
-CREATE TABLE playListMusica (
-idPlayListMusica INT NOT NULL PRIMARY KEY,
-idPlayList INT NOT NULL,
+CREATE TABLE playListPrivadaMusica (
+idPlayListPrivadaMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPlayListPrivada INT NOT NULL,
 idMusica INT NOT NULL,
-CONSTRAINT playList_IdPlayListMusica_fk FOREIGN KEY (idPlayList)
-REFERENCES playList (idPlayList),
-CONSTRAINT musica_IdMusica_fk FOREIGN KEY (idMusica)
+CONSTRAINT playList_IdPlayListPrivadaMusica_fk FOREIGN KEY (idPlayListPrivada)
+REFERENCES playListPrivada (idPlayListPrivada),
+CONSTRAINT musica_IdMusica_fk1 FOREIGN KEY (idMusica)
 REFERENCES musica (idMusica)
 );
+
+CREATE TABLE playListPublicaMusica (
+idPlayListPublicaMusica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPlayListPublica INT NOT NULL,
+idMusica INT NOT NULL,
+CONSTRAINT playList_IdPlayListPublicaMusica_fk2 FOREIGN KEY (idPlayListPublica)
+REFERENCES playListPublica (idPlayListPublica),
+CONSTRAINT musica_IdMusica_fk2 FOREIGN KEY (idMusica)
+REFERENCES musica (idMusica)
+);
+
