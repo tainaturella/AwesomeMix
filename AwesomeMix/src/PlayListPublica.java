@@ -30,6 +30,9 @@ public class PlayListPublica  extends PlayList {
 	public void setId(int id){
 		this.id = id;
 	}
+	public ArrayList<UsuarioPlayList> getContribuintesPlayList(){
+		return contribuintesPlayList;
+	}
 
 	@Override 
 	public String toString() {
