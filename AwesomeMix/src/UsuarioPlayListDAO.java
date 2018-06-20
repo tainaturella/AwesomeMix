@@ -13,7 +13,7 @@ public class UsuarioPlayListDAO {
         resultado = null; 
     }
     
-    public int inserirUsuarioPlayList(UsuarioPlayList usuarioPlayList)  {
+    public int inserirUsuarioPlayList(UsuarioPlayListPublica usuarioPlayList)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
         String sql;

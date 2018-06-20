@@ -5,8 +5,8 @@
  *no futuro aos usuarios com autorizacao para tal.
  * */
 
-
-public class PlayListPrivada  extends PlayList {
+public class PlayListPrivada extends PlayList {
+	
 	private static int geradorId = 0;
 	private int id;
 	private Usuario dono;
@@ -15,6 +15,7 @@ public class PlayListPrivada  extends PlayList {
 	public PlayListPrivada(){
 		super();
 	}
+	
 	public PlayListPrivada(String nome, Usuario dono){
 		super(nome);
 		this.dono = dono;
@@ -39,13 +40,19 @@ public class PlayListPrivada  extends PlayList {
 		this.id = id;
 	}
 
+	//falta implementar
+	public boolean adicionarMusica() {
+		return false;
+	}
+	
+	public boolean removerMusica() {
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		String out = "";
 		out += "PlayListPrivada [ Nome= " + super.getNome() + " Id= " +id + "]";
 		return out;
 	}
-	
-	
-
 }

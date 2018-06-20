@@ -9,19 +9,17 @@ public abstract class PlayList {
 	//Atributos
 	private String nome;
 	private int quantidadeMusicas;
-	private ArrayList<PlayListMusica> listaMusicas;
-	
 	
 	//Metodos construtores
 	public PlayList(){
 		quantidadeMusicas = 0;
 	}
+	
 	public PlayList(String nome){
 		this();
 		this.nome = nome;
 	}
 	
-
 	//gettter e setters
 	public String getNome() {
 		return nome;
@@ -36,11 +34,13 @@ public abstract class PlayList {
 	}
 	
 	public int getQuantidadeMusicas() {
-		return this.quantidadeMusicas;
+		return quantidadeMusicas;
 	}
 	
-	@Override
-	public String toString() {
+	public abstract boolean adicionarMusica();
+	public abstract boolean removerMusica();
+	
+	/*public String toString() {
 		String out =  "PlayList [ " + ", nome=" + nome
 				+ ", quantidadeMusicas=" + quantidadeMusicas  + "]";
 		int i;
@@ -55,7 +55,7 @@ public abstract class PlayList {
 			out += " ]";
 		}
 		return out;
-	}
+	}*/
 	
 	
 	
@@ -64,7 +64,7 @@ public abstract class PlayList {
 	 *O que faz: se a musica nao estiver na playlist, adiciona, caso contrario nao
 	 *Retorno: true se adicionou com sucesso, false caso contrario.
 	 * */
-	public boolean adicionarMusica(Musica musica) {
+	/*public boolean adicionarMusica(Musica musica) {
 		boolean adicionou = true;
 		for(int i = 0; i < listaMusicas.size(); i++){
 			if(listaMusicas.get(i).getMusica() == musica){
@@ -80,13 +80,13 @@ public abstract class PlayList {
 		
 		return adicionou;
 	}
-	
+	*/
 	/*Metodo: removerMusica
 	 *Parametros: a musica (objeto de tipo Musica) que devera ser removida
 	 *O que faz: se a musica nao estiver na playlist, remove, caso contrario nao
 	 *Retorno: true se removeu com sucesso, false caso contrario.
 	 * */
-	public boolean removerMusica(Musica musica) {
+	/*public boolean removerMusica(Musica musica) {
 		boolean removeu = false;
 		for(int i = 0; i < listaMusicas.size(); i++){
 			//se achou a musica na playlist
@@ -108,7 +108,7 @@ public abstract class PlayList {
 		}
 		return removeu;
 	}
-	
+	*/
 	
 	
 }
