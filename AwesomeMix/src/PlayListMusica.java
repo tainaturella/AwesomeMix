@@ -10,6 +10,7 @@ public class PlayListMusica {
 	public PlayListMusica(){
 		musica = null;
 		playlist = null;
+		
 	}
 	public PlayListMusica(PlayList playlist){
 		this.playlist = playlist;
