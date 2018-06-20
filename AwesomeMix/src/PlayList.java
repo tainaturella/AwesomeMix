@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
-/*Classe: PlayList
- *Autora: Naomi Takemoto
- **/
+
 
 public abstract class PlayList {
 	
