@@ -1,6 +1,6 @@
 /*Descricao: classe associativa entre PlayListPublica e Musica*/
 
-public class MusicaplaylistsPublica {
+public class MusicaPlayListPublica {
 	
 	//atributos
 	private Musica musica;
@@ -9,16 +9,16 @@ public class MusicaplaylistsPublica {
 	private int id;
 	
 	//construtores
-	public  MusicaplaylistsPublica(){
+	public  MusicaPlayListPublica(){
 		musica = null;
 		playlist = null;
 		
 	}
-	public  MusicaplaylistsPublica(PlayListPublica playlist){
+	public  MusicaPlayListPublica(PlayListPublica playlist){
 		this.playlist = playlist;
 		id = geradorId++;
 	}
-	public  MusicaplaylistsPublica(PlayListPublica playlist, Musica musica){
+	public  MusicaPlayListPublica(PlayListPublica playlist, Musica musica){
 		this(playlist);
 		this.musica = musica;
 	}

@@ -1,22 +1,22 @@
 /*Descricao: classe associativa entre Musica e PlayListPrivada*/
 
-public class MusicaPlaylistPrivada {
+public class MusicaPlayListPrivada {
 	private Musica musica;
 	private PlayListPrivada playlist;
 	private static int geradorId = 0;
 	private int id;
 	
 	//construtores
-	public MusicaPlaylistPrivada(){
+	public MusicaPlayListPrivada(){
 		musica = null;
 		playlist = null;
 		
 	}
-	public MusicaPlaylistPrivada(PlayListPrivada playlist){
+	public MusicaPlayListPrivada(PlayListPrivada playlist){
 		this.playlist = playlist;
 		id = geradorId++;
 	}
-	public MusicaPlaylistPrivada(PlayListPrivada playlist, Musica musica){
+	public MusicaPlayListPrivada(PlayListPrivada playlist, Musica musica){
 		this(playlist);
 		this.musica = musica;
 	}
