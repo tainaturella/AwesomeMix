@@ -109,6 +109,7 @@ public class PlayListPublica  extends PlayList {
 		if(adicionou == true){
 			MusicaPlayListPublica associativo = new MusicaPlayListPublica(this, musica);
 			listaMusicas.add(associativo);
+			musica.getPlayListsPublicas().add(associativo);
 		}
 		
 		return adicionou;

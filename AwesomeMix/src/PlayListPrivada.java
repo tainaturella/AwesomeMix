@@ -71,6 +71,7 @@ public class PlayListPrivada extends PlayList {
 		if(adicionou == true){
 			MusicaPlayListPrivada associativo = new MusicaPlayListPrivada(this, musica);
 			listaMusicas.add(associativo);
+			musica.getPlayListsPrivadas().add(associativo);
 		}
 		
 		return adicionou;
