@@ -7,34 +7,21 @@ import java.util.ArrayList;
 public abstract class PlayList {
 	
 	//Atributos
-	private static int geradorId = 0;
-	private int id;
 	private String nome;
 	private int quantidadeMusicas;
-	private ArrayList <UsuarioPlayList> contribuintesPlayList;
+	private ArrayList<PlayListMusica> listaMusicas;
 	
 	//Metodos construtores
 	public PlayList(){
-		this.id = geradorId++;
 		quantidadeMusicas = 0;
-		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
 	}
-	
 	public PlayList(String nome){
 		this();
 		this.nome = nome;
-		contribuintesPlayList = new ArrayList <UsuarioPlayList>();
 	}
 	
-	//Getters e Setters
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getId() {
-		return id;
-	}
 
+	//gettter e setters
 	public String getNome() {
 		return nome;
 	}
@@ -51,23 +38,76 @@ public abstract class PlayList {
 		return this.quantidadeMusicas;
 	}
 	
-	public ArrayList<UsuarioPlayList> getContribuintesPlayList() {
-		return contribuintesPlayList;
-	}
-
-	public void setContribuintesPlayList(ArrayList<UsuarioPlayList> contribuintesPlayList) {
-		this.contribuintesPlayList = contribuintesPlayList;
-	}
-	
-	public abstract boolean adicionarMusica(Musica musica);
-	public abstract boolean removerMusica(Musica musica);
-	
 	@Override
 	public String toString() {
-		String out =  "PlayList [id=" + id + ", nome=" + nome
+		String out =  "PlayList [ " + ", nome=" + nome
 				+ ", quantidadeMusicas=" + quantidadeMusicas  + "]";
+		int i;
+		out += "\nLista de Musicas da PlayList [";
+		if(listaMusicas.size() == 1) {
+			out += listaMusicas.get(0).getMusica().getNomeMusica() + "]";
+		}
+		else {
+			for(i = 0; i < listaMusicas.size(); i++) {
+				out += listaMusicas.get(i).getMusica().getNomeMusica() + ", ";
+			}
+			out += " ]";
+		}
 		return out;
 	}
+	
+	
+	
+	/*Metodo: adicionarMusica
+	 *Parametros: a musica que devera ser adicionada
+	 *O que faz: se a musica nao estiver na playlist, adiciona, caso contrario nao
+	 *Retorno: true se adicionou com sucesso, false caso contrario.
+	 * */
+	public boolean adicionarMusica(Musica musica) {
+		boolean adicionou = true;
+		for(int i = 0; i < listaMusicas.size(); i++){
+			if(listaMusicas.get(i).getMusica() == musica){
+				adicionou = false;
+				break; //neste caso a musica ja esta playlist
+			}
+		}
+		//Caso nao tenha achado a musica, adiciona
+		if(adicionou == true){
+			PlayListMusica associativo = new PlayListMusica(this, musica);
+			listaMusicas.add(associativo);
+		}
+		
+		return adicionou;
+	}
+	
+	/*Metodo: removerMusica
+	 *Parametros: a musica (objeto de tipo Musica) que devera ser removida
+	 *O que faz: se a musica nao estiver na playlist, remove, caso contrario nao
+	 *Retorno: true se removeu com sucesso, false caso contrario.
+	 * */
+	public boolean removerMusica(Musica musica) {
+		boolean removeu = false;
+		for(int i = 0; i < listaMusicas.size(); i++){
+			//se achou a musica na playlist
+			if(listaMusicas.get(i).getMusica() == musica){
+				removeu = true;
+				int tam = musica.getPlaylists().size();
+				for(int j = 0; j < tam; j++){
+					if(musica.getPlaylists().get(j).getPlaylist() == this){
+						removeu = true;
+						//retirar a playlist atual da lista de playlists de musica
+						musica.getPlaylists().remove(j);
+						//retira musica da playlist
+						listaMusicas.remove(i);
+						break;
+					}
+				}
+				
+			}
+		}
+		return removeu;
+	}
+	
 	
 	
 }
