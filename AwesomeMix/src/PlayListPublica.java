@@ -1,8 +1,4 @@
-/*Classe: PlayListPublica
- *Autora: Naomi Takemoto
- *Descricao: em um estagio futuro do projeto, PlayList publica sera um conjunto de
- *musicas criadas por determinado usuario e que sera visivel a todos demais.
- * */
+
 import java.util.ArrayList;
 
 public class PlayListPublica  extends PlayList {
@@ -10,6 +6,7 @@ public class PlayListPublica  extends PlayList {
 	private static int geradorId = 0;
 	private int id;
 	private final ArrayList <UsuarioPlayListPublica> contribuintesPlayList;
+	private ArrayList<MusicaPlayListPublica> listaMusicas;
 	
 	//metodos construtores
 	public PlayListPublica(){
@@ -34,6 +31,18 @@ public class PlayListPublica  extends PlayList {
 	
 	public ArrayList<UsuarioPlayListPublica> getContribuintesPlayList() {
 		return contribuintesPlayList;
+	}
+	
+	public ArrayList<MusicaPlayListPublica> getMusicas(){
+		return listaMusicas;
+	}
+	
+	public ArrayList<MusicaPlayListPublica> getListaMusicas(){
+		return listaMusicas;
+	}
+	
+	public void setListaMusicas(ArrayList<MusicaPlayListPublica> listaMusicas){
+		this.listaMusicas = listaMusicas;
 	}
 
 	/*Metodo: adicionarContribuinte
@@ -67,8 +76,7 @@ public class PlayListPublica  extends PlayList {
 	 *Saida: true se achou e romoveu com sucesso o usuario da playList, false caso
 	 *contrario.*/
 	public boolean removerContribuinte(Usuario usuario){
-		boolean removeu = false;
-		
+		boolean removeu = false;	
 		//remove o usuario da lista de contribuintes da playList
 		for(int i = 0; i < contribuintesPlayList.size(); i++){
 			/*se achou o usuario na lista de contribuintes*/
@@ -86,13 +94,53 @@ public class PlayListPublica  extends PlayList {
 		return removeu;
 	}
 	
-	//falta implementar
-	public boolean adicionarMusica() {
-		return false;
+	/*Metodo: adicionarMusica
+	 *Parametros: um objetdo de tipo musica 
+	 *O que:adiciona uma nova musica na playlist, caso ela ja nao esteja presente*/
+	public boolean adicionarMusica(Musica musica) {
+		boolean adicionou = true;
+		for(int i = 0; i < listaMusicas.size(); i++){
+			if(listaMusicas.get(i).getMusica() == musica){
+				adicionou = false;
+				break; //neste caso a musica ja esta playlist
+			}
+		}
+		//Caso nao tenha achado a musica, adiciona
+		if(adicionou == true){
+			MusicaPlayListPublica associativo = new MusicaPlayListPublica(this, musica);
+			listaMusicas.add(associativo);
+		}
+		
+		return adicionou;
 	}
 	
-	public boolean removerMusica() {
-		return false;
+	/*Metodo: removerMusica
+	 *Parametros: uma referencia para a musica que deve ser removida
+	 *O que faz: percorre a lista de musicas da playList, se achar, entao deleta
+	 *a musica da playList e retira a referencia de para esta playlist da lista de
+	 *playlists do objeto musica
+	 **/
+	public boolean removerMusica(Musica musica) {
+		boolean removeu = false;
+		for(int i = 0; i < listaMusicas.size(); i++){
+			//se achou a musica na playlist
+			if(listaMusicas.get(i).getMusica() == musica){
+				removeu = true;
+				int tam = musica.getPlayListsPublicas().size();
+				for(int j = 0; j < tam; j++){
+					if(musica.getPlayListsPublicas().get(j).getPlaylist() == this){
+						removeu = true;
+						//retirar a playlist atual da lista de playlists de musica
+						musica.getPlayListsPublicas().remove(j);
+						//retira musica da playlist
+						listaMusicas.remove(i);
+						break;
+					}
+				}
+				
+			}
+		}
+		return removeu;
 	}
 	
 	@Override 

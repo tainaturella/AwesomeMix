@@ -1,20 +1,31 @@
+import java.util.ArrayList;
+
 public class Musica{
-	private final int id;
+	private int id;
+	private int geradorId = 0;
 	private static int qtdMusicasTotal;
 	private String nomeMusica;
 	private double tempoDuracao;
 	private double avaliacaoMusica;
 	private Album album;
+	private ArrayList <MusicaPlayListPrivada> playListsPrivadas;
+	private ArrayList <MusicaPlayListPublica> playListsPublicas;
 	
-	//Metodo Construtor
+	//Metodos Construtores
+	public Musica(){
+		this.playListsPrivadas = new ArrayList <MusicaPlayListPrivada>();
+		this.playListsPublicas = new ArrayList <MusicaPlayListPublica>();
+	}
+	
 	public Musica(String nomeMusica, double tempoDuracao, Album album){
+		this();
 		this.id = qtdMusicasTotal;
 		this.nomeMusica = nomeMusica;
 		this.tempoDuracao = tempoDuracao;
 		this.album = album;
 		qtdMusicasTotal++;
-		
 		album.adicionarMusica(this);
+		id = geradorId++;
 	}
 	
 	
@@ -76,6 +87,26 @@ public class Musica{
 	public String toString() {
 		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="
 				+ avaliacaoMusica + "]";
+	}
+
+
+	public ArrayList <MusicaPlayListPrivada> getPlayListsPrivadas() {
+		return playListsPrivadas;
+	}
+
+
+	public void setPlayListsPrivadas(ArrayList <MusicaPlayListPrivada> playListsPrivadas) {
+		this.playListsPrivadas = playListsPrivadas;
+	}
+
+
+	public ArrayList <MusicaPlayListPublica> getPlayListsPublicas() {
+		return playListsPublicas;
+	}
+
+
+	public void setPlayListsPublicas(ArrayList <MusicaPlayListPublica> playListsPublica) {
+		this.playListsPublicas = playListsPublica;
 	}
 	
 	

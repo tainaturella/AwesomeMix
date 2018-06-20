@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 
 public abstract class PlayList {
 	
@@ -35,8 +32,8 @@ public abstract class PlayList {
 		return quantidadeMusicas;
 	}
 	
-	public abstract boolean adicionarMusica();
-	public abstract boolean removerMusica();
+	public abstract boolean adicionarMusica(Musica musica);
+	public abstract boolean removerMusica(Musica musica);
 	
 	/*public String toString() {
 		String out =  "PlayList [ " + ", nome=" + nome

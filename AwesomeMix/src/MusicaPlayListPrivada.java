@@ -6,6 +6,7 @@ public class MusicaPlayListPrivada {
 	private static int geradorId = 0;
 	private int id;
 	
+	
 	//construtores
 	public MusicaPlayListPrivada(){
 		musica = null;
