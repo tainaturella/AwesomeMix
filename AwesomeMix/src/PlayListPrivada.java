@@ -70,6 +70,7 @@ public class PlayListPrivada extends PlayList {
 			MusicaPlayListPrivada associativo = new MusicaPlayListPrivada(this, musica);
 			listaMusicas.add(associativo);
 			musica.getPlayListsPrivadas().add(associativo);
+			setQuantidadeMusicas(getQuantidadeMusicas()+1);
 		}
 		
 		return adicionou;
@@ -89,11 +90,12 @@ public class PlayListPrivada extends PlayList {
 				removeu = true;
 				int tam = musica.getPlayListsPrivadas().size();
 				for(int j = 0; j < tam; j++){
-					if(musica.getPlayListsPrivadas().get(j).getPlaylist().getId() == this.getId()){
+					if(musica.getPlayListsPrivadas().get(j).getPlayList().getId() == this.getId()){
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPrivadas().remove(j);
 						//retira musica da playlist
 						listaMusicas.remove(i);
+						setQuantidadeMusicas(getQuantidadeMusicas()-1);
 						break;
 					}
 				}

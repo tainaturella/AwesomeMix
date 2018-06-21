@@ -108,6 +108,7 @@ public class PlayListPublica  extends PlayList {
 			MusicaPlayListPublica associativo = new MusicaPlayListPublica(this, musica);
 			listaMusicas.add(associativo);
 			musica.getPlayListsPublicas().add(associativo);
+			setQuantidadeMusicas(getQuantidadeMusicas()+1);
 		}
 		
 		return adicionou;
@@ -116,7 +117,7 @@ public class PlayListPublica  extends PlayList {
 	/*Metodo: removerMusica
 	 *Parametros: uma referencia para a musica que deve ser removida
 	 *O que faz: percorre a lista de musicas da playList, se achar, entao deleta
-	 *a musica da playList e retira a referencia de para esta playlist da lista de
+	 *a musica da playList e retira a referencia para esta playlist da lista de
 	 *playlists do objeto musica
 	 **/
 	public boolean removerMusica(Musica musica) {
@@ -127,15 +128,17 @@ public class PlayListPublica  extends PlayList {
 				removeu = true;
 				int tam = musica.getPlayListsPublicas().size();
 				for(int j = 0; j < tam; j++){
-					if(musica.getPlayListsPublicas().get(j).getPlaylist().getId() == this.getId()){
+					if(musica.getPlayListsPublicas().get(j).getPlayList().getId() == this.getId()){
 						removeu = true;
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPublicas().remove(j);
 						//retira musica da playlist
 						listaMusicas.remove(i);
+						setQuantidadeMusicas(getQuantidadeMusicas()-1);
 						break;
 					}
 				}
+				break;
 			}
 		}
 		return removeu;

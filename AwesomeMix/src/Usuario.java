@@ -9,6 +9,7 @@ public class Usuario {
 	private static int qtdUsuarios = 0;
 	private final ArrayList<UsuarioPlayListPublica> playListsPublicas;
 	private final ArrayList<PlayListPrivada> playListsPrivadas;
+	private final ArrayList<UsuarioMusica> musicasAvaliadas;
 	
 	//Metodo Construtor sem parametros
 	public Usuario() {
@@ -19,6 +20,7 @@ public class Usuario {
 		senha=" ";
 		playListsPrivadas = new ArrayList<PlayListPrivada>();
 		playListsPublicas = new ArrayList<UsuarioPlayListPublica>();
+		musicasAvaliadas = new ArrayList<UsuarioMusica>();
 	}
 	
 	public Usuario(String nome, int idade, String login, String senha) {
@@ -29,6 +31,7 @@ public class Usuario {
 		this.senha= senha;
 		playListsPrivadas = new ArrayList<PlayListPrivada>();
 		playListsPublicas = new ArrayList<UsuarioPlayListPublica>();
+		musicasAvaliadas = new ArrayList<UsuarioMusica>();
 	}
 	
 	//Metodos Getters e Setters da classe Usuario
@@ -74,6 +77,10 @@ public class Usuario {
 		return playListsPrivadas;
 	}
 
+	public ArrayList<UsuarioMusica> getMusicasAvaliadas(){
+		return musicasAvaliadas;
+	}
+	
 	//************ CRIACAO DE PLAYLISTS ***********
 	
 	//Cria playlist publica
@@ -152,26 +159,27 @@ public class Usuario {
 	 *O que faz: verifica qual o tipo do objeto, se for uma PlayListPublica, verifica
 	 *se o usuario eh contribuinte dela, se sim ele pode adicionar. Se o tipo for PlayListPrivada
 	 *verifica se o usuario eh o dono, se sim entao ele pode adicionar*/
-	/*public boolean adicionaMusicaPlaylist(Musica musica, PlayList playlist) {
+	public boolean adicionaMusicaPlayList(Musica musica, PlayList playList) {
 		boolean adicionou = true;
-		if(playlist instanceof PlayListPublica){
-			PlayListPublica temp = (PlayListPublica)playlist;
-			for(int i = 0; i < temp.getContribuintesPlayList().size(); i++){
-				if(temp.getContribuintesPlayList().get(i).getUsuario() == this){
-					playlist.adicionarMusica(musica);
-				}
-			}
-		}else if (playlist instanceof PlayListPrivada){
-			if(((PlayListPrivada) playlist).getDono()== this){
-				playlist.adicionarMusica(musica);
+		if(playList instanceof PlayListPublica){
+			PlayListPublica temp = (PlayListPublica)playList;
+			temp.adicionarContribuinte(this); //adiciona criando o associativo
+			temp.adicionarMusica(musica); //adiciona criando o associativo
+		}else if (playList instanceof PlayListPrivada){
+			if(((PlayListPrivada) playList).getDono().getId() == this.getId()){
+				playList.adicionarMusica(musica);
 			}
 		}
 		return adicionou;
 	}
 	
 
-	//Adiciona todas as musicas de um album em uma playlist puclica 
-	public void adicionaAlbumPlaylist(Album album,  PlayList playlist) {
+	//atribuir nota pra musica
+	
+	
+	
+	//Adiciona todas as musicas de um album em uma playlist publica 
+	/*public void adicionaAlbumPlaylist(Album album,  PlayList playlist) {
 		for(int i=0; i<album.getMusicas().size(); i++) {
 			adicionaMusicaPlaylist(album.getMusicas().get(i),playlist);
 		}

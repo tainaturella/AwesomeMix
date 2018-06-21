@@ -4,22 +4,22 @@ public class MusicaPlayListPublica {
 	
 	//atributos
 	private Musica musica;
-	private final PlayListPublica playlist;
+	private final PlayListPublica playList;
 	private static int geradorId = 0;
 	private int id;
 	
 	//construtores
 	public  MusicaPlayListPublica(){
 		musica = null;
-		playlist = null;
+		playList = null;
 		
 	}
-	public  MusicaPlayListPublica(PlayListPublica playlist){
-		this.playlist = playlist;
+	public  MusicaPlayListPublica(PlayListPublica playList){
+		this.playList = playList;
 		id = geradorId++;
 	}
-	public  MusicaPlayListPublica(PlayListPublica playlist, Musica musica){
-		this(playlist);
+	public  MusicaPlayListPublica(PlayListPublica playList, Musica musica){
+		this(playList);
 		this.musica = musica;
 		id = geradorId++;
 	}
@@ -31,8 +31,8 @@ public class MusicaPlayListPublica {
 	public void setMusica(Musica musica) {
 		this.musica = musica;
 	}
-	public PlayListPublica getPlaylist() {
-		return playlist;
+	public PlayListPublica getPlayList() {
+		return playList;
 	}
 	
 	public int getId() {

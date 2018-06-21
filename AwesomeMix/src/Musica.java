@@ -9,11 +9,13 @@ public class Musica{
 	private Album album;
 	private final ArrayList <MusicaPlayListPrivada> playListsPrivadas;
 	private final ArrayList <MusicaPlayListPublica> playListsPublicas;
+	private final ArrayList <UsuarioMusica> avaliacoesRecebidas;
 	
 	//Metodos Construtores
 	public Musica(){
 		this.playListsPrivadas = new ArrayList <MusicaPlayListPrivada>();
 		this.playListsPublicas = new ArrayList <MusicaPlayListPublica>();
+		this.avaliacoesRecebidas = new ArrayList <UsuarioMusica>();
 	}
 	
 	public Musica(String nomeMusica, double tempoDuracao){
@@ -75,15 +77,6 @@ public class Musica{
 
 	public void setAlbum(Album album) {
 		this.album = album;
-	}
-
-	//Metodo que atribui uma nota a musica
-	public void atribuirNota(double avaliacao) {
-		if(this.avaliacaoMusica > 0) {
-			this.avaliacaoMusica = (this.avaliacaoMusica + avaliacao)/2;
-		}else {
-			this.avaliacaoMusica = avaliacao;
-		}
 	}
 	
 	//metodo toString

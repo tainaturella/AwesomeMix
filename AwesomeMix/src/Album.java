@@ -8,31 +8,28 @@ public class Album {
 	private String artista;
 	private int anoLancamento;
 	private int qtdMusicas;
-	private double avaliacaoAlbum;
 	private EstilosMusicais estiloMusical;
-	private ArrayList<Musica> musicas;
+	private final ArrayList<Musica> musicas;
 	
 	//Metodo Construtor
 	public Album() {
 		musicas = new ArrayList<Musica>();
-		this.id=qtdAlbuns;
 		this.nomeAlbum=" ";
 		this.artista=" ";
 		this.anoLancamento=0;
 		qtdMusicas=0;
 		this.estiloMusical = null;
-		qtdAlbuns++;
+		this.id = 0;
 	}
 	
 	public Album(String nomeAlbum, String artista, int anoLancamento, EstilosMusicais estiloMusical) {
 		musicas = new ArrayList<Musica>();
-		this.id = qtdAlbuns;
+		id = qtdAlbuns++;
 		this.nomeAlbum = nomeAlbum;
 		this.artista = artista;
 		this.anoLancamento = anoLancamento;
 		qtdMusicas = 0;
 		this.estiloMusical = estiloMusical;
-		qtdAlbuns++;
 	}
 
 	//Metodos Getters e Setters da classe Album
@@ -76,15 +73,6 @@ public class Album {
 		return qtdMusicas;
 	}
 
-	
-	public void setAvaliacaoAlbum(double avaliacaoAlbum) {
-		this.avaliacaoAlbum = avaliacaoAlbum;
-	}
-
-	public double getAvaliacaoAlbum() {
-		return avaliacaoAlbum;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -111,19 +99,22 @@ public class Album {
 		}else {
 			musicas.add(musica);
 			qtdMusicas++;
-			musica.atribuirNota(avaliacaoAlbum);
 			return true;
 		}
 	}
-
-	public void atribuirNota(double avaliacao) {	
-		if(this.avaliacaoAlbum > 0) {
-			this.avaliacaoAlbum = (this.avaliacaoAlbum + avaliacao)/2;
+	
+	public boolean removerMusica(Musica musica) {
+		if(musicas.contains(musica)) {
+			return false;
 		}else {
-			this.avaliacaoAlbum = avaliacao;
-		}
-		for(int i=0; i<musicas.size(); i++) {
-			musicas.get(i).atribuirNota(avaliacao);
+			for(int i = 0; i < musicas.size(); i++) {
+				if(musicas.get(i).getId() == musica.getId()) {
+					musicas.remove(i);
+					break;
+				}
+			}
+			qtdMusicas--;
+			return true;
 		}
 	}
 	
