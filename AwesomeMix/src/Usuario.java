@@ -194,6 +194,7 @@ public class Usuario {
 	
 	
 	
+	
 	/*Metodo Avaliar Musica
 	 *Parametros: uma musica que este usuario (this) deve avaliar e a nota que ele quer atribuir
 	 *O que faz: percorre a lista de musicas avaliadas pelo usuario, se a musica ja tiver sido

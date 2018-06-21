@@ -88,6 +88,7 @@ public class Musica{
 	}
 
 	public ArrayList <UsuarioMusica> getAvaliacoesRecebidas() {
+		
 		return avaliacoesRecebidas;
 	}
 	
