@@ -81,6 +81,7 @@ CREATE TABLE usuarioMusica (
 idUsuarioMusica INT NOT NULL PRIMARY KEY,
 idUsuario INT NOT NULL,
 idMusica INT NOT NULL,
+avaliacaoUsuarioMusica DECIMAL (3,2),
 CONSTRAINT usuario_IdUsuario_fk3 FOREIGN KEY (idUsuario)
 REFERENCES usuario (idUsuario),
 CONSTRAINT musica_IdMusica_fk3 FOREIGN KEY (idMusica)
