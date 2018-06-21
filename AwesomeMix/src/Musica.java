@@ -79,13 +79,6 @@ public class Musica{
 		this.album = album;
 	}
 	
-	//metodo toString
-	@Override
-	public String toString() {
-		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="
-				+ avaliacaoMusica + "]";
-	}
-
 	public ArrayList <MusicaPlayListPrivada> getPlayListsPrivadas() {
 		return playListsPrivadas;
 	}
@@ -93,5 +86,18 @@ public class Musica{
 	public ArrayList <MusicaPlayListPublica> getPlayListsPublicas() {
 		return playListsPublicas;
 	}
+
+	public ArrayList <UsuarioMusica> getAvaliacoesRecebidas() {
+		return avaliacoesRecebidas;
+	}
+	
+	//metodo toString
+	@Override
+	public String toString() {
+		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="
+				+ avaliacaoMusica + "]";
+	}
+
+	
 	
 }

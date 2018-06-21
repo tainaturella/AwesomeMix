@@ -81,6 +81,12 @@ public class Usuario {
 		return musicasAvaliadas;
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
+				+ ", playlistsPublicas=" + playListsPublicas + ", playlistsPrivadas=" + playListsPrivadas + "]";
+	}
+	
 	//************ CRIACAO DE PLAYLISTS ***********
 	
 	//Cria playlist publica
@@ -173,21 +179,44 @@ public class Usuario {
 		return adicionou;
 	}
 	
-
-	//atribuir nota pra musica
-	
-	
-	
-	//Adiciona todas as musicas de um album em uma playlist publica 
-	/*public void adicionaAlbumPlaylist(Album album,  PlayList playlist) {
+	/*Método: adicionaAlbumPlaylist
+	 *O que faz: Adiciona todas as musicas de um album em uma playlist
+	 *Parametros: o album que deve ser copiado e a playList para a qual este ultimo
+	 *deve ser copiado
+	 *Retorno: true se todas as musicas foram adicionadas, false se pelo menos uma nao foi*/
+	public boolean adicionaAlbumPlaylist(Album album,  PlayList playlist) {
+		boolean adicionou =true;
 		for(int i=0; i<album.getMusicas().size(); i++) {
-			adicionaMusicaPlaylist(album.getMusicas().get(i),playlist);
+			adicionou = adicionaMusicaPlayList(album.getMusicas().get(i),playlist);
 		}
-	}*/
+		return adicionou;
+	}
 	
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", login=" + login + ", senha=" + senha
-				+ ", playlistsPublicas=" + playListsPublicas + ", playlistsPrivadas=" + playListsPrivadas + "]";
+	
+	
+	/*Metodo Avaliar Musica
+	 *Parametros: uma musica que este usuario (this) deve avaliar e a nota que ele quer atribuir
+	 *O que faz: percorre a lista de musicas avaliadas pelo usuario, se a musica ja tiver sido
+	 *avaliada por ele anteriormente apenas modifica a nota, caso constrario cria o
+	 *associativo.
+	 *Retorno: void
+	 **/
+	public void avaliaMusica(Musica musica, double avaliacao){
+		boolean jaAvaliou = false;
+		for(int i = 0; i < musicasAvaliadas.size(); i++){
+			//caso a musica ja tier sido avaliada pelo usuario anteriormente
+			if(musicasAvaliadas.get(i).getMusica().getId() == musica.getId()){
+				musicasAvaliadas.get(i).setAvaliacao(avaliacao);
+				jaAvaliou = true;
+				break;
+			}
+		}
+		//caso nunca tenha avaliado a musica, cria um associativo
+		if(jaAvaliou == false){
+			UsuarioMusica associativo = new UsuarioMusica(this, musica);
+			associativo.setAvaliacao(avaliacao);
+			musicasAvaliadas.add(associativo);
+			musica.getAvaliacoesRecebidas().add(associativo);
+		}
 	}
 }
