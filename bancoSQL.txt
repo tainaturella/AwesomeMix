@@ -18,6 +18,15 @@ nomePlayListPublica VARCHAR(60),
 qtdMusicasPlayListPublica INT
 );
 
+CREATE TABLE playListPrivada (
+idPlayListPrivada INT NOT NULL PRIMARY KEY,
+idUsuario INT NOT NULL,
+nomePlayListPrivada VARCHAR(60),
+qtdMusicasPlayListPrivada INT,
+CONSTRAINT usuario_IdUsuario_fk2 FOREIGN KEY (idUsuario)
+REFERENCES usuario (idUsuario)
+);
+
 CREATE TABLE album (
 idAlbum INT NOT NULL PRIMARY KEY,
 nomeAlbum VARCHAR(30) NOT NULL,
@@ -35,16 +44,6 @@ CONSTRAINT usuario_IdUsuario_fk1 FOREIGN KEY (idUsuario)
 REFERENCES usuario (idUsuario),
 CONSTRAINT playListPublica_IdPlayListPublica_fk1 FOREIGN KEY (idPlayListPublica)
 REFERENCES playListPublica (idPlayListPublica)
-);
-
-CREATE TABLE playListPrivada (
-idUsuarioPlayListPrivada INT NOT NULL PRIMARY KEY,
-idUsuario INT NOT NULL,
-idPlayListPrivada INT NOT NULL,
-CONSTRAINT usuario_IdUsuario_fk2 FOREIGN KEY (idUsuario)
-REFERENCES usuario (idUsuario),
-CONSTRAINT playListPrivada_IdPlayListPrivada_fk FOREIGN KEY (idPlayListPrivada)
-REFERENCES playListPrivada (idPlayListPrivada)
 );
 
 CREATE TABLE musica (
