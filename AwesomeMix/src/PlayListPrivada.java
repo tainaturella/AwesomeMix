@@ -10,17 +10,19 @@ public class PlayListPrivada extends PlayList {
 	private static int geradorId = 0;
 	private int id;
 	private Usuario dono;
-	private ArrayList<MusicaPlayListPrivada> listaMusicas;
+	private final ArrayList<MusicaPlayListPrivada> listaMusicas;
 	
 	//Construtores
 	public PlayListPrivada(){
 		super();
+		listaMusicas = new ArrayList<MusicaPlayListPrivada>();
 	}
 	
 	public PlayListPrivada(String nome, Usuario dono){
 		super(nome);
 		this.dono = dono;
 		id = geradorId++;
+		listaMusicas = new ArrayList<MusicaPlayListPrivada>();
 	}
 	
 	//Getters e Setters
@@ -44,10 +46,6 @@ public class PlayListPrivada extends PlayList {
 	public ArrayList<MusicaPlayListPrivada> getListaMusicas(){
 		return listaMusicas;
 	}
-
-	public void setListaMusicas(ArrayList<MusicaPlayListPrivada> listaMusicas){
-		this.listaMusicas = listaMusicas;
-	}
 	
 	@Override
 	public String toString() {
@@ -62,7 +60,7 @@ public class PlayListPrivada extends PlayList {
 	public boolean adicionarMusica(Musica musica) {
 		boolean adicionou = true;
 		for(int i = 0; i < listaMusicas.size(); i++){
-			if(listaMusicas.get(i).getMusica() == musica){
+			if(listaMusicas.get(i).getMusica().getId() == musica.getId()){
 				adicionou = false;
 				break; //neste caso a musica ja esta playlist
 			}
@@ -87,11 +85,11 @@ public class PlayListPrivada extends PlayList {
 		boolean removeu = false;
 		for(int i = 0; i < listaMusicas.size(); i++){
 			//se achou a musica na playlist
-			if(listaMusicas.get(i).getMusica() == musica){
+			if(listaMusicas.get(i).getMusica().getId() == musica.getId()){
 				removeu = true;
 				int tam = musica.getPlayListsPrivadas().size();
 				for(int j = 0; j < tam; j++){
-					if(musica.getPlayListsPrivadas().get(j).getPlaylist() == this){
+					if(musica.getPlayListsPrivadas().get(j).getPlaylist().getId() == this.getId()){
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPrivadas().remove(j);
 						//retira musica da playlist

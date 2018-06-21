@@ -2,14 +2,13 @@ import java.util.ArrayList;
 
 public class Musica{
 	private int id;
-	private int geradorId = 0;
-	private static int qtdMusicasTotal;
+	private static int qtdMusicasTotal = 0;
 	private String nomeMusica;
 	private double tempoDuracao;
 	private double avaliacaoMusica;
 	private Album album;
-	private ArrayList <MusicaPlayListPrivada> playListsPrivadas;
-	private ArrayList <MusicaPlayListPublica> playListsPublicas;
+	private final ArrayList <MusicaPlayListPrivada> playListsPrivadas;
+	private final ArrayList <MusicaPlayListPublica> playListsPublicas;
 	
 	//Metodos Construtores
 	public Musica(){
@@ -17,17 +16,21 @@ public class Musica{
 		this.playListsPublicas = new ArrayList <MusicaPlayListPublica>();
 	}
 	
+	public Musica(String nomeMusica, double tempoDuracao){
+		this();
+		this.id = qtdMusicasTotal++;
+		this.nomeMusica = nomeMusica;
+		this.tempoDuracao = tempoDuracao;
+	}
+	
 	public Musica(String nomeMusica, double tempoDuracao, Album album){
 		this();
-		this.id = qtdMusicasTotal;
+		this.id = qtdMusicasTotal++;
 		this.nomeMusica = nomeMusica;
 		this.tempoDuracao = tempoDuracao;
 		this.album = album;
-		qtdMusicasTotal++;
 		album.adicionarMusica(this);
-		id = geradorId++;
 	}
-	
 	
 	//Metodos Getters e Setters da classe Musica
 	public static int getQtdMusicasTotal() {
@@ -49,18 +52,19 @@ public class Musica{
 	public void setTempoDuracao(double tempoDuracao) {
 		this.tempoDuracao = tempoDuracao;
 	}
-
 	
 	public double getAvaliacaoMusica() {
 		return avaliacaoMusica;
 	}
 
-
 	public void setAvaliacaoMusica(double avaliacaoMusica) {
 		this.avaliacaoMusica = avaliacaoMusica;
 	}
 
-
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	int getId() {
 		return id;
 	}	
@@ -89,25 +93,12 @@ public class Musica{
 				+ avaliacaoMusica + "]";
 	}
 
-
 	public ArrayList <MusicaPlayListPrivada> getPlayListsPrivadas() {
 		return playListsPrivadas;
 	}
 
-
-	public void setPlayListsPrivadas(ArrayList <MusicaPlayListPrivada> playListsPrivadas) {
-		this.playListsPrivadas = playListsPrivadas;
-	}
-
-
 	public ArrayList <MusicaPlayListPublica> getPlayListsPublicas() {
 		return playListsPublicas;
 	}
-
-
-	public void setPlayListsPublicas(ArrayList <MusicaPlayListPublica> playListsPublica) {
-		this.playListsPublicas = playListsPublica;
-	}
-	
 	
 }

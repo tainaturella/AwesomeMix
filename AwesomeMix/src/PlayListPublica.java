@@ -6,18 +6,20 @@ public class PlayListPublica  extends PlayList {
 	private static int geradorId = 0;
 	private int id;
 	private final ArrayList <UsuarioPlayListPublica> contribuintesPlayList;
-	private ArrayList<MusicaPlayListPublica> listaMusicas;
+	private final ArrayList<MusicaPlayListPublica> listaMusicas;
 	
 	//metodos construtores
 	public PlayListPublica(){
 		super();
 		contribuintesPlayList = new ArrayList <UsuarioPlayListPublica>();
+		listaMusicas = new ArrayList<MusicaPlayListPublica>();
 	}
 	
 	public PlayListPublica(String nome){
 		super(nome);
 		id = geradorId++;
 		contribuintesPlayList = new ArrayList <UsuarioPlayListPublica>();
+		listaMusicas = new ArrayList<MusicaPlayListPublica>();
 	}
 	
 	//getters e setters
@@ -39,10 +41,6 @@ public class PlayListPublica  extends PlayList {
 	
 	public ArrayList<MusicaPlayListPublica> getListaMusicas(){
 		return listaMusicas;
-	}
-	
-	public void setListaMusicas(ArrayList<MusicaPlayListPublica> listaMusicas){
-		this.listaMusicas = listaMusicas;
 	}
 
 	/*Metodo: adicionarContribuinte
@@ -100,7 +98,7 @@ public class PlayListPublica  extends PlayList {
 	public boolean adicionarMusica(Musica musica) {
 		boolean adicionou = true;
 		for(int i = 0; i < listaMusicas.size(); i++){
-			if(listaMusicas.get(i).getMusica() == musica){
+			if(listaMusicas.get(i).getMusica().getId() == musica.getId()){
 				adicionou = false;
 				break; //neste caso a musica ja esta playlist
 			}
@@ -125,11 +123,11 @@ public class PlayListPublica  extends PlayList {
 		boolean removeu = false;
 		for(int i = 0; i < listaMusicas.size(); i++){
 			//se achou a musica na playlist
-			if(listaMusicas.get(i).getMusica() == musica){
+			if(listaMusicas.get(i).getMusica().getId() == musica.getId()){
 				removeu = true;
 				int tam = musica.getPlayListsPublicas().size();
 				for(int j = 0; j < tam; j++){
-					if(musica.getPlayListsPublicas().get(j).getPlaylist() == this){
+					if(musica.getPlayListsPublicas().get(j).getPlaylist().getId() == this.getId()){
 						removeu = true;
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPublicas().remove(j);
@@ -138,7 +136,6 @@ public class PlayListPublica  extends PlayList {
 						break;
 					}
 				}
-				
 			}
 		}
 		return removeu;

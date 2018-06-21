@@ -4,7 +4,7 @@ public class MusicaPlayListPublica {
 	
 	//atributos
 	private Musica musica;
-	private PlayListPublica playlist;
+	private final PlayListPublica playlist;
 	private static int geradorId = 0;
 	private int id;
 	
@@ -21,6 +21,7 @@ public class MusicaPlayListPublica {
 	public  MusicaPlayListPublica(PlayListPublica playlist, Musica musica){
 		this(playlist);
 		this.musica = musica;
+		id = geradorId++;
 	}
 	
 	//getters e setters
@@ -33,9 +34,7 @@ public class MusicaPlayListPublica {
 	public PlayListPublica getPlaylist() {
 		return playlist;
 	}
-	public void setPlaylist(PlayListPublica playlist) {
-		this.playlist = playlist;
-	}
+	
 	public int getId() {
 		return id;
 	}

@@ -2,10 +2,9 @@
 
 public class MusicaPlayListPrivada {
 	private Musica musica;
-	private PlayListPrivada playlist;
+	private final PlayListPrivada playlist;
 	private static int geradorId = 0;
 	private int id;
-	
 	
 	//construtores
 	public MusicaPlayListPrivada(){
@@ -20,6 +19,7 @@ public class MusicaPlayListPrivada {
 	public MusicaPlayListPrivada(PlayListPrivada playlist, Musica musica){
 		this(playlist);
 		this.musica = musica;
+		id = geradorId++;
 	}
 	
 	//getters e setters
@@ -31,9 +31,6 @@ public class MusicaPlayListPrivada {
 	}
 	public PlayListPrivada getPlaylist() {
 		return playlist;
-	}
-	public void setPlaylist(PlayListPrivada playlist) {
-		this.playlist = playlist;
 	}
 	public int getId() {
 		return id;
