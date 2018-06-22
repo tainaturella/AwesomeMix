@@ -116,6 +116,7 @@ public class JanelaCadastro extends JFrame {
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new JanelaAwesomeMix().setVisible(true);
 				setVisible(false);
 				dispose();
 			}

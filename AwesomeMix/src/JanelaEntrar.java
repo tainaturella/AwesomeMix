@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -68,5 +71,35 @@ public class JanelaEntrar extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setBounds(127, 171, 89, 23);
 		contentPane.add(btnEntrar);
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i=0; i < BaseDeDados.shared.usuarios.size(); i++) {
+					if(BaseDeDados.shared.usuarios.get(i).getLogin().equals(txtLogin.getText())) {
+						if(BaseDeDados.shared.usuarios.get(i).getSenha().equals(new String(pwdSenha.getPassword()))) {
+							BaseDeDados.shared.usuario_logado = i;
+							new JanelaMeuPerfil().setVisible(true);
+							setVisible(false);
+							dispose();
+							break;
+						}
+					}
+				}
+				System.out.println("Usuario ou senha Invalido");
+			}
+		});
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBounds(250, 171, 89, 26);
+		contentPane.add(btnVoltar);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JanelaAwesomeMix().setVisible(true);
+				setVisible(false);
+				dispose();
+			}
+		});
+		
 	}
 }

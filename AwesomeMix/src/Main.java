@@ -123,8 +123,17 @@ public class Main {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuario1));
 		*/
+		Usuario usuario = new Usuario("Thamiris", 20, "thamy", "1234");
+		BaseDeDados.shared.usuarios.add(usuario);
+		usuario.criaPlayListPublica("blablabla");
+		usuario.criaPlayListPublica("playlist2");
+		usuario.criaPlayListPublica("pagodin");	
+		usuario.criaPlayListPrivada("privada1");
+		usuario.criaPlayListPrivada("privada2");
+		
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
+		
 	}
 
 }

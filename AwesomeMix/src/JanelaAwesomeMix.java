@@ -53,6 +53,8 @@ public class JanelaAwesomeMix extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaEntrar().setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		
@@ -63,6 +65,8 @@ public class JanelaAwesomeMix extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaCadastro().setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		

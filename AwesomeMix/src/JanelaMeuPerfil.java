@@ -17,6 +17,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
 
 public class JanelaMeuPerfil extends JFrame {
 	private JTextField txtNome;
@@ -99,24 +100,46 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		JList<String> listPlayListPublica = new JList<String>(listPublicas);
 		listPlayListPublica.setBounds(96, 146, 93, 55);
+		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		contentPane.add(listPlayListPublica);
 		
 		JLabel lblPlaylistsprivadas = new JLabel("Playlists Privadas");
 		lblPlaylistsprivadas.setBounds(199, 146, 82, 14);
 		contentPane.add(lblPlaylistsprivadas);
 		
-		JList<String> list = new JList<String>();
-		list.setBounds(291, 145, 88, 56);
-		contentPane.add(list);
+		DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
+		for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
+			listPrivadas.addElement(usuario.getPlayListsPrivadas().get(i).getNome());
+		}
+		
+		JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
+		listPlayListPrivada.setBounds(291, 145, 88, 56);
+		listPlayListPrivada.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		contentPane.add(listPlayListPrivada);
 		
 		JButton btnAdicionarPlaylist = new JButton("Adicionar Playlist");
 		btnAdicionarPlaylist.setBounds(85, 210, 121, 23);
 		contentPane.add(btnAdicionarPlaylist);
 		
-		JButton btnRemoverPlaylist = new JButton("Remover PlayList");
-		btnRemoverPlaylist.setBounds(216, 210, 121, 23);
-		contentPane.add(btnRemoverPlaylist);
-			
+		JButton btnRemoverPlaylistPublica = new JButton("Remover PlayList Pubilca");
+		btnRemoverPlaylistPublica.setBounds(10, 172, 75, 23);
+		contentPane.add(btnRemoverPlaylistPublica);
+		
+		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int index = listPlayListPublica.getSelectedIndex();
+				for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
+					if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
+						usuario.removePlayListPublica(usuario.getPlayListsPublicas().get(i).getPlayListPublica());
+						listPublicas.remove(index);
+						break;
+					}
+				}
+				
+			}
+		});
+	
+		
 		
 		txtNome = new JTextField();
 		txtNome.setEditable(false);
@@ -148,6 +171,7 @@ public class JanelaMeuPerfil extends JFrame {
 		JButton btnBuscarPerfis = new JButton("Buscar Perfis");
 		btnBuscarPerfis.setBounds(151, 243, 117, 29);
 		contentPane.add(btnBuscarPerfis);
+		
 		btnBuscarPerfis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaUsuarios().setVisible(true);
@@ -156,6 +180,22 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
+		JButton btnRemoverPlaylistPrivada = new JButton("Remover PlaylistPrivada");
+		btnRemoverPlaylistPrivada.setBounds(199, 172, 75, 29);
+		contentPane.add(btnRemoverPlaylistPrivada);
+		
+		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int indexPrivada = listPlayListPrivada.getSelectedIndex();
+				for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
+					if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(indexPrivada))) {
+						usuario.removePlayListPrivada(usuario.getPlayListsPrivadas().get(i));
+						listPrivadas.remove(indexPrivada);
+						break;
+					}
+				}
+			}
+		});
 		
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
