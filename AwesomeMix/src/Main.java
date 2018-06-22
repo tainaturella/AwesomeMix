@@ -195,31 +195,8 @@ public class Main {
 		
 	Usuario usuario = new Usuario("Thamiris", 20, "thamy", "1234");
 	BaseDeDados.shared.usuarios.add(usuario);
-	PlayList publica1 = usuario.criaPlayListPublica("blablabla");
-	PlayList publica2 = usuario.criaPlayListPublica("playlist2");
-	PlayList publica3 = usuario.criaPlayListPublica("pagodin");	
-	PlayList privada1 = usuario.criaPlayListPrivada("privada1");
-	PlayList privada2 = usuario.criaPlayListPrivada("privada2");
-	Album album1 = new Album("album1", "artista1", 2000, EstilosMusicais.BLUES);
-	Musica musica1 =  new Musica("bla", 4.5, album1);
-	Musica musica2 =  new Musica("salabin", 2.0, album1);
-	Musica musica3 =  new Musica("oi", 3.5, album1);
-	Musica musica4 =  new Musica("quatro", 4.0, album1);
-	Musica musica5 =  new Musica("cinco", 5.0, album1);
-	BaseDeDados.shared.albums.add(album1);
-	BaseDeDados.shared.musicas.add(musica1);
-	BaseDeDados.shared.musicas.add(musica2);
-	BaseDeDados.shared.musicas.add(musica3);
-	BaseDeDados.shared.musicas.add(musica4);
-	BaseDeDados.shared.musicas.add(musica5);
 
-	usuario.adicionaMusicaPlayList(musica1, privada1);
-	usuario.adicionaMusicaPlayList(musica2, privada1);
-	usuario.adicionaMusicaPlayList(musica2, privada2);
-	usuario.adicionaMusicaPlayList(musica4, publica1);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
+
 	
 
 	
