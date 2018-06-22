@@ -1,4 +1,4 @@
 
 public enum EstilosMusicais {
-	Jazz, Folk, Gospel, Samba, Rap, Reggae, Rock, MPB, Funk, Sertanejo, Axe, Forro, Frevo, Pagode, Soul, RaB, Pop, Classico, Blues, Indie, Eletronico;
+	JAZZ, FOLK, GOSPEL, SAMBA, RAP, REGGAE, ROCK, MPB, FUNK, SERTANEJO, AXE, FORRO, FREVO, PAGODE, SOUL, POP, CLASSICO, BLUES, INDIE, ELETRONICO;
 }
