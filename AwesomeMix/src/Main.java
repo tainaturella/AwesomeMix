@@ -174,6 +174,7 @@ public class Main {
 			System.out.println("Inserindo PlayListPublica: \n"+playListPublicaDAO.inserirPlayListPublica(publicas.get(i)));
 		}*/
 		
+		
 		// **** PEGA DO BANCO
 		publicasRetiradas = playListPublicaDAO.buscarPlayListsPublicas();
 		for(int i = 0; i < publicasRetiradas.size(); i++) 
