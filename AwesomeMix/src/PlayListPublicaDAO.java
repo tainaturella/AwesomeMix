@@ -209,65 +209,6 @@ public class PlayListPublicaDAO {
 
     }*/
     
-    //busca playlist pelo id do usuario
-    public ArrayList<PlayListPrivada> buscarPlayListPrivadaIdUsuario(int idUsuario, ArrayList<Usuario> usuarios) {
-
-        ArrayList<PlayListPrivada> playLists = new ArrayList<PlayListPrivada>();
-        Conexao conector = new Conexao();
-        
-        if(conector.conectar() == false) {
-        	System.out.println("Sem conexao para busca!");
-        	return null;
-        }
-        
-        try {
-            String sql = "SELECT idPlayListPrivada, nomePlayListPrivada, qtdMusicasPlayListPrivada, idUsuario FROM playListPrivada WHERE idUsuario="+idUsuario;
-            pstmt = conector.getConexao().prepareStatement(sql);
-            resultado = pstmt.executeQuery();
-
-            while (resultado.next()) {
-            	PlayListPrivada playList = new PlayListPrivada();
-            	playList.setId(resultado.getInt(1)); 
-            	playList.setNome(resultado.getString(2));
-            	playList.setQuantidadeMusicas(resultado.getInt(3));
-            	
-            	int idDono = resultado.getInt(4);
-            	//procura o usuario na lista de usuarios
-            	for(int i = 0; i < usuarios.size(); i++) {
-            		if(usuarios.get(i).getId() == idDono) {
-            			playList.setDono(usuarios.get(i));
-            			break;
-            		}
-            	}
-            	playLists.add(playList);     
-            }
-
-        } catch (SQLException exSQL) { //erro ao buscar no banco
-        	System.err.println("\nExcecao na Busca: "+exSQL);
-        	exSQL.getMessage();
-        	exSQL.printStackTrace();
-        } catch (Exception ex) { //erro generico
-        	System.err.println("\nExcecao: "+ex);
-        	ex.getMessage();
-        	ex.printStackTrace();
-		} finally {
-        	try {
-        		if (pstmt != null) pstmt.close();
-        	} catch (SQLException exSQL) { //erro ao fechar statement
-            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
-            	exSQL.getMessage();
-            	exSQL.printStackTrace();
-        	} catch (Exception ex) { //erro generico
-            	System.err.println("\nExcecao: "+ex);
-            	ex.getMessage();
-            	ex.printStackTrace();
-        	}
-        	conector.desconectar();
-        }
-
-        return playLists;
-
-    }
     
     //altera somente o nome da playlist pelo id
     /*public int alterarPlayListId(int idPlayList, String novoNome)  {
