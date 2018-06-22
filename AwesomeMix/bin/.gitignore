@@ -44,3 +44,7 @@
 /UsuarioMusica.class
 /UsuarioPlayListDAO.class
 /UsuarioPlayListPublica.class
+/MusicaPlayListPrivadaDAO.class
+/MusicaPlayListPublicaDAO.class
+/UsuarioMusicaDAO.class
+/UsuarioPlayListPublicaDAO.class
