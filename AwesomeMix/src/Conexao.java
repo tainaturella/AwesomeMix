@@ -17,7 +17,7 @@ public class Conexao {
         url = "jdbc:mysql://127.0.0.1:3306/";
         bancoNome = "awesomemix";
         usuario = "root";
-        senha = "12345678";
+        senha = "123456";
     }
     
     public Connection getConexao() {

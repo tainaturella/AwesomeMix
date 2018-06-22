@@ -26,15 +26,14 @@ public class AlbumDAO {
         
         try {
             sql = "INSERT INTO album (idAlbum, nomeAlbum, artistaAlbum, anoLancamentoAlbum,"+
-            	  " qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum) VALUES (?,?,?,?,?,?,?)";
+            	  " qtdMusicas, estiloMusicalAlbum) VALUES (?,?,?,?,?,?)";
             pstmt = conector.getConexao().prepareStatement(sql);  
             pstmt.setInt(1, album.getId()); 
             pstmt.setString(2, album.getNomeAlbum());
             pstmt.setString(3, album.getArtista());
             pstmt.setInt(4, album.getAnoLancamento());
             pstmt.setInt(5, album.getQtdMusicas());
-            pstmt.setDouble(6, album.getAvaliacaoAlbum());
-            pstmt.setInt(7, album.getEstiloMusical().ordinal());
+            pstmt.setInt(6, album.getEstiloMusical().ordinal());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -75,7 +74,7 @@ public class AlbumDAO {
         
         try {
             String sql = "SELECT idAlbum, nomeAlbum, artistaAlbum,"
-            		+ " anoLancamentoAlbum, qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum FROM album";
+            		+ " anoLancamentoAlbum, qtdMusicas, estiloMusicalAlbum FROM album";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -86,8 +85,7 @@ public class AlbumDAO {
             	album.setArtista(resultado.getString(3));
             	album.setAnoLancamento(resultado.getInt(4));
             	album.setQtdMusicas(resultado.getInt(5));
-            	album.setAvaliacaoAlbum(resultado.getDouble(6));
-            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(7)]);
+            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(6)]);
             	albuns.add(album);         	
             }
         } catch (SQLException exSQL) { //erro ao buscar no banco
@@ -129,7 +127,7 @@ public class AlbumDAO {
         
         try {
             String sql = "SELECT idAlbum, nomeAlbum, artistaAlbum,"
-            		+ " anoLancamentoAlbum, qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum FROM album WHERE idAlbum="+idAlbum;
+            		+ " anoLancamentoAlbum, qtdMusicas, estiloMusicalAlbum FROM album WHERE idAlbum="+idAlbum;
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -140,8 +138,7 @@ public class AlbumDAO {
             	album.setArtista(resultado.getString(3));
             	album.setAnoLancamento(resultado.getInt(4));
             	album.setQtdMusicas(resultado.getInt(5));
-            	album.setAvaliacaoAlbum(resultado.getDouble(6));
-            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(7)]);
+            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(6)]);
             	albuns.add(album);     
             }
 
@@ -184,7 +181,7 @@ public class AlbumDAO {
         
         try {
             String sql = "SELECT idAlbum, nomeAlbum, artistaAlbum,"
-            		+ " anoLancamentoAlbum, qtdMusicas, avaliacaoAlbum, estiloMusicalAlbum FROM album WHERE artistaAlbum='"+artista+"'";
+            		+ " anoLancamentoAlbum, qtdMusicas, estiloMusicalAlbum FROM album WHERE artistaAlbum='"+artista+"'";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -195,8 +192,7 @@ public class AlbumDAO {
             	album.setArtista(resultado.getString(3));
             	album.setAnoLancamento(resultado.getInt(4));
             	album.setQtdMusicas(resultado.getInt(5));
-            	album.setAvaliacaoAlbum(resultado.getDouble(6));
-            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(7)]);
+            	album.setEstiloMusical(EstilosMusicais.values()[resultado.getInt(6)]);
             	albuns.add(album);               	
             }
 
@@ -248,8 +244,7 @@ public class AlbumDAO {
             pstmt.setString(2, novoAlbum.getArtista());
             pstmt.setInt(3, novoAlbum.getAnoLancamento());
             pstmt.setInt(4, novoAlbum.getQtdMusicas());
-            pstmt.setDouble(5, novoAlbum.getAvaliacaoAlbum());
-            pstmt.setInt(6, novoAlbum.getEstiloMusical().ordinal());
+            pstmt.setInt(5, novoAlbum.getEstiloMusical().ordinal());
             resultado = pstmt.executeUpdate(); 
             
         } catch (SQLException exSQL) { //erro ao buscar no banco
