@@ -1,11 +1,10 @@
+import java.util.ArrayList;
+
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		//instanciando um usuario
-		Usuario usuario1 = new Usuario();
-		usuario1.criaUsuario("thamiris", 21, "thrabbit", "blablabla");
-		
+		/*
 		//instanciando playlist publica e privada para o usuario, removendo algumas
 		usuario1.criaPlayListPrivada("favoritos");
 		usuario1.criaPlayListPublica("ouvir no banho");
@@ -119,9 +118,69 @@ public class Main {
 		}
 		System.out.print(out + "\n");
 		//System.out.println(playList2);
-		
+		*/
+		//******* USUARIOS
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuario1));
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuario> usuariosRetirados = new ArrayList<Usuario>();
+		
+		//******** GRAVANDO USUARIOS NO BANCO ******************
+		/*Usuario usuario = new Usuario("Thamiris", 21, "thrabbit", "blablabla");
+		usuarios.add(usuario);
+		usuario = new Usuario("Thiago", 22, "thiag", "1234");
+		usuarios.add(usuario);
+		for(int i = 0; i < usuarios.size(); i++) {
+			System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuarios.get(i)));
+		}*/
+		
+		//********* PEGANDO USUARIOS DO BANCO ******************
+		usuariosRetirados = usuarioDAO.buscarUsuarios();
+		for(int i = 0; i < usuariosRetirados.size(); i++) {
+			System.out.println("User do banco:\n"+usuariosRetirados.get(i));
+		}
+		
+		
+		//*******PLAYLISTS PRIVADAS
+		PlayListPrivadaDAO playListPrivadaDAO = new PlayListPrivadaDAO();
+		ArrayList<PlayListPrivada> privadas = new ArrayList<PlayListPrivada>();
+		ArrayList<PlayListPrivada> privadasRetiradas = new ArrayList<PlayListPrivada>();
+		
+		PlayListPrivada priv = usuariosRetirados.get(1).criaPlayListPrivada("Bad vibes");
+		System.out.println("Id da playpriv\n"+priv.getId());
+		privadas.add(priv);
+		
+		// ***** GRAVA NO BANCO
+		/*for(int i = 0; i < privadas.size(); i++) {
+			System.out.println("Inserindo PlayListPrivada: \n"+playListPrivadaDAO.inserirPlayListPrivada(privadas.get(i)));
+		}*/
+		
+		// **** PEGA DO BANCO
+		privadasRetiradas = playListPrivadaDAO.buscarPlayListPrivadaIdUsuario(usuariosRetirados.get(1).getId(), usuarios);
+		for(int i = 0; i < privadasRetiradas.size(); i++) 
+			System.out.println("PlayListPrivada do cara de id "+ usuariosRetirados.get(1).getId()+":\n"+privadasRetiradas.get(i));
+		
+		
+		//***********PLAYLISTS PUBLICAS
+		PlayListPublicaDAO playListPublicaDAO = new PlayListPublicaDAO();
+		ArrayList<PlayListPublica> publicas = new ArrayList<PlayListPublica>();
+		ArrayList<PlayListPublica> publicasRetiradas = new ArrayList<PlayListPublica>();
+		
+		PlayListPublica pub = usuariosRetirados.get(1).criaPlayListPublica("Good vibes");
+		System.out.println("Id da playpub\n"+pub.getId());
+		publicas.add(pub);
+		
+		// ***** GRAVA NO BANCO
+		/*for(int i = 0; i < privadas.size(); i++) {
+			System.out.println("Inserindo PlayListPublica: \n"+playListPublicaDAO.inserirPlayListPublica(publicas.get(i)));
+		}*/
+		
+		// **** PEGA DO BANCO
+		publicasRetiradas = playListPublicaDAO.buscarPlayListsPublicas();
+		for(int i = 0; i < publicasRetiradas.size(); i++) 
+			System.out.println("PlayListPublica:\n"+publicasRetiradas.get(i));
+		
+		
+		
 		
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);

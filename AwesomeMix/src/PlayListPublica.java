@@ -17,7 +17,8 @@ public class PlayListPublica  extends PlayList {
 	
 	public PlayListPublica(String nome){
 		super(nome);
-		id = geradorId++;
+		geradorId++;
+		id = geradorId;
 		contribuintesPlayList = new ArrayList <UsuarioPlayListPublica>();
 		listaMusicas = new ArrayList<MusicaPlayListPublica>();
 	}

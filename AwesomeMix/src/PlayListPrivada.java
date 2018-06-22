@@ -21,7 +21,8 @@ public class PlayListPrivada extends PlayList {
 	public PlayListPrivada(String nome, Usuario dono){
 		super(nome);
 		this.dono = dono;
-		id = geradorId++;
+		geradorId++;
+		id = geradorId;
 		listaMusicas = new ArrayList<MusicaPlayListPrivada>();
 	}
 	
