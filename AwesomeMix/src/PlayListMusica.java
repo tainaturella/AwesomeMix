@@ -14,7 +14,7 @@ public class PlayListMusica {
 	}
 	public PlayListMusica(PlayList playlist){
 		this.playlist = playlist;
-		id = geradorId++;
+		id = ++geradorId;
 	}
 	public PlayListMusica(PlayList playlist, Musica musica){
 		this(playlist);

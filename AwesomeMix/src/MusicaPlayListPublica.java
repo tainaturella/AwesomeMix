@@ -16,12 +16,12 @@ public class MusicaPlayListPublica {
 	}
 	public  MusicaPlayListPublica(PlayListPublica playList){
 		this.playList = playList;
-		id = geradorId++;
+		id = ++geradorId;
 	}
 	public  MusicaPlayListPublica(PlayListPublica playList, Musica musica){
 		this(playList);
 		this.musica = musica;
-		id = geradorId++;
+		id = ++geradorId;
 	}
 	
 	//getters e setters
