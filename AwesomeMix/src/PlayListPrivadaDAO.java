@@ -3,17 +3,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlayListDAO {
+public class PlayListPrivadaDAO {
 
 	private PreparedStatement pstmt; 
 	private ResultSet resultado;
     
-    public PlayListDAO() {
+    public PlayListPrivadaDAO() {
         pstmt = null; 
         resultado = null; 
     }
     
-    public int inserirPlayList(PlayList playList)  {
+    public int inserirPlayListPrivada(PlayListPrivada playList)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
         String sql;
@@ -25,17 +25,14 @@ public class PlayListDAO {
         }
         
         try {
-            sql = "INSERT INTO playList (idPlayList, nomePlayList, qtdMusicasPlayList,"+
-            	  " tipoPlayList) VALUES (?,?,?,?)";
+            sql = "INSERT INTO playListPrivada (idPlayListPrivada, nomePlayListPrivada, qtdMusicasPlayListPrivada,"+
+            	  " idUsuario) VALUES (?,?,?,?)";
             pstmt = conector.getConexao().prepareStatement(sql);  
             pstmt.setInt(1, playList.getId()); 
             pstmt.setString(2, playList.getNome());
             pstmt.setInt(3, playList.getQuantidadeMusicas());
-            if(playList instanceof PlayListPublica) {
-            	 pstmt.setInt(4, 1); //tipo 1 = publica
-            }else{
-            	 pstmt.setInt(4, 2); //tipo 2 = privada
-            }
+            pstmt.setInt(4, playList.getDono().getId());
+            System.out.println("foi");
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -119,9 +116,9 @@ public class PlayListDAO {
     */
  
     //retorna todas as playlists publicas
-    public ArrayList<PlayList> buscarPlayListPublica() {
+    /*public ArrayList<PlayListPublica> buscarPlayListPublica() {
 
-        ArrayList<PlayList> playLists = new ArrayList<PlayList>();
+        ArrayList<PlayListPublica> playLists = new ArrayList<PlayListPublica>();
         Conexao conector = new Conexao();
         
         if(conector.conectar() == false) {
@@ -130,12 +127,12 @@ public class PlayListDAO {
         }
         
         try {
-            String sql = "SELECT idPlayList, nomePlayList, qtdMusicasPlayList, tipoPlayList FROM playList WHERE tipoPlayList="+1;
+            String sql = "SELECT idPlayList, nomePlayList, qtdMusicasPlayList FROM playListPublica";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	PlayList playList = new PlayListPublica();
+            	PlayListPublica playList = new PlayListPublica();
             	playList.setId(resultado.getInt(1)); 
             	playList.setNome(resultado.getString(2));
             	playList.setQuantidadeMusicas(resultado.getInt(3));
@@ -167,10 +164,10 @@ public class PlayListDAO {
 
         return playLists;
 
-    }
+    }*/
     
     //retorna todas as playlists privadas
-    public ArrayList<PlayList> buscarPlayListPrivada() {
+    /*public ArrayList<PlayList> buscarPlayListPrivada() {
 
         ArrayList<PlayList> playLists = new ArrayList<PlayList>();
         Conexao conector = new Conexao();
@@ -218,12 +215,12 @@ public class PlayListDAO {
 
         return playLists;
 
-    }
+    }*/
     
-    //busca playlist pelo id
-    public ArrayList<PlayList> buscarPlayListId(int idPlayList) {
+    //busca playlist pelo id do usuario
+    public ArrayList<PlayListPrivada> buscarPlayListPrivadaIdUsuario(int idUsuario, ArrayList<Usuario> usuarios) {
 
-        ArrayList<PlayList> playLists = new ArrayList<PlayList>();
+        ArrayList<PlayListPrivada> playLists = new ArrayList<PlayListPrivada>();
         Conexao conector = new Conexao();
         
         if(conector.conectar() == false) {
@@ -232,15 +229,24 @@ public class PlayListDAO {
         }
         
         try {
-            String sql = "SELECT idPlayList, nomePlayList, qtdMusicasPlayList, tipoPlayList FROM playList WHERE idPlayList="+idPlayList;
+            String sql = "SELECT idPlayListPrivada, nomePlayListPrivada, qtdMusicasPlayListPrivada, idUsuario FROM playListPrivada WHERE idUsuario="+idUsuario;
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
             while (resultado.next()) {
-            	PlayList playList = new PlayListPrivada();
+            	PlayListPrivada playList = new PlayListPrivada();
             	playList.setId(resultado.getInt(1)); 
             	playList.setNome(resultado.getString(2));
             	playList.setQuantidadeMusicas(resultado.getInt(3));
+            	
+            	int idDono = resultado.getInt(4);
+            	//procura o usuario na lista de usuarios
+            	for(int i = 0; i < usuarios.size(); i++) {
+            		if(usuarios.get(i).getId() == idDono) {
+            			playList.setDono(usuarios.get(i));
+            			break;
+            		}
+            	}
             	playLists.add(playList);     
             }
 
@@ -272,7 +278,7 @@ public class PlayListDAO {
     }
     
     //altera somente o nome da playlist pelo id
-    public int alterarPlayListId(int idPlayList, String novoNome)  {
+    /*public int alterarPlayListId(int idPlayList, String novoNome)  {
    
     	String sql;
     	int resultado = 0; //retorna qtd de registros alterados no banco
@@ -313,9 +319,9 @@ public class PlayListDAO {
         }
 		
         return resultado;
-    }
+    }*/
     
-    public int apagarPlayListId(int idPlayList) {
+    public int apagarPlayListPrivadaId(int idPlayList) {
 
         int resultado = 0;
         String sql;
@@ -327,7 +333,7 @@ public class PlayListDAO {
         }
         
         try { 
-            sql = "DELETE FROM playList WHERE idPlayList="+idPlayList;
+            sql = "DELETE FROM playListPrivada WHERE idPlayListPrivada="+idPlayList;
             pstmt = conector.getConexao().prepareStatement(sql);  
             resultado = pstmt.executeUpdate(); 
             

@@ -27,6 +27,7 @@
 /Usuario.class
 /UsuarioDAO.class
 /UsuarioMusica.class
+<<<<<<< HEAD
 /UsuarioPlayListDAO.class
 /UsuarioPlayListPublica.class
 /JanelaCadastro$1.class
@@ -41,3 +42,8 @@
 /JanelaEntrar$3.class
 /JanelaMeuPerfil$4.class
 /JanelaMeuPerfil$5.class
+=======
+/JanelaEntrar$1.class
+/PlayListPrivadaDAO.class
+/PlayListPublicaDAO.class
+>>>>>>> branch 'master' of https://github.com/tainaturella/AwesomeMix.git

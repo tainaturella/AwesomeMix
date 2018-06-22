@@ -81,7 +81,7 @@ public class JanelaEntrar extends JFrame {
 							new JanelaMeuPerfil().setVisible(true);
 							setVisible(false);
 							dispose();
-							break;
+							return;
 						}
 					}
 				}

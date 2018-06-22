@@ -24,7 +24,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String nome, int idade, String login, String senha) {
-		id = qtdUsuarios++;
+		id = ++qtdUsuarios;
 		this.nome = nome;
 		this.idade= idade;
 		this.login= login;
@@ -90,29 +90,29 @@ public class Usuario {
 	//************ CRIACAO DE PLAYLISTS ***********
 	
 	//Cria playlist publica
-	public boolean criaPlayListPublica(String nome) {
+	public PlayListPublica criaPlayListPublica(String nome) {
 		//verifica se ja existe uma playlist com o mesmo nome
 		for(int i=0; i<playListsPublicas.size(); i++) {
 			if(playListsPublicas.get(i).getPlayListPublica().getNome().equals(nome)) {
-				return false;
+				return null;
 			}
 		}
 		PlayListPublica novaPlayListPublica = new PlayListPublica(nome); //cria playlist publica
 		UsuarioPlayListPublica novaPlayListAssociativa = new UsuarioPlayListPublica(this, novaPlayListPublica);//Cria um objeto associando playlist e usuario
 		playListsPublicas.add(novaPlayListAssociativa); //Adciona a playList criada a lista de playLists desse usuario.
-		return true;
+		return novaPlayListPublica;
 	}
 	
 	//Cria playlist privada
-	public boolean criaPlayListPrivada(String nome) {
+	public PlayListPrivada criaPlayListPrivada(String nome) {
 		for(int i=0; i<playListsPrivadas.size(); i++) {
 			if(playListsPrivadas.get(i).getNome().equals(nome)) {
-				return false;
+				return null;
 			}
 		}
 		PlayListPrivada novaPlayListPrivada = new PlayListPrivada(nome, this); //adiciona este usuario como dono da novaPlaylist
 		playListsPrivadas.add(novaPlayListPrivada); //Adciona a playList criada a lista de playLists do usuario.
-		return true;
+		return novaPlayListPrivada;
 	}
 	
 	//**************** REMOCAO DE PLAYLISTS ************************
