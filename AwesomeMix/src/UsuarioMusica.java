@@ -14,19 +14,19 @@ public class UsuarioMusica {
 	}
 	
 	public UsuarioMusica(Usuario usuario){
-		id = geradorId++;
+		id = ++geradorId;
 		this.usuario = usuario;
 		musica = null;
 	}
 
 	public UsuarioMusica(Musica musica){
-		id = geradorId++;
+		id = ++geradorId;
 		this.musica = musica;
 		usuario = null;
 	}
 	
 	public UsuarioMusica(Usuario usuario, Musica musica){
-		id = geradorId++;
+		id = ++geradorId;
 		this.musica = musica;
 		musica = null;
 	}

@@ -24,7 +24,7 @@ public class Album {
 	
 	public Album(String nomeAlbum, String artista, int anoLancamento, EstilosMusicais estiloMusical) {
 		musicas = new ArrayList<Musica>();
-		id = qtdAlbuns++;
+		id = ++qtdAlbuns;
 		this.nomeAlbum = nomeAlbum;
 		this.artista = artista;
 		this.anoLancamento = anoLancamento;
