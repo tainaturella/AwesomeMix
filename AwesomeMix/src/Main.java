@@ -181,7 +181,6 @@ public class Main {
 		
 		
 		
-		
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
 	}
