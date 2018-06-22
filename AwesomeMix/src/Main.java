@@ -1,7 +1,7 @@
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		/*
 		//instanciando um usuario
 		Usuario usuario1 = new Usuario();
 		usuario1.criaUsuario("thamiris", 21, "thrabbit", "blablabla");
@@ -122,7 +122,7 @@ public class Main {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuario1));
-		
+		*/
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
 	}

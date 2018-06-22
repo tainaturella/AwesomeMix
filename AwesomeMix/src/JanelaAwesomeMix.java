@@ -62,6 +62,7 @@ public class JanelaAwesomeMix extends JFrame {
 		contentPane.add(btnCadastrar);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new JanelaCadastro().setVisible(true);
 			}
 		});
 		

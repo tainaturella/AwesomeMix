@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -75,12 +77,48 @@ public class JanelaCadastro extends JFrame {
 		btnCadastrar.setBounds(68, 154, 89, 23);
 		contentPane.add(btnCadastrar);
 		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nome = txtNome.getText();
+				int idade = Integer.parseInt(txtIdade.getText(), 10);
+				String login = txtLogin.getText();
+				String senha = txtSenha.getText();
+				
+				Usuario usuario = new Usuario(nome, idade, login, senha);
+				
+				BaseDeDados.shared.usuarios.add(usuario);
+				BaseDeDados.shared.usuario_logado = BaseDeDados.shared.usuarios.size() - 1;
+				
+				new JanelaMeuPerfil().setVisible(true);
+				setVisible(false);
+				dispose();
+			}
+		});
+		
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setBounds(175, 154, 89, 23);
 		contentPane.add(btnLimpar);
 		
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtSenha.setText(" ");
+				txtIdade.setText(" ");
+				txtLogin.setText(" ");
+				txtNome.setText(" ");
+				
+			}
+		});
+			
+	
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(10, 227, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				dispose();
+			}
+		});
 	}
 }
