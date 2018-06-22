@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -12,10 +14,13 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JSplitPane;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 
@@ -99,9 +104,29 @@ public class JanelaMeuPerfil extends JFrame {
 		}
 		
 		JList<String> listPlayListPublica = new JList<String>(listPublicas);
-		listPlayListPublica.setBounds(96, 146, 93, 55);
+		//listPlayListPublica.setBounds(96, 146, 93, 55);
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		contentPane.add(listPlayListPublica);
+		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);
+		JScrollPane listPublicaScroll = new JScrollPane(listPlayListPublica);
+		listPublicaScroll.setBounds(96, 146, 93, 55);
+		contentPane.add(listPublicaScroll);
+		
+		listPlayListPublica.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				int index = listPlayListPublica.getSelectedIndex();
+			    if (evt.getClickCount() == 2) {
+			         for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
+			        	 	if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
+				        	 	BaseDeDados.shared.playList_atual = i;
+				        	 	BaseDeDados.shared.tipoPlaylist = TipoPlaylist.PUBLICA;
+				        	 	new JanelaPlaylist().setVisible(true);
+				        	 	setVisible(false);
+				        	 	dispose();
+			        	 	}
+			         }
+			    }
+			  }
+			});
 		
 		JLabel lblPlaylistsprivadas = new JLabel("Playlists Privadas");
 		lblPlaylistsprivadas.setBounds(199, 146, 82, 14);
@@ -113,13 +138,40 @@ public class JanelaMeuPerfil extends JFrame {
 		}
 		
 		JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
-		listPlayListPrivada.setBounds(291, 145, 88, 56);
 		listPlayListPrivada.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		contentPane.add(listPlayListPrivada);
+		listPlayListPrivada.setLayoutOrientation(JList.VERTICAL);
+		JScrollPane listPrivadaScroll = new JScrollPane(listPlayListPrivada);
+		listPrivadaScroll.setBounds(291, 145, 88, 56);
+		contentPane.add(listPrivadaScroll);
+
+		listPlayListPrivada.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				int index = listPlayListPrivada.getSelectedIndex();
+			    if (evt.getClickCount() == 2) {
+			         for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
+			        	 	if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(index))) {
+				        	 	BaseDeDados.shared.playList_atual = i;
+				        	 	BaseDeDados.shared.tipoPlaylist = TipoPlaylist.PRIVADA;
+				        	 	new JanelaPlaylist().setVisible(true);
+				        	 	setVisible(false);
+				        	 	dispose();
+			        	 	}
+			         }
+			    }
+			  }
+			});
 		
 		JButton btnAdicionarPlaylist = new JButton("Adicionar Playlist");
 		btnAdicionarPlaylist.setBounds(85, 210, 121, 23);
 		contentPane.add(btnAdicionarPlaylist);
+		
+		btnAdicionarPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JanelaAdicionarPlayList().setVisible(true);
+				setVisible(false);
+				dispose();
+			}
+		});
 		
 		JButton btnRemoverPlaylistPublica = new JButton("Remover PlayList Pubilca");
 		btnRemoverPlaylistPublica.setBounds(10, 172, 75, 23);

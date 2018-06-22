@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -49,6 +50,15 @@ public class JanelaAdicionarPlayList extends JFrame {
 		btnVoltar.setBounds(30, 217, 98, 25);
 		contentPane.add(btnVoltar);
 		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				new JanelaMeuPerfil().setVisible(true);
+				setVisible(false);
+				dispose();
+			}
+		});
+		
 		//text field para tratar nome da nova playlist
 		textField = new JTextField();
 		textField.setBounds(30, 69, 114, 19);
@@ -60,11 +70,6 @@ public class JanelaAdicionarPlayList extends JFrame {
 		lblNome.setBounds(33, 41, 55, 15);
 		contentPane.add(lblNome);
 		
-		//botao pra criar uma nova playlist
-		JButton btnCriar = new JButton("criar");
-		btnCriar.setBounds(30, 131, 98, 25);
-		contentPane.add(btnCriar);
-		
 		//criando radio button menu
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("pública");
 		rdbtnNewRadioButton.setBounds(218, 67, 121, 23);
@@ -73,5 +78,32 @@ public class JanelaAdicionarPlayList extends JFrame {
 		JRadioButton rdbtnPrivada = new JRadioButton("privada");
 		rdbtnPrivada.setBounds(218, 94, 121, 23);
 		contentPane.add(rdbtnPrivada);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnNewRadioButton);
+		group.add(rdbtnPrivada);
+		
+		//botao pra criar uma nova playlist
+		JButton btnCriar = new JButton("criar");
+		btnCriar.setBounds(30, 131, 98, 25);
+		contentPane.add(btnCriar);
+		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
+		btnCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(rdbtnNewRadioButton.isSelected()) {
+					usuario.criaPlayListPublica(textField.getText());
+					new JanelaMeuPerfil().setVisible(true);;
+					setVisible(false);
+					dispose();
+				}else if(rdbtnPrivada.isSelected()) {
+					usuario.criaPlayListPrivada(textField.getText());
+					new JanelaMeuPerfil().setVisible(true);
+					setVisible(false);
+					dispose();
+				}else {
+					System.out.println("Você deve inserir escolher um tipo");
+				}
+			}
+		});
 	}
 }

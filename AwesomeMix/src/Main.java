@@ -194,11 +194,29 @@ public class Main {
 		
 	Usuario usuario = new Usuario("Thamiris", 20, "thamy", "1234");
 	BaseDeDados.shared.usuarios.add(usuario);
-	usuario.criaPlayListPublica("blablabla");
-	usuario.criaPlayListPublica("playlist2");
-	usuario.criaPlayListPublica("pagodin");	
-	usuario.criaPlayListPrivada("privada1");
-	usuario.criaPlayListPrivada("privada2");
+	PlayList publica1 = usuario.criaPlayListPublica("blablabla");
+	PlayList publica2 = usuario.criaPlayListPublica("playlist2");
+	PlayList publica3 = usuario.criaPlayListPublica("pagodin");	
+	PlayList privada1 = usuario.criaPlayListPrivada("privada1");
+	PlayList privada2 = usuario.criaPlayListPrivada("privada2");
+	Album album1 = new Album("album1", "artista1", 2000, EstilosMusicais.Blues);
+	Musica musica1 =  new Musica("bla", 4.5, album1);
+	Musica musica2 =  new Musica("salabin", 2.0, album1);
+	Musica musica3 =  new Musica("oi", 3.5, album1);
+	Musica musica4 =  new Musica("quatro", 4.0, album1);
+	Musica musica5 =  new Musica("cinco", 5.0, album1);
+	
+	usuario.adicionaMusicaPlayList(musica1, privada1);
+	usuario.adicionaMusicaPlayList(musica2, privada1);
+	usuario.adicionaMusicaPlayList(musica2, privada2);
+	usuario.adicionaMusicaPlayList(musica4, publica1);
+	usuario.adicionaAlbumPlaylist(album1, publica3);
+	usuario.adicionaAlbumPlaylist(album1, publica3);
+	usuario.adicionaAlbumPlaylist(album1, publica3);
+	
+
+	
+	
 	
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
