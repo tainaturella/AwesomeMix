@@ -12,7 +12,9 @@ public class MusicaPlayListPublicaDAO {
         pstmt = null; 
         resultado = null; 
     }
-    
+
+    //insere MusicaPlayListPublica no banco de dados
+    //retorna o numero de registros inseridos
     public int inserirMusicaPlayListPublica(MusicaPlayListPublica playMusica)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
@@ -59,7 +61,8 @@ public class MusicaPlayListPublicaDAO {
         return resultado;
     }
   
-    //retorna tudo da tabela
+    //retorna todas as MusicaPlayListPublica da tabela
+    //entra com o arraylist de playlistspublicas e musicas para relacionar
     public ArrayList<MusicaPlayListPublica> buscarMusicaPlayListPrivada(ArrayList<PlayListPublica> publicas, ArrayList<Musica> musicas) {
     	
         ArrayList<MusicaPlayListPublica> musicaPlayLists = new ArrayList<MusicaPlayListPublica>();
@@ -125,8 +128,50 @@ public class MusicaPlayListPublicaDAO {
         return musicaPlayLists;
     } 
     
- 
-    //retorna todas as playlists publicas
+    //apaga todas as relacoes do banco de dados
+    public int apagarMusicaPlayListPublica() {
+
+        int resultado = 0;
+        String sql;
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM playListPublicaMusica";
+            pstmt = conector.getConexao().prepareStatement(sql);  
+            resultado = pstmt.executeUpdate(); 
+            
+        } catch (SQLException exSQL) { //erro ao excluir do banco
+        	System.err.println("\nExcecao na Exclusao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
+        }
+		
+        return resultado;
+    }
+    
+
     /*public ArrayList<PlayListPublica> buscarPlayListPublica() {
 
         ArrayList<PlayListPublica> playLists = new ArrayList<PlayListPublica>();
@@ -330,7 +375,7 @@ public class MusicaPlayListPublicaDAO {
         }
 		
         return resultado;
-    }*/
+    }
     
     public int apagarMusicaPlayListPublicaId(int idMusicaPlayList) {
 
@@ -372,6 +417,6 @@ public class MusicaPlayListPublicaDAO {
         }
 		
         return resultado;
-    }
+    }*/
 	
 }

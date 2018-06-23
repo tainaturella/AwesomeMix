@@ -13,6 +13,8 @@ public class AlbumDAO {
         resultado = null; 
     }
     
+    //Insere Album no banco de dados
+    //retorna a qtd de registros inseridos
     public int inserirAlbum(Album album)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
@@ -61,7 +63,7 @@ public class AlbumDAO {
         return resultado;
     }
   
-    //retorna todos os albuns
+    //retorna todos os albuns do banco de dados em um arraylist
     public ArrayList<Album> buscarAlbuns() {
     	
         ArrayList<Album> albuns = new ArrayList<Album>();
@@ -114,7 +116,50 @@ public class AlbumDAO {
         return albuns;
     } 
     
- 
+    //remove todos os albuns do banco
+    //retorna o numero de registros excluidos
+    public int apagarAlbuns() {
+
+        int resultado = 0;
+        String sql;
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM album";
+            pstmt = conector.getConexao().prepareStatement(sql);  
+            resultado = pstmt.executeUpdate(); 
+            
+        } catch (SQLException exSQL) { //erro ao excluir do banco
+        	System.err.println("\nExcecao na Exclusao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
+        }
+		
+        return resultado;
+    }
+    /*
     public ArrayList<Album> buscarAlbumId(int idAlbum) {
 
         ArrayList<Album> albuns = new ArrayList<Album>();
@@ -314,4 +359,5 @@ public class AlbumDAO {
 		
         return resultado;
     }
+    */
 }
