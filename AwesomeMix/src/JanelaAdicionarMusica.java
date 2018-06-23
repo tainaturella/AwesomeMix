@@ -123,7 +123,6 @@ public class JanelaAdicionarMusica extends JFrame {
 					return;
 				}
 
-
 				ArrayList<Album> albums = BaseDeDados.shared.albums;
 				for(int i=0; i < albums.size(); i++) {
 					if(albums.get(i).getNomeAlbum().equals(album) && albums.get(i).getArtista().equals(artista)) {

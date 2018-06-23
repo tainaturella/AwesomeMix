@@ -33,8 +33,6 @@ public class JanelaPlaylist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		System.out.println(BaseDeDados.shared.tipoPlaylist);
-		
 		JLabel lblTitulo = new JLabel("Playlist");
 		lblTitulo.setBounds(10, 11, 46, 14);
 		contentPane.add(lblTitulo);
