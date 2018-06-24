@@ -35,8 +35,9 @@ public class JanelaMeuPerfil extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaMeuPerfil() {
+		setTitle("Meu Perfil - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 480, 325);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -45,40 +46,46 @@ public class JanelaMeuPerfil extends JFrame {
 		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
-		lblTitulo.setBounds(10, 11, 46, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(10, 11, 64, 14);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNome = new JLabel(usuario.getNome());
-		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblNome.setBounds(52, 11, 46, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		lblNome.setBounds(77, 11, 315, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblDadosPessoais = new JLabel("Dados Pessoais");
-		lblDadosPessoais.setBounds(10, 40, 88, 14);
+		lblDadosPessoais.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDadosPessoais.setBounds(20, 40, 101, 14);
 		contentPane.add(lblDadosPessoais);
 		
 		JLabel lblNome_1 = new JLabel("Nome");
-		lblNome_1.setBounds(10, 59, 46, 14);
+		lblNome_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNome_1.setBounds(28, 62, 46, 14);
 		contentPane.add(lblNome_1);
 		
 		JLabel lblIdade = new JLabel("Idade");
-		lblIdade.setBounds(199, 59, 46, 14);
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIdade.setBounds(199, 62, 46, 14);
 		contentPane.add(lblIdade);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(10, 84, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblLogin.setBounds(30, 87, 46, 14);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(199, 84, 46, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSenha.setBounds(199, 87, 46, 14);
 		contentPane.add(lblSenha);
 		
-		JButton btnEditar = new JButton("Editar");
+		JButton btnEditar = new JButton("EDITAR");
 		btnEditar.setBounds(335, 80, 89, 23);
 		contentPane.add(btnEditar);
 		
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("SAIR");
 		btnSair.setBounds(335, 55, 89, 23);
 		contentPane.add(btnSair);
 		
@@ -90,12 +97,9 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
-		JLabel lblDadosconta = new JLabel("Dados de Conta");
-		lblDadosconta.setBounds(10, 121, 88, 14);
-		contentPane.add(lblDadosconta);
-		
 		JLabel lblPlaylistspublicas = new JLabel("Playlists P\u00FAblicas");
-		lblPlaylistspublicas.setBounds(10, 146, 88, 14);
+		lblPlaylistspublicas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblPlaylistspublicas.setBounds(23, 119, 118, 14);
 		contentPane.add(lblPlaylistspublicas);
 		
 		DefaultListModel<String> listPublicas = new DefaultListModel<String>();
@@ -108,7 +112,7 @@ public class JanelaMeuPerfil extends JFrame {
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listPublicaScroll = new JScrollPane(listPlayListPublica);
-		listPublicaScroll.setBounds(96, 146, 93, 55);
+		listPublicaScroll.setBounds(20, 144, 190, 56);
 		contentPane.add(listPublicaScroll);
 		
 		listPlayListPublica.addMouseListener(new MouseAdapter() {
@@ -129,7 +133,8 @@ public class JanelaMeuPerfil extends JFrame {
 			});
 		
 		JLabel lblPlaylistsprivadas = new JLabel("Playlists Privadas");
-		lblPlaylistsprivadas.setBounds(199, 146, 82, 14);
+		lblPlaylistsprivadas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblPlaylistsprivadas.setBounds(222, 121, 110, 14);
 		contentPane.add(lblPlaylistsprivadas);
 		
 		DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
@@ -138,10 +143,11 @@ public class JanelaMeuPerfil extends JFrame {
 		}
 		
 		JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
+		listPlayListPrivada.setLocation(236, 0);
 		listPlayListPrivada.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPrivada.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listPrivadaScroll = new JScrollPane(listPlayListPrivada);
-		listPrivadaScroll.setBounds(291, 145, 88, 56);
+		listPrivadaScroll.setBounds(239, 144, 185, 56);
 		contentPane.add(listPrivadaScroll);
 
 		listPlayListPrivada.addMouseListener(new MouseAdapter() {
@@ -161,8 +167,8 @@ public class JanelaMeuPerfil extends JFrame {
 			  }
 			});
 		
-		JButton btnAdicionarPlaylist = new JButton("Adicionar Playlist");
-		btnAdicionarPlaylist.setBounds(85, 210, 121, 23);
+		JButton btnAdicionarPlaylist = new JButton("ADICIONAR PLAYLIST");
+		btnAdicionarPlaylist.setBounds(49, 249, 139, 26);
 		contentPane.add(btnAdicionarPlaylist);
 		
 		btnAdicionarPlaylist.addActionListener(new ActionListener() {
@@ -173,8 +179,8 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
-		JButton btnRemoverPlaylistPublica = new JButton("Remover PlayList Pubilca");
-		btnRemoverPlaylistPublica.setBounds(10, 172, 75, 23);
+		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST P\u00DABLICA");
+		btnRemoverPlaylistPublica.setBounds(28, 211, 177, 29);
 		contentPane.add(btnRemoverPlaylistPublica);
 		
 		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
@@ -196,32 +202,32 @@ public class JanelaMeuPerfil extends JFrame {
 		txtNome = new JTextField();
 		txtNome.setEditable(false);
 		txtNome.setText(usuario.getNome());
-		txtNome.setBounds(40, 56, 86, 20);
+		txtNome.setBounds(65, 59, 86, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtLogin = new JTextField();
 		txtLogin.setEditable(false);
 		txtLogin.setText(usuario.getLogin());
-		txtLogin.setBounds(40, 84, 86, 20);
+		txtLogin.setBounds(65, 87, 86, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		txtIdade = new JTextField();
 		txtIdade.setEditable(false);
 		txtIdade.setText(Integer.toString(usuario.getIdade()));
-		txtIdade.setBounds(239, 56, 86, 20);
+		txtIdade.setBounds(239, 59, 86, 20);
 		contentPane.add(txtIdade);
 		txtIdade.setColumns(10);
 		
 		pwdSenhasemedit = new JPasswordField();
 		pwdSenhasemedit.setEditable(false);
 		pwdSenhasemedit.setText("SenhaSemEdit");
-		pwdSenhasemedit.setBounds(239, 81, 86, 20);
+		pwdSenhasemedit.setBounds(239, 87, 86, 20);
 		contentPane.add(pwdSenhasemedit);
 		
-		JButton btnBuscarPerfis = new JButton("Buscar Perfis");
-		btnBuscarPerfis.setBounds(151, 243, 117, 29);
+		JButton btnBuscarPerfis = new JButton("BUSCAR PERFIS");
+		btnBuscarPerfis.setBounds(275, 246, 117, 29);
 		contentPane.add(btnBuscarPerfis);
 		
 		btnBuscarPerfis.addActionListener(new ActionListener() {
@@ -232,8 +238,8 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
-		JButton btnRemoverPlaylistPrivada = new JButton("Remover PlaylistPrivada");
-		btnRemoverPlaylistPrivada.setBounds(199, 172, 75, 29);
+		JButton btnRemoverPlaylistPrivada = new JButton("REMOVER PLAYLIST PRIVADA");
+		btnRemoverPlaylistPrivada.setBounds(243, 209, 177, 29);
 		contentPane.add(btnRemoverPlaylistPrivada);
 		
 		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {

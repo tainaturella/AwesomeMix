@@ -35,6 +35,7 @@ public class JanelaAwesomeMix extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaAwesomeMix() {
+		setTitle("Home - AwesomeMix");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //fecha o programa ao fechar a janela
 		setSize(700, 500); //tamanho da janela
@@ -45,7 +46,7 @@ public class JanelaAwesomeMix extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnEntrar = new JButton("Entrar");
+		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.setBounds(85, 373, 179, 37);
 		btnEntrar.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15)); //fonte do botao
@@ -58,7 +59,7 @@ public class JanelaAwesomeMix extends JFrame {
 			}
 		});
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
+		JButton btnCadastrar = new JButton("CADASTRAR");
 		btnCadastrar.setBounds(379, 373, 179, 37);
 		btnCadastrar.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15)); //fonte do botao
 		contentPane.add(btnCadastrar);

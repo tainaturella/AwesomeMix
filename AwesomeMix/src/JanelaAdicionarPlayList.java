@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import java.awt.event.ItemEvent;
+import java.awt.Font;
 
 public class JanelaAdicionarPlayList extends JFrame {
 
@@ -37,7 +38,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaAdicionarPlayList() {
-		setTitle("Adicionar Nova Playlist");
+		setTitle("Nova Playlist - AwesomeMix");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,8 +47,8 @@ public class JanelaAdicionarPlayList extends JFrame {
 		contentPane.setLayout(null);
 		
 		//botao voltar
-		JButton btnVoltar = new JButton("voltar");
-		btnVoltar.setBounds(30, 217, 98, 25);
+		JButton btnVoltar = new JButton("VOLTAR");
+		btnVoltar.setBounds(20, 225, 98, 25);
 		contentPane.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {
@@ -61,22 +62,23 @@ public class JanelaAdicionarPlayList extends JFrame {
 		
 		//text field para tratar nome da nova playlist
 		textField = new JTextField();
-		textField.setBounds(30, 69, 114, 19);
+		textField.setBounds(74, 71, 134, 25);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		//label
-		JLabel lblNome = new JLabel("nome");
-		lblNome.setBounds(33, 41, 55, 15);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNome.setBounds(30, 76, 34, 15);
 		contentPane.add(lblNome);
 		
 		//criando radio button menu
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("pública");
-		rdbtnNewRadioButton.setBounds(218, 67, 121, 23);
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("P\u00FAblica");
+		rdbtnNewRadioButton.setBounds(74, 107, 59, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnPrivada = new JRadioButton("privada");
-		rdbtnPrivada.setBounds(218, 94, 121, 23);
+		JRadioButton rdbtnPrivada = new JRadioButton("Privada");
+		rdbtnPrivada.setBounds(74, 134, 70, 23);
 		contentPane.add(rdbtnPrivada);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -84,9 +86,23 @@ public class JanelaAdicionarPlayList extends JFrame {
 		group.add(rdbtnPrivada);
 		
 		//botao pra criar uma nova playlist
-		JButton btnCriar = new JButton("criar");
-		btnCriar.setBounds(30, 131, 98, 25);
+		JButton btnCriar = new JButton("CRIAR PLAYLIST");
+		btnCriar.setBounds(266, 85, 113, 25);
 		contentPane.add(btnCriar);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblStatus.setBounds(30, 107, 46, 14);
+		contentPane.add(lblStatus);
+		
+		JButton btnLimpar = new JButton("LIMPAR");
+		btnLimpar.setBounds(266, 123, 113, 23);
+		contentPane.add(btnLimpar);
+		
+		JLabel lblNovaPlaylist = new JLabel("Nova Playlist");
+		lblNovaPlaylist.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNovaPlaylist.setBounds(20, 23, 108, 14);
+		contentPane.add(lblNovaPlaylist);
 		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
