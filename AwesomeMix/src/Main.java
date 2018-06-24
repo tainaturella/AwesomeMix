@@ -314,7 +314,7 @@ public class Main {
 		
 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ RETIRANDO DO BANCO @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		
-		
+		*/
 		// ************************** USUARIOS ******************************
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();		
@@ -384,7 +384,7 @@ public class Main {
 		for(int i = 0; i < musicasPlayPublica.size(); i++) 
 			BaseDeDados.shared.musicasPlayListPublica.add(musicasPlayPublica.get(i));
 				
-		*/
+		
 		// @@@@@@@@@@@@@@@@@@@@@@@@ IMPRIME O ESTADO DO SISTEMA @@@@@@@@@@@@@@@@@@@@@@@@@@@
 		
 		for(int i = 0; i < BaseDeDados.shared.usuarios.size(); i++) 
@@ -420,7 +420,7 @@ public class Main {
 				
 		
 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ APAGANDO DO BANCO @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		
+		/*
 		MusicaPlayListPrivadaDAO musicaPlayPrivadaDAO = new MusicaPlayListPrivadaDAO();
 		musicaPlayPrivadaDAO.apagarMusicaPlayListPrivada();		
 				
@@ -447,7 +447,7 @@ public class Main {
 		
 		AlbumDAO albumDAO = new AlbumDAO();
 		albumDAO.apagarAlbuns();
-		
+		*/
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
 		
