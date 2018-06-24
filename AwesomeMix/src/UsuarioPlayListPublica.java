@@ -58,5 +58,10 @@ public class UsuarioPlayListPublica {
 	public void setPlayListPublica(PlayListPublica playListPublica) {
 		this.playListPublica = playListPublica;
 	}
+
+	@Override
+	public String toString() {
+		return "UsuarioPlayListPublica [playListPublica=" + playListPublica.getId() + "]";
+	}
 	
 }

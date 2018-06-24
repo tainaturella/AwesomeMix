@@ -33,6 +33,7 @@ public class UsuarioMusicaDAO {
             pstmt.setInt(1, usuarioMusica.getId()); 
             pstmt.setInt(2, usuarioMusica.getUsuario().getId());
             pstmt.setInt(3, usuarioMusica.getMusica().getId());
+            System.out.println("AVALIACAO DO USUARIO MUSICA: \n"+usuarioMusica.getAvaliacao());
             pstmt.setDouble(4, usuarioMusica.getAvaliacao());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco

@@ -63,7 +63,7 @@ public class MusicaPlayListPublicaDAO {
   
     //retorna todas as MusicaPlayListPublica da tabela
     //entra com o arraylist de playlistspublicas e musicas para relacionar
-    public ArrayList<MusicaPlayListPublica> buscarMusicaPlayListPrivada(ArrayList<PlayListPublica> publicas, ArrayList<Musica> musicas) {
+    public ArrayList<MusicaPlayListPublica> buscarMusicaPlayListPublica(ArrayList<PlayListPublica> publicas, ArrayList<Musica> musicas) {
     	
         ArrayList<MusicaPlayListPublica> musicaPlayLists = new ArrayList<MusicaPlayListPublica>();
         Conexao conector = new Conexao();

@@ -17,8 +17,7 @@ public class PlayListPublica  extends PlayList {
 	
 	public PlayListPublica(String nome){
 		super(nome);
-		geradorId++;
-		id = geradorId;
+		id = ++geradorId;
 		contribuintesPlayList = new ArrayList <UsuarioPlayListPublica>();
 		listaMusicas = new ArrayList<MusicaPlayListPublica>();
 	}
@@ -53,10 +52,15 @@ public class PlayListPublica  extends PlayList {
 	public boolean adicionarContribuinte(Usuario usuario) {
 		boolean adicionou = true;
 		
+		System.out.println("Adicionando contribuinte!");
+		
 		/*se o usuario ja estiver na lista de contribuintes*/
 		for (int i = 0; i < contribuintesPlayList.size(); i++){
+			System.out.println("Id do contribuinte: "+contribuintesPlayList.get(i).getUsuario().getId());
+			System.out.println("Id do usuario: "+usuario.getId());
 			if(contribuintesPlayList.get(i).getUsuario().getId() == usuario.getId()){
 				adicionou = false;
+				//break;
 			}
 		}
 		if(adicionou == true) {
@@ -64,6 +68,10 @@ public class PlayListPublica  extends PlayList {
 			contribuintesPlayList.add(associativo);
 			usuario.getPlayListsPublicas().add(associativo);
 			adicionou = true;
+			
+			System.out.println("Adicionou outro contribuinte!");
+			BaseDeDados.shared.usuariosPlayListPublicas.add(associativo);
+
 		}
 		return adicionou;
 	}
@@ -86,7 +94,9 @@ public class PlayListPublica  extends PlayList {
 		//remove a playList da lista de playLists do usuario
 		for(int i = 0; i < usuario.getPlayListsPublicas().size(); i++){
 			if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getId() == this.getId()){
+				BaseDeDados.shared.usuariosPlayListPublicas.remove(usuario.getPlayListsPublicas().get(i));
 				usuario.getPlayListsPublicas().remove(i);
+				
 				removeu = true;
 			}
 		}
@@ -110,6 +120,9 @@ public class PlayListPublica  extends PlayList {
 			listaMusicas.add(associativo);
 			musica.getPlayListsPublicas().add(associativo);
 			setQuantidadeMusicas(getQuantidadeMusicas()+1);
+			
+			BaseDeDados.shared.musicasPlayListPublica.add(associativo);
+
 		}
 		
 		return adicionou;
@@ -134,6 +147,7 @@ public class PlayListPublica  extends PlayList {
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPublicas().remove(j);
 						//retira musica da playlist
+						BaseDeDados.shared.musicasPlayListPublica.remove(listaMusicas.get(i));
 						listaMusicas.remove(i);
 						setQuantidadeMusicas(getQuantidadeMusicas()-1);
 						break;

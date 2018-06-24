@@ -20,14 +20,14 @@ public class Musica{
 	
 	public Musica(String nomeMusica, double tempoDuracao){
 		this();
-		this.id = qtdMusicasTotal++;
+		this.id = ++qtdMusicasTotal;
 		this.nomeMusica = nomeMusica;
 		this.tempoDuracao = tempoDuracao;
 	}
 	
 	public Musica(String nomeMusica, double tempoDuracao, Album album){
 		this();
-		this.id = qtdMusicasTotal++;
+		this.id = ++qtdMusicasTotal;
 		this.nomeMusica = nomeMusica;
 		this.tempoDuracao = tempoDuracao;
 		this.album = album;
