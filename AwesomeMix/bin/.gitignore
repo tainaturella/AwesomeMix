@@ -44,6 +44,10 @@
 /UsuarioMusica.class
 /UsuarioPlayListDAO.class
 /UsuarioPlayListPublica.class
+/MusicaPlayListPrivadaDAO.class
+/MusicaPlayListPublicaDAO.class
+/UsuarioMusicaDAO.class
+/UsuarioPlayListPublicaDAO.class
 /JanelaCadastro$1.class
 /JanelaCadastro$2.class
 /JanelaCadastro$3.class
@@ -72,9 +76,12 @@
 /JanelaAdicionarMusica.class
 /JanelaPlaylist$3.class
 /JanelaAdicionarMusica$1.class
+/JanelaAdicionarMusica$2.class
+/JanelaAdicionarMusica$3.class
 /JanelaUsuarios$1.class
 /JanelaUsuarios$2.class
 /JanelaPerfil$1.class
 /JanelaPerfil$2.class
 /JanelaPlaylistsPublicas$2.class
 /JanelaAdicionarMusica$2.class
+/JanelaAdicionarMusica$4.class

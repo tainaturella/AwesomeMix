@@ -108,7 +108,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnNewRadioButton.isSelected()) {
 					usuario.criaPlayListPublica(textField.getText());
-					new JanelaMeuPerfil().setVisible(true);;
+					new JanelaMeuPerfil().setVisible(true);
 					setVisible(false);
 					dispose();
 				}else if(rdbtnPrivada.isSelected()) {

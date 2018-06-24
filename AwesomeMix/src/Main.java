@@ -125,7 +125,7 @@ public class Main {
 		}
 		System.out.print(out + "\n");
 		//System.out.println(playList2);
-		*/
+		
 		//******* USUARIOS
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		//System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuario1));
@@ -143,6 +143,7 @@ public class Main {
 			System.out.println("Inserindo user:\n"+usuarioDAO.inserirUsuario(usuarios.get(i)));
 		}*/
 		
+		/*
 		//********* PEGANDO USUARIOS DO BANCO ******************
 		usuariosRetirados = usuarioDAO.buscarUsuarios();
 		for(int i = 0; i < usuariosRetirados.size(); i++) {
@@ -163,7 +164,7 @@ public class Main {
 		/*for(int i = 0; i < privadas.size(); i++) {
 			System.out.println("Inserindo PlayListPrivada: \n"+playListPrivadaDAO.inserirPlayListPrivada(privadas.get(i)));
 		}*/
-		
+		/*
 		// **** PEGA DO BANCO
 		privadasRetiradas = playListPrivadaDAO.buscarPlayListPrivadaIdUsuario(usuariosRetirados.get(0).getId(), usuarios);
 		for(int i = 0; i < privadasRetiradas.size(); i++) 
@@ -178,41 +179,24 @@ public class Main {
 		PlayListPublica pub = usuariosRetirados.get(0).criaPlayListPublica("Good vibes");
 		System.out.println("Id da playpub\n"+pub.getId());
 		publicas.add(pub);
-		
+		*/
 		// ***** GRAVA NO BANCO
 		/*for(int i = 0; i < privadas.size(); i++) {
 			System.out.println("Inserindo PlayListPublica: \n"+playListPublicaDAO.inserirPlayListPublica(publicas.get(i)));
-		}*/
+		}
 		
 		
 		// **** PEGA DO BANCO
 		publicasRetiradas = playListPublicaDAO.buscarPlayListsPublicas();
 		for(int i = 0; i < publicasRetiradas.size(); i++) 
 			System.out.println("PlayListPublica:\n"+publicasRetiradas.get(i));
-		
+		*/
 		
 		
 	Usuario usuario = new Usuario("Thamiris", 20, "thamy", "1234");
 	BaseDeDados.shared.usuarios.add(usuario);
-	PlayList publica1 = usuario.criaPlayListPublica("blablabla");
-	PlayList publica2 = usuario.criaPlayListPublica("playlist2");
-	PlayList publica3 = usuario.criaPlayListPublica("pagodin");	
-	PlayList privada1 = usuario.criaPlayListPrivada("privada1");
-	PlayList privada2 = usuario.criaPlayListPrivada("privada2");
-	Album album1 = new Album("album1", "artista1", 2000, EstilosMusicais.Blues);
-	Musica musica1 =  new Musica("bla", 4.5, album1);
-	Musica musica2 =  new Musica("salabin", 2.0, album1);
-	Musica musica3 =  new Musica("oi", 3.5, album1);
-	Musica musica4 =  new Musica("quatro", 4.0, album1);
-	Musica musica5 =  new Musica("cinco", 5.0, album1);
-	
-	usuario.adicionaMusicaPlayList(musica1, privada1);
-	usuario.adicionaMusicaPlayList(musica2, privada1);
-	usuario.adicionaMusicaPlayList(musica2, privada2);
-	usuario.adicionaMusicaPlayList(musica4, publica1);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
-	usuario.adicionaAlbumPlaylist(album1, publica3);
+
+
 	
 
 	
