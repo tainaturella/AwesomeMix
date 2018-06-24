@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class JanelaPlaylistsPublicas extends JFrame {
 
@@ -38,6 +39,7 @@ public class JanelaPlaylistsPublicas extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPlaylistsPublicas() {
+		setTitle("Playlists - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,7 +50,8 @@ public class JanelaPlaylistsPublicas extends JFrame {
 		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
 		JLabel lblTitulo = new JLabel("Playlists P\u00FAblicas");
-		lblTitulo.setBounds(10, 11, 109, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(10, 23, 150, 14);
 		contentPane.add(lblTitulo);
 		
 		
@@ -68,11 +71,11 @@ public class JanelaPlaylistsPublicas extends JFrame {
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
-		listaMusicasScroll.setBounds(10, 39, 167, 143);
+		listaMusicasScroll.setBounds(28, 57, 227, 138);
 		contentPane.add(listaMusicasScroll);
 		
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(10, 227, 89, 23);
 		contentPane.add(btnVoltar);
 		

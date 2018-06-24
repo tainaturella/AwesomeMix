@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class JanelaEntrar extends JFrame {
 
@@ -38,6 +39,7 @@ public class JanelaEntrar extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaEntrar() {
+		setTitle("Login -AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,30 +48,31 @@ public class JanelaEntrar extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(102, 95, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblLogin.setBounds(141, 94, 46, 14);
 		contentPane.add(lblLogin);
 		
 		txtLogin = new JTextField();
-		txtLogin.setText("Login");
-		txtLogin.setBounds(158, 92, 86, 20);
+		txtLogin.setBounds(197, 91, 86, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(102, 137, 46, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSenha.setBounds(141, 137, 46, 14);
 		contentPane.add(lblSenha);
 		
 		pwdSenha = new JPasswordField();
-		pwdSenha.setText("Senha");
-		pwdSenha.setBounds(164, 134, 79, 20);
+		pwdSenha.setBounds(197, 134, 86, 20);
 		contentPane.add(pwdSenha);
 		
-		JLabel lblEntrar = new JLabel("Entrar");
-		lblEntrar.setBounds(151, 53, 46, 14);
+		JLabel lblEntrar = new JLabel("Entrar na Conta");
+		lblEntrar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblEntrar.setBounds(156, 37, 116, 14);
 		contentPane.add(lblEntrar);
 		
-		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(127, 171, 89, 23);
+		JButton btnEntrar = new JButton("ENTRAR");
+		btnEntrar.setBounds(168, 182, 89, 24);
 		contentPane.add(btnEntrar);
 		
 		btnEntrar.addActionListener(new ActionListener() {
@@ -89,8 +92,8 @@ public class JanelaEntrar extends JFrame {
 			}
 		});
 		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(250, 171, 89, 26);
+		JButton btnVoltar = new JButton("VOLTAR");
+		btnVoltar.setBounds(10, 224, 89, 26);
 		contentPane.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {

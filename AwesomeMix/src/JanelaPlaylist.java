@@ -26,6 +26,7 @@ public class JanelaPlaylist extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPlaylist() {
+		setTitle("Playlist - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -36,7 +37,8 @@ public class JanelaPlaylist extends JFrame {
 		System.out.println(BaseDeDados.shared.tipoPlaylist);
 		
 		JLabel lblTitulo = new JLabel("Playlist");
-		lblTitulo.setBounds(10, 11, 46, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(10, 11, 73, 14);
 		contentPane.add(lblTitulo);
 		
 		String nomePlaylist;
@@ -48,8 +50,8 @@ public class JanelaPlaylist extends JFrame {
 		}
 		
 		JLabel lblNome = new JLabel(nomePlaylist);
-		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblNome.setBounds(48, 11, 46, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		lblNome.setBounds(73, 11, 302, 14);
 		contentPane.add(lblNome);
 		
 		DefaultListModel<String> listMusicas = new DefaultListModel<String>();
@@ -78,15 +80,16 @@ public class JanelaPlaylist extends JFrame {
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
-		listaMusicasScroll.setBounds(10, 54, 180, 162);
+		listaMusicasScroll.setBounds(39, 54, 180, 162);
 		contentPane.add(listaMusicasScroll);
 		
-		JLabel lblMusicas = new JLabel("Musicas");
-		lblMusicas.setBounds(20, 36, 46, 14);
+		JLabel lblMusicas = new JLabel("M\u00FAsicas");
+		lblMusicas.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblMusicas.setBounds(39, 36, 55, 14);
 		contentPane.add(lblMusicas);
 		
-		JButton btnAdicionarmusica = new JButton("AdicionarMusica");
-		btnAdicionarmusica.setBounds(210, 57, 131, 23);
+		JButton btnAdicionarmusica = new JButton("ADICIONAR M\u00DASICA");
+		btnAdicionarmusica.setBounds(239, 57, 136, 23);
 		contentPane.add(btnAdicionarmusica);
 		
 		btnAdicionarmusica.addActionListener(new ActionListener() {
@@ -97,8 +100,8 @@ public class JanelaPlaylist extends JFrame {
 				dispose();
 			}
 		});
-		JButton btnRemoverMusica = new JButton("Remover Musica");
-		btnRemoverMusica.setBounds(210, 91, 131, 23);
+		JButton btnRemoverMusica = new JButton("REMOVER M\u00DASICA");
+		btnRemoverMusica.setBounds(239, 91, 136, 23);
 		contentPane.add(btnRemoverMusica);
 		
 		btnRemoverMusica.addActionListener(new ActionListener() {
@@ -149,7 +152,7 @@ public class JanelaPlaylist extends JFrame {
 			}
 		});
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(5, 227, 89, 23);
 		contentPane.add(btnVoltar);
 		
