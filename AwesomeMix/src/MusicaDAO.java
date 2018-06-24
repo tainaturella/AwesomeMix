@@ -34,6 +34,7 @@ public class MusicaDAO {
             pstmt.setDouble(3, musica.getTempoDuracao());
             pstmt.setDouble(4, musica.getAvaliacaoMusica());
             pstmt.setInt(5, musica.getAlbum().getId());
+            System.out.println("query eh essa: "+pstmt.toString());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -75,7 +76,7 @@ public class MusicaDAO {
         
         try {
             String sql = "SELECT idMusica, nomeMusica, tempoDuracaoMusica,"
-            		+ " avaliacaoMusica, idAlbum FROM usuario";
+            		+ " avaliacaoMusica, idAlbum FROM musica";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 

@@ -97,9 +97,13 @@ public class Usuario {
 				return null;
 			}
 		}
+		
 		PlayListPublica novaPlayListPublica = new PlayListPublica(nome); //cria playlist publica
-		UsuarioPlayListPublica novaPlayListAssociativa = new UsuarioPlayListPublica(this, novaPlayListPublica);//Cria um objeto associando playlist e usuario
-		playListsPublicas.add(novaPlayListAssociativa); //Adciona a playList criada a lista de playLists desse usuario.
+		novaPlayListPublica.adicionarContribuinte(this);
+		
+		//System.out.println("Adicionou como contribuinte!");
+		//BaseDeDados.shared.usuariosPlayListPublicas.add(novaPlayListAssociativa);
+		
 		return novaPlayListPublica;
 	}
 	
@@ -133,6 +137,7 @@ public class Usuario {
 		//remove a playList da lista de playlists publicas do usuario
 		for(int i = 0; i < playListsPublicas.size(); i++){
 			if( playListsPublicas.get(i).getPlayListPublica().getId() == playListPublica.getId()){
+				BaseDeDados.shared.playListsPublicas.remove(playListsPublicas.get(i));
 				playListsPublicas.remove(i);
 				if(removeu != false) removeu = true;
 				break;
@@ -167,6 +172,7 @@ public class Usuario {
 	 *verifica se o usuario eh o dono, se sim entao ele pode adicionar*/
 	public boolean adicionaMusicaPlayList(Musica musica, PlayList playList) {
 		boolean adicionou = true;
+		
 		if(playList instanceof PlayListPublica){
 			PlayListPublica temp = (PlayListPublica)playList;
 			temp.adicionarContribuinte(this); //adiciona criando o associativo
@@ -205,7 +211,7 @@ public class Usuario {
 	public void avaliaMusica(Musica musica, double avaliacao){
 		boolean jaAvaliou = false;
 		for(int i = 0; i < musicasAvaliadas.size(); i++){
-			//caso a musica ja tier sido avaliada pelo usuario anteriormente
+			//caso a musica ja tiver sido avaliada pelo usuario anteriormente
 			if(musicasAvaliadas.get(i).getMusica().getId() == musica.getId()){
 				musicasAvaliadas.get(i).setAvaliacao(avaliacao);
 				jaAvaliou = true;
@@ -214,10 +220,13 @@ public class Usuario {
 		}
 		//caso nunca tenha avaliado a musica, cria um associativo
 		if(jaAvaliou == false){
+			System.out.println("Avaliando! "+avaliacao);
 			UsuarioMusica associativo = new UsuarioMusica(this, musica);
 			associativo.setAvaliacao(avaliacao);
 			musicasAvaliadas.add(associativo);
 			musica.getAvaliacoesRecebidas().add(associativo);
+			
+			BaseDeDados.shared.usuariosMusica.add(associativo);
 		}
 	}
 }

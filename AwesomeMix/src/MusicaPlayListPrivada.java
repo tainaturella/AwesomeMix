@@ -16,8 +16,9 @@ public class MusicaPlayListPrivada {
 		this.playList = playlist;
 		id = ++geradorId;
 	}
+	
 	public MusicaPlayListPrivada(PlayListPrivada playList, Musica musica){
-		this(playList);
+		this.playList = playList;
 		this.musica = musica;
 		id = ++geradorId;
 	}
