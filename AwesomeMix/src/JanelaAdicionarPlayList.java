@@ -73,11 +73,11 @@ public class JanelaAdicionarPlayList extends JFrame {
 		contentPane.add(lblNome);
 		
 		//criando radio button menu
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("P\u00FAblica");
+		final JRadioButton rdbtnNewRadioButton = new JRadioButton("P\u00FAblica");
 		rdbtnNewRadioButton.setBounds(74, 107, 59, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnPrivada = new JRadioButton("Privada");
+		final JRadioButton rdbtnPrivada = new JRadioButton("Privada");
 		rdbtnPrivada.setBounds(74, 134, 70, 23);
 		contentPane.add(rdbtnPrivada);
 		
@@ -103,7 +103,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 		lblNovaPlaylist.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNovaPlaylist.setBounds(20, 23, 108, 14);
 		contentPane.add(lblNovaPlaylist);
-		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
+		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnNewRadioButton.isSelected()) {

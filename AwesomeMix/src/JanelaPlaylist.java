@@ -52,7 +52,7 @@ public class JanelaPlaylist extends JFrame {
 		lblNome.setBounds(73, 11, 302, 14);
 		contentPane.add(lblNome);
 		
-		DefaultListModel<String> listMusicas = new DefaultListModel<String>();
+		final DefaultListModel<String> listMusicas = new DefaultListModel<String>();
 		if(BaseDeDados.shared.tipoPlaylist == TipoPlaylist.PUBLICA) {
 			ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
 			for(int i=0; i< listaMusica.size(); i++) {
@@ -73,7 +73,7 @@ public class JanelaPlaylist extends JFrame {
 			}
 		}
 
-		JList<String> listaMusicas = new JList<String>(listMusicas);
+		final JList<String> listaMusicas = new JList<String>(listMusicas);
 		//listaMusicas.setBounds(10, 54, 180, 162);
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);

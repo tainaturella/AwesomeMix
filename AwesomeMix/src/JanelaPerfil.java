@@ -32,7 +32,7 @@ public class JanelaPerfil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
+		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -60,12 +60,12 @@ public class JanelaPerfil extends JFrame {
 		contentPane.add(lblPlaylists);
 		
 		
-		DefaultListModel<String> listPublicas = new DefaultListModel<String>();
+		final DefaultListModel<String> listPublicas = new DefaultListModel<String>();
 		for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
 			listPublicas.addElement(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome());
 		}
 		
-		JList<String> listPlayListPublica = new JList<String>(listPublicas);
+		final JList<String> listPlayListPublica = new JList<String>(listPublicas);
 		//listPlayListPublica.setBounds(96, 146, 93, 55);
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);

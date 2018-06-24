@@ -43,7 +43,7 @@ public class JanelaMeuPerfil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
+		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -80,7 +80,7 @@ public class JanelaMeuPerfil extends JFrame {
 		lblSenha.setBounds(199, 87, 46, 14);
 		contentPane.add(lblSenha);
 		
-		JButton btnEditar = new JButton("EDITAR");
+		final JButton btnEditar = new JButton("EDITAR");
 		btnEditar.setBounds(335, 80, 89, 23);
 		contentPane.add(btnEditar);
 		
@@ -102,12 +102,12 @@ public class JanelaMeuPerfil extends JFrame {
 		lblPlaylistspublicas.setBounds(23, 119, 118, 14);
 		contentPane.add(lblPlaylistspublicas);
 		
-		DefaultListModel<String> listPublicas = new DefaultListModel<String>();
+		final DefaultListModel<String> listPublicas = new DefaultListModel<String>();
 		for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
 			listPublicas.addElement(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome());
 		}
 		
-		JList<String> listPlayListPublica = new JList<String>(listPublicas);
+		final JList<String> listPlayListPublica = new JList<String>(listPublicas);
 		//listPlayListPublica.setBounds(96, 146, 93, 55);
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);
@@ -137,12 +137,12 @@ public class JanelaMeuPerfil extends JFrame {
 		lblPlaylistsprivadas.setBounds(222, 121, 110, 14);
 		contentPane.add(lblPlaylistsprivadas);
 		
-		DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
+		final DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
 		for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
 			listPrivadas.addElement(usuario.getPlayListsPrivadas().get(i).getNome());
 		}
 		
-		JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
+		final JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
 		listPlayListPrivada.setLocation(236, 0);
 		listPlayListPrivada.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPrivada.setLayoutOrientation(JList.VERTICAL);
