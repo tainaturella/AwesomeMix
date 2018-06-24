@@ -5,7 +5,6 @@ public class Musica{
 	private static int qtdMusicasTotal = 0;
 	private String nomeMusica;
 	private double tempoDuracao;
-	private double avaliacaoMusica;
 	private Album album;
 	private final ArrayList <MusicaPlayListPrivada> playListsPrivadas;
 	private final ArrayList <MusicaPlayListPublica> playListsPublicas;
@@ -56,12 +55,18 @@ public class Musica{
 	}
 	
 	public double getAvaliacaoMusica() {
+		double avaliacaoMusica = 0;
+		int tam = avaliacoesRecebidas.size();
+		for(int i = 0; i < tam; i++){
+			avaliacaoMusica += avaliacoesRecebidas.get(i).getAvaliacao();
+		}
+		avaliacaoMusica = avaliacaoMusica/tam;
 		return avaliacaoMusica;
 	}
 
-	public void setAvaliacaoMusica(double avaliacaoMusica) {
-		this.avaliacaoMusica = avaliacaoMusica;
-	}
+//	public void setAvaliacaoMusica(double avaliacaoMusica) {
+//		this.avaliacaoMusica = avaliacaoMusica;
+//	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -92,11 +97,12 @@ public class Musica{
 		return avaliacoesRecebidas;
 	}
 	
+	
 	//metodo toString
 	@Override
 	public String toString() {
 		return "Musica [id=" + id + ", nomeMusica=" + nomeMusica + ", tempoDuracao=" + tempoDuracao + ", avaliacao="
-				+ avaliacaoMusica + "]";
+				+ getAvaliacaoMusica() + "]";
 	}
 
 	
