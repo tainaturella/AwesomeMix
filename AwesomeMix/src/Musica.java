@@ -9,6 +9,7 @@ public class Musica{
 	private final ArrayList <MusicaPlayListPrivada> playListsPrivadas;
 	private final ArrayList <MusicaPlayListPublica> playListsPublicas;
 	private final ArrayList <UsuarioMusica> avaliacoesRecebidas;
+	private double avaliacaoMusica;
 	
 	//Metodos Construtores
 	public Musica(){
@@ -61,12 +62,13 @@ public class Musica{
 			avaliacaoMusica += avaliacoesRecebidas.get(i).getAvaliacao();
 		}
 		avaliacaoMusica = avaliacaoMusica/tam;
+		this.avaliacaoMusica = avaliacaoMusica;
 		return avaliacaoMusica;
 	}
 
-//	public void setAvaliacaoMusica(double avaliacaoMusica) {
-//		this.avaliacaoMusica = avaliacaoMusica;
-//	}
+	public void setAvaliacaoMusica(double avaliacaoMusica) {
+		this.avaliacaoMusica = avaliacaoMusica;
+	}
 
 	public void setId(int id) {
 		this.id = id;
