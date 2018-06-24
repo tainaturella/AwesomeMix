@@ -164,6 +164,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 			}
 		});
 		
+		
 		btnIrParaAlbum.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				//vai para a pagina de album da musica

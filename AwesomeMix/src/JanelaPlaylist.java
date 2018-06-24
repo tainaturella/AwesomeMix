@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JList;
@@ -154,9 +156,24 @@ public class JanelaPlaylist extends JFrame {
 		btnVoltar.setBounds(5, 227, 89, 23);
 		contentPane.add(btnVoltar);
 		
+		
+		
+		listaMusicas.addMouseListener(new MouseAdapter() {
+			ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
+			public void mouseClicked(MouseEvent evt) {
+				int index = listaMusicas.getSelectedIndex();
+			    if (evt.getClickCount() == 2) {
+				      BaseDeDados.shared.musicaAtual = listaMusica.get(index).getMusica();
+				      //System.out.println("nome da musica " + listaMusica.get(index).getMusica().getNomeMusica());
+				      new JanelaPropriedadesMusica().setVisible(true);
+				      setVisible(false);
+				      dispose();
+			    }
+			  }
+			});
+	
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				new JanelaMeuPerfil().setVisible(true);
 				setVisible(false);
 				dispose();

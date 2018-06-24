@@ -18,6 +18,7 @@ import javax.swing.ListSelectionModel;
 
 public class JanelaPropriedadesAlbum extends JFrame {
 
+	
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtArtista;

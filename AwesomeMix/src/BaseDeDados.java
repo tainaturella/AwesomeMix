@@ -18,7 +18,9 @@ public class BaseDeDados {
 	public int usuario_logado;
 	public int usuario;
 	public int playList_atual;
-	public TipoPlaylist tipoPlaylist;
+	public TipoPlaylist tipoPlaylist; //vamos substituir isso por polimorfismo
+	public PlayList playListAtual;
+	public Musica musicaAtual;
 	
 	private BaseDeDados() {
 		usuarios = new ArrayList<Usuario>();
