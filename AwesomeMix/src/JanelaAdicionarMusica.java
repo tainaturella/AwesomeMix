@@ -125,7 +125,7 @@ public class JanelaAdicionarMusica extends JFrame {
 
 		String[] estilosMusicais = { "Jazz", "Folk", "Gospel", "Samba", "Rap", "Reggae", "Rock", "MPB", "Funk", "Sertanejo", "Axe", "Forro", "Frevo", "Pagode", "Soul", "POP", "Classico", "Blues", "Indie", "Eletronico" };
 
-		final JComboBox <String> comboBox = new JComboBox <String>(estilosMusicais);
+		JComboBox<?> comboBox = new JComboBox<Object>(estilosMusicais);
 		comboBox.setBounds(354, 66, 79, 27);
 		contentPane.add(comboBox);
 
