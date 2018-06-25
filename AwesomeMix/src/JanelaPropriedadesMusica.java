@@ -1,10 +1,11 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class JanelaPropriedadesMusica extends JFrame {
 
 	private JPanel contentPane;
@@ -43,6 +45,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPropriedadesMusica() {
+		setTitle("Informa\u00E7\u00F5es- AwesomeMix");
 		Musica musica = BaseDeDados.shared.musicaAtual;
 		
 		//System.out.println("nome da musica ola " + musica.getNomeMusica());
@@ -61,95 +64,102 @@ public class JanelaPropriedadesMusica extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNome.setBounds(10, 43, 46, 14);
+		lblNome.setBounds(30, 70, 46, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lbllbum = new JLabel("\u00C1lbum");
 		lbllbum.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbllbum.setBounds(10, 69, 46, 14);
+		lbllbum.setBounds(30, 96, 46, 14);
 		contentPane.add(lbllbum);
 		
 		JLabel lblAvaliao = new JLabel("Avalia\u00E7\u00E3o");
 		lblAvaliao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAvaliao.setBounds(10, 163, 64, 14);
+		lblAvaliao.setBounds(30, 159, 64, 14);
 		contentPane.add(lblAvaliao);
 		
 		JLabel lblArtista = new JLabel("Artista");
 		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblArtista.setBounds(10, 94, 46, 14);
+		lblArtista.setBounds(30, 121, 46, 14);
 		contentPane.add(lblArtista);
 		
 		JLabel lblEstilo = new JLabel("Estilo");
 		lblEstilo.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEstilo.setBounds(207, 43, 46, 14);
+		lblEstilo.setBounds(280, 118, 46, 14);
 		contentPane.add(lblEstilo);
 		
 		JLabel lblAno = new JLabel("Ano");
 		lblAno.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAno.setBounds(207, 69, 46, 14);
+		lblAno.setBounds(280, 67, 46, 14);
 		contentPane.add(lblAno);
 		
 		JLabel lblDurao = new JLabel("Dura\u00E7\u00E3o");
 		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDurao.setBounds(207, 94, 59, 14);
+		lblDurao.setBounds(280, 93, 59, 14);
 		contentPane.add(lblDurao);
 		
 		//text field
 		txtNome = new JTextField();
+		txtNome.setEditable(false);
 		txtNome.setText(musica.getNomeMusica());//nome
-		txtNome.setBounds(49, 40, 86, 20);
+		txtNome.setBounds(89, 67, 164, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtAlbum = new JTextField();
+		txtAlbum.setEditable(false);
 		txtAlbum.setText(musica.getAlbum().getNomeAlbum());
-		txtAlbum.setBounds(49, 68, 86, 20);
+		txtAlbum.setBounds(89, 93, 164, 20);
 		contentPane.add(txtAlbum);
 		txtAlbum.setColumns(10);
 		
 		txtArtista = new JTextField();
+		txtArtista.setEditable(false);
 		txtArtista.setText(musica.getAlbum().getArtista());
-		txtArtista.setBounds(49, 91, 86, 20);
+		txtArtista.setBounds(89, 118, 164, 20);
 		contentPane.add(txtArtista);
 		txtArtista.setColumns(10);
 		
 		txtEstilo = new JTextField();
+		txtEstilo.setEditable(false);
 		txtEstilo.setText(""+musica.getAlbum().getEstiloMusical());
-		txtEstilo.setBounds(241, 40, 86, 20);
+		txtEstilo.setBounds(342, 115, 59, 20);
 		contentPane.add(txtEstilo);
 		txtEstilo.setColumns(10);
 		
 		txtAno = new JTextField();
+		txtAno.setEditable(false);
 		String s = Integer.toString(musica.getAlbum().getAnoLancamento());//faz cast de inteiro pra String
 		txtAno.setText(s);
-		txtAno.setBounds(241, 66, 86, 20);
+		txtAno.setBounds(342, 64, 33, 20);
 		contentPane.add(txtAno);
 		txtAno.setColumns(10);
 		
 		txtDuracao = new JTextField();
+		txtDuracao.setEditable(false);
 		txtDuracao.setText(Double.toString(musica.getTempoDuracao()));//tempo de duracao
-		txtDuracao.setBounds(265, 91, 86, 20);
+		txtDuracao.setBounds(342, 90, 35, 20);
 		contentPane.add(txtDuracao);
 		txtDuracao.setColumns(10);
 		
 		txtAvaliacao = new JTextField();
+		txtAvaliacao.setEditable(false);
 		txtAvaliacao.setText("" + musica.getAvaliacaoMusica());
-		txtAvaliacao.setBounds(89, 160, 86, 20);
+		txtAvaliacao.setBounds(104, 156, 33, 20);
 		contentPane.add(txtAvaliacao);
 		txtAvaliacao.setColumns(10);
 		
 		
 		//botoes
-		JButton btnAvaliar = new JButton("Avaliar");
-		btnAvaliar.setBounds(207, 159, 89, 23);
+		JButton btnAvaliar = new JButton("AVALIAR");
+		btnAvaliar.setBounds(147, 155, 89, 23);
 		contentPane.add(btnAvaliar);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(10, 227, 89, 23);
 		contentPane.add(btnVoltar);
 		
-		JButton btnIrParaAlbum = new JButton("Ir para Album");
-		btnIrParaAlbum.setBounds(302, 227, 89, 23);
+		JButton btnIrParaAlbum = new JButton("IR PARA \u00C1LBUM");
+		btnIrParaAlbum.setBounds(253, 227, 138, 23);
 		contentPane.add(btnIrParaAlbum);
 		
 		//Listeners
@@ -157,9 +167,13 @@ public class JanelaPropriedadesMusica extends JFrame {
 			//chama a funcao avalaliar musica do usuario
 			int indiceUsuario = BaseDeDados.shared.usuario_logado;
 			public void actionPerformed(ActionEvent arg0){
+				Object[] opcoes = {0,1,2,3,4,5,6,7,8,9,10};
+				Object res = JOptionPane.showInputDialog(null, "Atribua sua nota para a música","Avaliação" ,
+								JOptionPane.PLAIN_MESSAGE , null ,opcoes,"");
 				Usuario usuario = BaseDeDados.shared.usuarios.get(indiceUsuario);
 				//le a avaliacao do text field
-				Double avaliacao = Double.parseDouble(txtAvaliacao.getText());
+				String value= (String)res;
+				Double avaliacao = Double.parseDouble(value);
 				usuario.avaliaMusica(BaseDeDados.shared.musicaAtual, avaliacao);
 			}
 		});

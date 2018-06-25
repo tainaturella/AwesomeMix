@@ -1,18 +1,17 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class JanelaEntrar extends JFrame {
 
 	private JPanel contentPane;
@@ -88,7 +87,7 @@ public class JanelaEntrar extends JFrame {
 						}
 					}
 				}
-				System.out.println("Usuario ou senha Invalido");
+				JOptionPane.showMessageDialog (null, "Usuário ou senha inválidas", "Aviso", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		

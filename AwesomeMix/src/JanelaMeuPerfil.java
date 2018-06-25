@@ -1,36 +1,45 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JSplitPane;
 import javax.swing.JList;
-import javax.swing.JScrollBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 
+@SuppressWarnings("serial")
 public class JanelaMeuPerfil extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtLogin;
 	private JTextField txtIdade;
 	private JPasswordField pwdSenhasemedit;
 	
-
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaMeuPerfil frame = new JanelaMeuPerfil();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -91,9 +100,13 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JanelaAwesomeMix().setVisible(true);
-				setVisible(false);
-				dispose();
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirmação", dialogButton);
+				if(dialogResult == 0) {
+					new JanelaAwesomeMix().setVisible(true);
+					setVisible(false);
+					dispose();
+				}
 			}
 		});
 		
@@ -175,25 +188,30 @@ public class JanelaMeuPerfil extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaAdicionarPlayList().setVisible(true);
 				setVisible(false);
+				JOptionPane.showMessageDialog (null, "Playlist adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
-		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST P\u00DABLICA");
+		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST PÚBLICA");
 		btnRemoverPlaylistPublica.setBounds(28, 211, 177, 29);
 		contentPane.add(btnRemoverPlaylistPublica);
 		
 		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int index = listPlayListPublica.getSelectedIndex();
-				for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
-					if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
-						usuario.removePlayListPublica(usuario.getPlayListsPublicas().get(i).getPlayListPublica());
-						listPublicas.remove(index);
-						break;
-					}
-				}
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmação", dialogButton);
+				if(dialogResult == 0) {
+					int index = listPlayListPublica.getSelectedIndex();
+					for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
+						if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
+							usuario.removePlayListPublica(usuario.getPlayListsPublicas().get(i).getPlayListPublica());
+							listPublicas.remove(index);
+							break;
+							}
+						}
 				
+					}
 			}
 		});
 	
@@ -244,12 +262,16 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int indexPrivada = listPlayListPrivada.getSelectedIndex();
-				for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
-					if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(indexPrivada))) {
-						usuario.removePlayListPrivada(usuario.getPlayListsPrivadas().get(i));
-						listPrivadas.remove(indexPrivada);
-						break;
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmação", dialogButton);
+				if(dialogResult == 0) {
+					int indexPrivada = listPlayListPrivada.getSelectedIndex();
+					for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
+						if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(indexPrivada))) {
+							usuario.removePlayListPrivada(usuario.getPlayListsPrivadas().get(i));
+							listPrivadas.remove(indexPrivada);
+							break;
+						}
 					}
 				}
 			}

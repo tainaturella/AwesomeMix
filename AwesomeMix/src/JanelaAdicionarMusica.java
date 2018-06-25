@@ -1,18 +1,21 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("serial")
 public class JanelaAdicionarMusica extends JFrame {
+	/**
+	 * 
+	 */
 	private JTextField txtNomeMusica;
 	private JTextField txtArtista;
 	private JTextField txtAlbum;
@@ -139,6 +142,7 @@ public class JanelaAdicionarMusica extends JFrame {
 
 		btnAdicionarMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+		
 				String nome = txtNomeMusica.getText();
 				String album = txtAlbum.getText();
 				String artista = txtArtista.getText();
@@ -191,6 +195,7 @@ public class JanelaAdicionarMusica extends JFrame {
 					dispose();
 					return;
 				}
+				JOptionPane.showMessageDialog (null, "Música foi adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			}
 		});
@@ -228,7 +233,7 @@ public class JanelaAdicionarMusica extends JFrame {
 						}
 					}
 				}
-
+				JOptionPane.showMessageDialog (null, "Álbum foi criado com sucesso!!Adicione músicas!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Esse album não contém nenhuma música");		
 			}
 		});

@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +8,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import java.awt.event.ItemEvent;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class JanelaAdicionarPlayList extends JFrame {
 
 	private JPanel contentPane;
@@ -115,9 +115,10 @@ public class JanelaAdicionarPlayList extends JFrame {
 					usuario.criaPlayListPrivada(textField.getText());
 					new JanelaMeuPerfil().setVisible(true);
 					setVisible(false);
+					JOptionPane.showMessageDialog (null, "Playlist foi criada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}else {
-					System.out.println("VocÃª deve inserir escolher um tipo");
+					JOptionPane.showMessageDialog (null, "Você precisa escolher o tipo de Playlist", "Aviso", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

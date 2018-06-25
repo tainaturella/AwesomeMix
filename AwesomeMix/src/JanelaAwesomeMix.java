@@ -1,17 +1,16 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
 
+@SuppressWarnings("serial")
 public class JanelaAwesomeMix extends JFrame {
 
 	private JPanel contentPane;
@@ -70,10 +69,9 @@ public class JanelaAwesomeMix extends JFrame {
 				dispose();
 			}
 		});
-		
-		JLabel lblAwesomemix = new JLabel("AwesomeMix");
+		JLabel lblAwesomemix = new JLabel(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logo.png"), JLabel.CENTER);
 		lblAwesomemix.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 60));
-		lblAwesomemix.setBounds(127, 58, 415, 130);
+		lblAwesomemix.setBounds(66, 25, 521, 311);
 		contentPane.add(lblAwesomemix);
 		
 		setLocationRelativeTo(null); //centraliza janela

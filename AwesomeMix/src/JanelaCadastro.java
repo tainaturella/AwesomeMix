@@ -1,16 +1,18 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Font;
 
+import java.awt.EventQueue;
+import java.awt.Font;
+import javax.swing.JPasswordField;
+
+@SuppressWarnings("serial")
 public class JanelaCadastro extends JFrame {
 
 	private JPanel contentPane;
@@ -18,7 +20,23 @@ public class JanelaCadastro extends JFrame {
 	private JTextField txtIdade;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
-
+	private JPasswordField pwdSenha;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaCadastro frame = new JanelaCadastro();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -71,13 +89,12 @@ public class JanelaCadastro extends JFrame {
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
-		txtSenha = new JTextField();
-		txtSenha.setBounds(248, 122, 86, 20);
-		contentPane.add(txtSenha);
-		txtSenha.setColumns(10);
+		pwdSenha = new JPasswordField();
+		pwdSenha.setBounds(248, 122, 86, 20);
+		contentPane.add(pwdSenha);
 		
 		JButton btnCadastrar = new JButton("CADASTRAR");
-		btnCadastrar.setBounds(79, 165, 102, 23);
+		btnCadastrar.setBounds(72, 165, 109, 23);
 		contentPane.add(btnCadastrar);
 		
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -85,8 +102,7 @@ public class JanelaCadastro extends JFrame {
 				String nome = txtNome.getText();
 				int idade = Integer.parseInt(txtIdade.getText(), 10);
 				String login = txtLogin.getText();
-				String senha = txtSenha.getText();
-				
+				String senha = new String(pwdSenha.getPassword());
 				Usuario usuario = new Usuario(nome, idade, login, senha);
 				
 				BaseDeDados.shared.usuarios.add(usuario);
@@ -95,6 +111,7 @@ public class JanelaCadastro extends JFrame {
 				new JanelaMeuPerfil().setVisible(true);
 				setVisible(false);
 				dispose();
+				JOptionPane.showMessageDialog (null, "Usuário Cadastrado", "Sucesso!!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
@@ -104,11 +121,14 @@ public class JanelaCadastro extends JFrame {
 		
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtSenha.setText(" ");
-				txtIdade.setText(" ");
-				txtLogin.setText(" ");
-				txtNome.setText(" ");
-				
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja Apagar os dados fornecidos até aqui?", "Confirmação", dialogButton);
+				if(dialogResult == 0) {
+					txtSenha.setText(" ");
+					txtIdade.setText(" ");
+					txtLogin.setText(" ");
+					txtNome.setText(" ");
+				}
 			}
 		});
 			
@@ -116,6 +136,7 @@ public class JanelaCadastro extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(10, 227, 89, 23);
 		contentPane.add(btnVoltar);
+		
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

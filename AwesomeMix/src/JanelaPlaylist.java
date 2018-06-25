@@ -1,28 +1,38 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
 
+@SuppressWarnings("serial")
 public class JanelaPlaylist extends JFrame {
 
 	private JPanel contentPane;
-
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaMeuPerfil frame = new JanelaMeuPerfil();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	/**
 	 * Create the frame.
@@ -106,47 +116,50 @@ public class JanelaPlaylist extends JFrame {
 		
 		btnRemoverMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String string = listMusicas.get(listaMusicas.getSelectedIndex()); 
-				String[] parts = string.split("-");
-				String nome = parts[0];
-				String album = parts[1];
-				String artista = parts[2];
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover esta música?", "Confirmação", dialogButton);
+				if(dialogResult == 0) {
+					String string = listMusicas.get(listaMusicas.getSelectedIndex()); 
+					String[] parts = string.split("-");
+					String nome = parts[0];
+					String album = parts[1];
+					String artista = parts[2];
 				
-				if(BaseDeDados.shared.tipoPlaylist == TipoPlaylist.PUBLICA) {
-					ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
-					PlayListPublica playList = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica();
+					if(BaseDeDados.shared.tipoPlaylist == TipoPlaylist.PUBLICA) {
+						ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
+						PlayListPublica playList = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica();
 					
-					for(int i=0; i< listaMusica.size(); i++) {
-						Musica musica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getMusicas().get(i).getMusica();
-						System.out.println(musica.getNomeMusica() + "\n");
-						if(listaMusica.get(i).getMusica().getNomeMusica().equals(nome)) {
-							if(listaMusica.get(i).getMusica().getAlbum().getNomeAlbum().equals(album)) {
-								if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
-									playList.removerMusica(musica);
-									listMusicas.remove(listaMusicas.getSelectedIndex());
-									
-									
+						for(int i=0; i< listaMusica.size(); i++) {
+							Musica musica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getMusicas().get(i).getMusica();
+							System.out.println(musica.getNomeMusica() + "\n");
+							if(listaMusica.get(i).getMusica().getNomeMusica().equals(nome)) {
+								if(listaMusica.get(i).getMusica().getAlbum().getNomeAlbum().equals(album)) {
+									if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
+										playList.removerMusica(musica);
+										listMusicas.remove(listaMusicas.getSelectedIndex());
+										JOptionPane.showMessageDialog (null, "Música excluída com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+									}
 								}
-							}
-						}	
-					}
-				}else {
-					ArrayList<MusicaPlayListPrivada> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPrivadas().get(BaseDeDados.shared.playList_atual).getListaMusicas();
-					PlayListPrivada playList = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPrivadas().get(BaseDeDados.shared.playList_atual);
+							}	
+						}
+					}else {
+						ArrayList<MusicaPlayListPrivada> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPrivadas().get(BaseDeDados.shared.playList_atual).getListaMusicas();
+						PlayListPrivada playList = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPrivadas().get(BaseDeDados.shared.playList_atual);
 					
-					for(int i=0; i< listaMusica.size(); i++) {
-						Musica musica = listaMusica.get(i).getMusica();
-						System.out.println(musica.getNomeMusica() + "\n");
-						if(listaMusica.get(i).getMusica().getNomeMusica().equals(nome)) {
-							if(listaMusica.get(i).getMusica().getAlbum().getNomeAlbum().equals(album)) {
-								if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
-									playList.removerMusica(musica);
-									listMusicas.remove(listaMusicas.getSelectedIndex());
+						for(int i=0; i< listaMusica.size(); i++) {
+							Musica musica = listaMusica.get(i).getMusica();
+							System.out.println(musica.getNomeMusica() + "\n");
+							if(listaMusica.get(i).getMusica().getNomeMusica().equals(nome)) {
+								if(listaMusica.get(i).getMusica().getAlbum().getNomeAlbum().equals(album)) {
+									if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
+										playList.removerMusica(musica);
+										listMusicas.remove(listaMusicas.getSelectedIndex());
+										JOptionPane.showMessageDialog (null, "Música excluída com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 									
-									
+									}
 								}
-							}
-						}	
+							}	
+						}
 					}
 				}
 			}
