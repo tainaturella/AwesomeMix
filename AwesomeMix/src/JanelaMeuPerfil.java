@@ -47,7 +47,7 @@ public class JanelaMeuPerfil extends JFrame {
 		setTitle("Meu Perfil - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 325);
-		JPanel contentPane = new JPanel();
+		final JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -101,7 +101,7 @@ public class JanelaMeuPerfil extends JFrame {
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirmação", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirmaï¿½ï¿½o", dialogButton);
 				if(dialogResult == 0) {
 					new JanelaAwesomeMix().setVisible(true);
 					setVisible(false);
@@ -193,14 +193,14 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
-		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST PÚBLICA");
+		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST Pï¿½BLICA");
 		btnRemoverPlaylistPublica.setBounds(28, 211, 177, 29);
 		contentPane.add(btnRemoverPlaylistPublica);
 		
 		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmação", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmaï¿½ï¿½o", dialogButton);
 				if(dialogResult == 0) {
 					int index = listPlayListPublica.getSelectedIndex();
 					for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
@@ -263,7 +263,7 @@ public class JanelaMeuPerfil extends JFrame {
 		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmação", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirmaï¿½ï¿½o", dialogButton);
 				if(dialogResult == 0) {
 					int indexPrivada = listPlayListPrivada.getSelectedIndex();
 					for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {

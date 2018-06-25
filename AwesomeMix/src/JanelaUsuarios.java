@@ -38,10 +38,10 @@ public class JanelaUsuarios extends JFrame {
 		lblTitulo.setBounds(10, 23, 89, 14);
 		contentPane.add(lblTitulo);
 		
-		ArrayList<Usuario> usuarios = BaseDeDados.shared.usuarios;
+		final ArrayList<Usuario> usuarios = BaseDeDados.shared.usuarios;
 		
-		ArrayList<String> listLogin = new ArrayList<String>();
-		DefaultListModel<String> listUsuarios = new DefaultListModel<String>();
+		final ArrayList<String> listLogin = new ArrayList<String>();
+		final DefaultListModel<String> listUsuarios = new DefaultListModel<String>();
 		for(int i=0; i < usuarios.size(); i++) {
 			if(BaseDeDados.shared.usuario_logado == i) {
 				continue;
@@ -50,7 +50,7 @@ public class JanelaUsuarios extends JFrame {
 			listLogin.add(usuarios.get(i).getLogin());
 		}
 		
-		JList<String> list = new JList<String>(listUsuarios);
+		final JList<String> list = new JList<String>(listUsuarios);
 		//list.setBounds(10, 45, 225, 126);
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
