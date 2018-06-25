@@ -129,6 +129,7 @@ public class JanelaPropriedadesAlbum extends JFrame {
 		txtAvaliacao = new JTextField();
 		txtAvaliacao.setEditable(false);
 		txtAvaliacao.setBounds(106, 158, 32, 20);
+		txtAvaliacao.setText("" + Double.toString(album.getAvaliacao()));
 		contentPane.add(txtAvaliacao);
 		txtAvaliacao.setColumns(10);
 		

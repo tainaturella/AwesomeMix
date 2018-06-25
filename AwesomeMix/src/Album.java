@@ -93,6 +93,15 @@ public class Album {
 		return musicas;
 	}
 	
+	public double getAvaliacao(){
+		double avaliacao = 0;
+		for (int i = 0; i < musicas.size(); i++){
+			avaliacao += musicas.get(i).getAvaliacaoMusica();
+		}
+		if(musicas.size() != 0) avaliacao = avaliacao/musicas.size();
+		return (avaliacao);
+	}
+	
 	public boolean adicionarMusica(Musica musica) {
 		if(musicas.contains(musica)) {
 			return false;

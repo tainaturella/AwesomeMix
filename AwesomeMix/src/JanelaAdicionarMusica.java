@@ -32,21 +32,21 @@ public class JanelaAdicionarMusica extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
+		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 
-		TipoPlaylist tipoPlaylist;
+		final TipoPlaylist tipoPlaylist;
 		if(BaseDeDados.shared.tipoPlaylist == TipoPlaylist.PUBLICA) {
 			tipoPlaylist = TipoPlaylist.PUBLICA;
 		}else {
 			tipoPlaylist = TipoPlaylist.PRIVADA;
 		}
 
-		JLabel lblNomeDaMusica = new JLabel("Nome da Música");
+		JLabel lblNomeDaMusica = new JLabel("Nome da Mï¿½sica");
 		lblNomeDaMusica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNomeDaMusica.setBounds(22, 71, 96, 16);
 		getContentPane().add(lblNomeDaMusica);
 
-		JLabel lblAlbum = new JLabel("Álbum");
+		JLabel lblAlbum = new JLabel("ï¿½lbum");
 		lblAlbum.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAlbum.setBounds(22, 138, 61, 16);
 		getContentPane().add(lblAlbum);
@@ -85,7 +85,7 @@ public class JanelaAdicionarMusica extends JFrame {
 		btnVoltar.setBounds(10, 250, 90, 29);
 		getContentPane().add(btnVoltar);
 		
-		JLabel lblMusica = new JLabel("Música");
+		JLabel lblMusica = new JLabel("Mï¿½sica");
 		lblMusica.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblMusica.setBounds(10, 11, 68, 14);
 		contentPane.add(lblMusica);
@@ -103,11 +103,11 @@ public class JanelaAdicionarMusica extends JFrame {
 
 		String[] estilosMusicais = { "Jazz", "Folk", "Gospel", "Samba", "Rap", "Reggae", "Rock", "MPB", "Funk", "Sertanejo", "Axe", "Forro", "Frevo", "Pagode", "Soul", "POP", "Classico", "Blues", "Indie", "Eletronico" };
 
-		JComboBox comboBox = new JComboBox(estilosMusicais);
+		final JComboBox <String> comboBox = new JComboBox <String>(estilosMusicais);
 		comboBox.setBounds(354, 66, 79, 27);
 		contentPane.add(comboBox);
 
-		JLabel lblDurao = new JLabel("Duração");
+		JLabel lblDurao = new JLabel("Duraï¿½ï¿½o");
 		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDurao.setBounds(270, 138, 61, 16);
 		contentPane.add(lblDurao);
@@ -136,7 +136,7 @@ public class JanelaAdicionarMusica extends JFrame {
 			}
 		});
 
-		JButton btnAdicionarMusica = new JButton("ADICIONAR MÚSICA");
+		JButton btnAdicionarMusica = new JButton("ADICIONAR Mï¿½SICA");
 		btnAdicionarMusica.setBounds(72, 188, 139, 29);
 		getContentPane().add(btnAdicionarMusica);
 
@@ -155,7 +155,7 @@ public class JanelaAdicionarMusica extends JFrame {
 					return;
 				}
 
-				ArrayList<Album> albums = BaseDeDados.shared.albums;
+				ArrayList<Album> albums = BaseDeDados.shared.albuns;
 				for(int i=0; i < albums.size(); i++) {
 					if(albums.get(i).getNomeAlbum().equals(album) && albums.get(i).getArtista().equals(artista)) {
 						Musica musica = new Musica(nome, tempoDuracao, albums.get(i));
@@ -180,7 +180,7 @@ public class JanelaAdicionarMusica extends JFrame {
 
 				Album album1 = new Album(album, artista, ano, estiloMusical);
 				Musica musica = new Musica(nome, tempoDuracao, album1);
-				BaseDeDados.shared.albums.add(album1);
+				BaseDeDados.shared.albuns.add(album1);
 				BaseDeDados.shared.musicas.add(musica);
 				if(tipoPlaylist == TipoPlaylist.PUBLICA) {
 					usuario.adicionaMusicaPlayList(musica, usuario.getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica());
@@ -195,13 +195,13 @@ public class JanelaAdicionarMusica extends JFrame {
 					dispose();
 					return;
 				}
-				JOptionPane.showMessageDialog (null, "Música foi adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog (null, "Mï¿½sica foi adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			}
 		});
 
 
-		JButton btnAdicionarAlbum = new JButton("ADICIONAR ÁLBUM");
+		JButton btnAdicionarAlbum = new JButton("ADICIONAR ï¿½LBUM");
 		btnAdicionarAlbum.setBounds(236, 188, 139, 29);
 		getContentPane().add(btnAdicionarAlbum);
 
@@ -214,7 +214,7 @@ public class JanelaAdicionarMusica extends JFrame {
 					return;
 				}
 
-				ArrayList<Album> albums = BaseDeDados.shared.albums;
+				ArrayList<Album> albums = BaseDeDados.shared.albuns;
 				for(int i=0; i < albums.size(); i++) {
 					if(albums.get(i).getNomeAlbum().equals(album) && albums.get(i).getArtista().equals(artista)) {
 						if(tipoPlaylist == TipoPlaylist.PUBLICA) {
@@ -233,8 +233,8 @@ public class JanelaAdicionarMusica extends JFrame {
 						}
 					}
 				}
-				JOptionPane.showMessageDialog (null, "Álbum foi criado com sucesso!!Adicione músicas!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-				System.out.println("Esse album não contém nenhuma música");		
+				JOptionPane.showMessageDialog (null, "ï¿½lbum foi criado com sucesso!!Adicione mï¿½sicas!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("Esse album nï¿½o contï¿½m nenhuma mï¿½sica");		
 			}
 		});
 

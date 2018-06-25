@@ -46,7 +46,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 	 */
 	public JanelaPropriedadesMusica() {
 		setTitle("Informa\u00E7\u00F5es- AwesomeMix");
-		Musica musica = BaseDeDados.shared.musicaAtual;
+		final Musica musica = BaseDeDados.shared.musicaAtual;
 		
 		//System.out.println("nome da musica ola " + musica.getNomeMusica());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +143,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 		
 		txtAvaliacao = new JTextField();
 		txtAvaliacao.setEditable(false);
-		txtAvaliacao.setText("" + musica.getAvaliacaoMusica());
+		txtAvaliacao.setText("" + Double.toString(musica.getAvaliacaoMusica()).substring(0, 3));
 		txtAvaliacao.setBounds(104, 156, 33, 20);
 		contentPane.add(txtAvaliacao);
 		txtAvaliacao.setColumns(10);
@@ -167,14 +167,25 @@ public class JanelaPropriedadesMusica extends JFrame {
 			//chama a funcao avalaliar musica do usuario
 			int indiceUsuario = BaseDeDados.shared.usuario_logado;
 			public void actionPerformed(ActionEvent arg0){
-				Object[] opcoes = {0,1,2,3,4,5,6,7,8,9,10};
-				Object res = JOptionPane.showInputDialog(null, "Atribua sua nota para a música","Avaliação" ,
-								JOptionPane.PLAIN_MESSAGE , null ,opcoes,"");
+				Object[] opcoes = {"0","1","2","3","4","5","6","7","8","9","10"};
+				JOptionPane pane = new JOptionPane();
+				pane.setSelectionValues(opcoes);
+				String res = (String)JOptionPane.showInputDialog(
+						pane,
+						"Atribua sua nota para a mï¿½sica","Avaliaï¿½ï¿½o" ,
+						JOptionPane.QUESTION_MESSAGE ,
+						null ,opcoes,
+						opcoes[0]);
+				//String avaliacao = (String )pane.getValue();
+				//System.out.println("resposta" + res);
 				Usuario usuario = BaseDeDados.shared.usuarios.get(indiceUsuario);
 				//le a avaliacao do text field
-				String value= (String)res;
-				Double avaliacao = Double.parseDouble(value);
+				Double avaliacao = Double.parseDouble(res);
+				System.out.println("avaliacao anterior " + BaseDeDados.shared.musicaAtual.getAvaliacaoMusica());
+				System.out.println("avaliacao do usuario" + avaliacao);
 				usuario.avaliaMusica(BaseDeDados.shared.musicaAtual, avaliacao);
+				System.out.println("avaliacao atual" + BaseDeDados.shared.musicaAtual.getAvaliacaoMusica());
+				txtAvaliacao.setText("" + Double.toString(musica.getAvaliacaoMusica()).substring(0, 3));
 			}
 		});
 		
