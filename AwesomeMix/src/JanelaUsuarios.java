@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
@@ -22,10 +24,27 @@ public class JanelaUsuarios extends JFrame {
 	private JPanel contentPane;
 
 	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaCadastro frame = new JanelaCadastro();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	/**
 	 * Create the frame.
 	 */
 	public JanelaUsuarios() {
 		setTitle("Usu\u00E1rios - AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -46,6 +46,8 @@ public class JanelaPropriedadesMusica extends JFrame {
 	 */
 	public JanelaPropriedadesMusica() {
 		setTitle("Informa\u00E7\u00F5es- AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		final Musica musica = BaseDeDados.shared.musicaAtual;
 		
 		//System.out.println("nome da musica ola " + musica.getNomeMusica());

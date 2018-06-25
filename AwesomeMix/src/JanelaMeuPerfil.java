@@ -45,6 +45,8 @@ public class JanelaMeuPerfil extends JFrame {
 	 */
 	public JanelaMeuPerfil() {
 		setTitle("Meu Perfil - AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 325);
 		final JPanel contentPane = new JPanel();

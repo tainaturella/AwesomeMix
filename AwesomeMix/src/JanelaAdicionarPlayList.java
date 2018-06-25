@@ -39,6 +39,8 @@ public class JanelaAdicionarPlayList extends JFrame {
 	 */
 	public JanelaAdicionarPlayList() {
 		setTitle("Nova Playlist - AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

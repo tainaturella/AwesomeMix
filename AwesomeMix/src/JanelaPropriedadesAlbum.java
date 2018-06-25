@@ -45,6 +45,8 @@ public class JanelaPropriedadesAlbum extends JFrame {
 	 */
 	public JanelaPropriedadesAlbum() {
 		setTitle("Informa\u00E7\u00F5es - AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

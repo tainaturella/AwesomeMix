@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JComboBox;
 
@@ -21,9 +23,29 @@ public class JanelaAdicionarMusica extends JFrame {
 	private JTextField txtAlbum;
 	private JPanel contentPane;
 	private JTextField txtAno;
-	private JTextField txtDuracao;;
+	private JTextField txtDuracao;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaCadastro frame = new JanelaCadastro();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	/**
+	 * Create the frame.
+	 */
 
 	public JanelaAdicionarMusica() {
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setTitle("M\u00FAsica - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 459, 329);
