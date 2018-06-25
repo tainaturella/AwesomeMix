@@ -46,6 +46,7 @@ public class JanelaPerfil extends JFrame {
 		
 		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
+		
 		JLabel lblTitulo = new JLabel("Perfil de");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTitulo.setBounds(10, 11, 70, 14);

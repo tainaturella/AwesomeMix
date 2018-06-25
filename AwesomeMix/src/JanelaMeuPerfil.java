@@ -52,6 +52,7 @@ public class JanelaMeuPerfil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
