@@ -13,6 +13,8 @@ public class UsuarioMusicaDAO {
         resultado = null; 
     }
     
+    //insere usuarioMusica no banco de dados
+    //retorna o numero de registros inseridos
     public int inserirUsuarioMusica(UsuarioMusica usuarioMusica)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
@@ -25,13 +27,14 @@ public class UsuarioMusicaDAO {
         }
         
         try {
-            sql = "INSERT INTO usuarioMusica (idUsuarioMusica, idUsuario, idMusica"+
-            	  ") VALUES (?,?,?)";
+            sql = "INSERT INTO usuarioMusica (idUsuarioMusica, idUsuario, idMusica,"+
+            	  "avaliacaoUsuarioMusica) VALUES (?,?,?,?)";
             pstmt = conector.getConexao().prepareStatement(sql);  
             pstmt.setInt(1, usuarioMusica.getId()); 
             pstmt.setInt(2, usuarioMusica.getUsuario().getId());
             pstmt.setInt(3, usuarioMusica.getMusica().getId());
-            System.out.println("foi");
+            System.out.println("AVALIACAO DO USUARIO MUSICA: \n"+usuarioMusica.getAvaliacao());
+            pstmt.setDouble(4, usuarioMusica.getAvaliacao());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -59,7 +62,8 @@ public class UsuarioMusicaDAO {
         return resultado;
     }
   
-    //retorna tudo da tabela
+    //retorna todas as relacoes do banco
+    //entra com array de usuarios e de musicas para relacionar
     public ArrayList<UsuarioMusica> buscarUsuarioMusica(ArrayList<Usuario> usuarios, ArrayList<Musica> musicas) {
     	
         ArrayList<UsuarioMusica> usuariosMusica = new ArrayList<UsuarioMusica>();
@@ -71,7 +75,7 @@ public class UsuarioMusicaDAO {
         }
         
         try {
-            String sql = "SELECT idUsuarioMusica, idUsuario, idMusica FROM usuarioMusica";
+            String sql = "SELECT idUsuarioMusica, idUsuario, idMusica, avaliacaoUsuarioMusica FROM usuarioMusica";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -97,6 +101,7 @@ public class UsuarioMusicaDAO {
             		}
             	}
             	
+            	usuarioMusica.setAvaliacao(resultado.getDouble(4));
             	usuariosMusica.add(usuarioMusica);         	
             }
         } catch (SQLException exSQL) { //erro ao buscar no banco
@@ -125,8 +130,50 @@ public class UsuarioMusicaDAO {
         return usuariosMusica;
     } 
     
- 
-    //retorna todas as playlists publicas
+    //apaga todas as UsuarioMusica do banco
+    //retorna o numero de registros apagados
+    public int apagarUsuarioMusica() {
+
+        int resultado = 0;
+        String sql;
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM usuarioMusica";
+            pstmt = conector.getConexao().prepareStatement(sql);  
+            resultado = pstmt.executeUpdate(); 
+            
+        } catch (SQLException exSQL) { //erro ao excluir do banco
+        	System.err.println("\nExcecao na Exclusao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
+        }
+		
+        return resultado;
+    }
+    
     /*public ArrayList<PlayListPublica> buscarPlayListPublica() {
 
         ArrayList<PlayListPublica> playLists = new ArrayList<PlayListPublica>();
@@ -330,7 +377,7 @@ public class UsuarioMusicaDAO {
         }
 		
         return resultado;
-    }*/
+    }
     
     public int apagarUsuarioMusicaId(int idUsuarioMusica) {
 
@@ -372,6 +419,6 @@ public class UsuarioMusicaDAO {
         }
 		
         return resultado;
-    }
+    }*/
 	
 }

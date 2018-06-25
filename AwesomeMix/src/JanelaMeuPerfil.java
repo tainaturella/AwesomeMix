@@ -1,114 +1,134 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JSplitPane;
 import javax.swing.JList;
-import javax.swing.JScrollBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 
+@SuppressWarnings("serial")
 public class JanelaMeuPerfil extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtLogin;
 	private JTextField txtIdade;
 	private JPasswordField pwdSenhasemedit;
 	
-
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaMeuPerfil frame = new JanelaMeuPerfil();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	/**
 	 * Create the frame.
 	 */
 	public JanelaMeuPerfil() {
+		setTitle("Meu Perfil - AwesomeMix");
+		setSize(700, 500); //tamanho da janela
+		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		JPanel contentPane = new JPanel();
+		setBounds(100, 100, 480, 325);
+		final JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
+		
+		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
-		lblTitulo.setBounds(10, 11, 46, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(10, 11, 64, 14);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNome = new JLabel(usuario.getNome());
-		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblNome.setBounds(52, 11, 46, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		lblNome.setBounds(77, 11, 315, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblDadosPessoais = new JLabel("Dados Pessoais");
-		lblDadosPessoais.setBounds(10, 40, 88, 14);
+		lblDadosPessoais.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDadosPessoais.setBounds(20, 40, 101, 14);
 		contentPane.add(lblDadosPessoais);
 		
 		JLabel lblNome_1 = new JLabel("Nome");
-		lblNome_1.setBounds(10, 59, 46, 14);
+		lblNome_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNome_1.setBounds(28, 62, 46, 14);
 		contentPane.add(lblNome_1);
 		
 		JLabel lblIdade = new JLabel("Idade");
-		lblIdade.setBounds(199, 59, 46, 14);
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIdade.setBounds(199, 62, 46, 14);
 		contentPane.add(lblIdade);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(10, 84, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblLogin.setBounds(30, 87, 46, 14);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(199, 84, 46, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSenha.setBounds(199, 87, 46, 14);
 		contentPane.add(lblSenha);
 		
-		JButton btnEditar = new JButton("Editar");
+		final JButton btnEditar = new JButton("EDITAR");
 		btnEditar.setBounds(335, 80, 89, 23);
 		contentPane.add(btnEditar);
 		
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("SAIR");
 		btnSair.setBounds(335, 55, 89, 23);
 		contentPane.add(btnSair);
 		
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JanelaAwesomeMix().setVisible(true);
-				setVisible(false);
-				dispose();
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirma��o", dialogButton);
+				if(dialogResult == 0) {
+					new JanelaAwesomeMix().setVisible(true);
+					setVisible(false);
+					dispose();
+				}
 			}
 		});
 		
-		JLabel lblDadosconta = new JLabel("Dados de Conta");
-		lblDadosconta.setBounds(10, 121, 88, 14);
-		contentPane.add(lblDadosconta);
-		
 		JLabel lblPlaylistspublicas = new JLabel("Playlists P\u00FAblicas");
-		lblPlaylistspublicas.setBounds(10, 146, 88, 14);
+		lblPlaylistspublicas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblPlaylistspublicas.setBounds(23, 119, 118, 14);
 		contentPane.add(lblPlaylistspublicas);
 		
-		DefaultListModel<String> listPublicas = new DefaultListModel<String>();
+		final DefaultListModel<String> listPublicas = new DefaultListModel<String>();
 		for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
 			listPublicas.addElement(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome());
 		}
 		
-		JList<String> listPlayListPublica = new JList<String>(listPublicas);
+		final JList<String> listPlayListPublica = new JList<String>(listPublicas);
 		//listPlayListPublica.setBounds(96, 146, 93, 55);
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listPublicaScroll = new JScrollPane(listPlayListPublica);
-		listPublicaScroll.setBounds(96, 146, 93, 55);
+		listPublicaScroll.setBounds(20, 144, 190, 56);
 		contentPane.add(listPublicaScroll);
 		
 		listPlayListPublica.addMouseListener(new MouseAdapter() {
@@ -129,19 +149,21 @@ public class JanelaMeuPerfil extends JFrame {
 			});
 		
 		JLabel lblPlaylistsprivadas = new JLabel("Playlists Privadas");
-		lblPlaylistsprivadas.setBounds(199, 146, 82, 14);
+		lblPlaylistsprivadas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblPlaylistsprivadas.setBounds(222, 121, 110, 14);
 		contentPane.add(lblPlaylistsprivadas);
 		
-		DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
+		final DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
 		for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
 			listPrivadas.addElement(usuario.getPlayListsPrivadas().get(i).getNome());
 		}
 		
-		JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
+		final JList<String> listPlayListPrivada = new JList<String>(listPrivadas);
+		listPlayListPrivada.setLocation(236, 0);
 		listPlayListPrivada.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPrivada.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listPrivadaScroll = new JScrollPane(listPlayListPrivada);
-		listPrivadaScroll.setBounds(291, 145, 88, 56);
+		listPrivadaScroll.setBounds(239, 144, 185, 56);
 		contentPane.add(listPrivadaScroll);
 
 		listPlayListPrivada.addMouseListener(new MouseAdapter() {
@@ -161,33 +183,38 @@ public class JanelaMeuPerfil extends JFrame {
 			  }
 			});
 		
-		JButton btnAdicionarPlaylist = new JButton("Adicionar Playlist");
-		btnAdicionarPlaylist.setBounds(85, 210, 121, 23);
+		JButton btnAdicionarPlaylist = new JButton("ADICIONAR PLAYLIST");
+		btnAdicionarPlaylist.setBounds(49, 249, 139, 26);
 		contentPane.add(btnAdicionarPlaylist);
 		
 		btnAdicionarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaAdicionarPlayList().setVisible(true);
 				setVisible(false);
+				JOptionPane.showMessageDialog (null, "Playlist adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
-		JButton btnRemoverPlaylistPublica = new JButton("Remover PlayList Pubilca");
-		btnRemoverPlaylistPublica.setBounds(10, 172, 75, 23);
+		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST P�BLICA");
+		btnRemoverPlaylistPublica.setBounds(28, 211, 177, 29);
 		contentPane.add(btnRemoverPlaylistPublica);
 		
 		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int index = listPlayListPublica.getSelectedIndex();
-				for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
-					if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
-						usuario.removePlayListPublica(usuario.getPlayListsPublicas().get(i).getPlayListPublica());
-						listPublicas.remove(index);
-						break;
-					}
-				}
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirma��o", dialogButton);
+				if(dialogResult == 0) {
+					int index = listPlayListPublica.getSelectedIndex();
+					for(int i=0; i < usuario.getPlayListsPublicas().size(); i++) {
+						if(usuario.getPlayListsPublicas().get(i).getPlayListPublica().getNome().equals(listPublicas.get(index))) {
+							usuario.removePlayListPublica(usuario.getPlayListsPublicas().get(i).getPlayListPublica());
+							listPublicas.remove(index);
+							break;
+							}
+						}
 				
+					}
 			}
 		});
 	
@@ -196,32 +223,32 @@ public class JanelaMeuPerfil extends JFrame {
 		txtNome = new JTextField();
 		txtNome.setEditable(false);
 		txtNome.setText(usuario.getNome());
-		txtNome.setBounds(40, 56, 86, 20);
+		txtNome.setBounds(65, 59, 86, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtLogin = new JTextField();
 		txtLogin.setEditable(false);
 		txtLogin.setText(usuario.getLogin());
-		txtLogin.setBounds(40, 84, 86, 20);
+		txtLogin.setBounds(65, 87, 86, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		txtIdade = new JTextField();
 		txtIdade.setEditable(false);
 		txtIdade.setText(Integer.toString(usuario.getIdade()));
-		txtIdade.setBounds(239, 56, 86, 20);
+		txtIdade.setBounds(239, 59, 86, 20);
 		contentPane.add(txtIdade);
 		txtIdade.setColumns(10);
 		
 		pwdSenhasemedit = new JPasswordField();
 		pwdSenhasemedit.setEditable(false);
 		pwdSenhasemedit.setText("SenhaSemEdit");
-		pwdSenhasemedit.setBounds(239, 81, 86, 20);
+		pwdSenhasemedit.setBounds(239, 87, 86, 20);
 		contentPane.add(pwdSenhasemedit);
 		
-		JButton btnBuscarPerfis = new JButton("Buscar Perfis");
-		btnBuscarPerfis.setBounds(151, 243, 117, 29);
+		JButton btnBuscarPerfis = new JButton("BUSCAR PERFIS");
+		btnBuscarPerfis.setBounds(275, 246, 117, 29);
 		contentPane.add(btnBuscarPerfis);
 		
 		btnBuscarPerfis.addActionListener(new ActionListener() {
@@ -232,18 +259,22 @@ public class JanelaMeuPerfil extends JFrame {
 			}
 		});
 		
-		JButton btnRemoverPlaylistPrivada = new JButton("Remover PlaylistPrivada");
-		btnRemoverPlaylistPrivada.setBounds(199, 172, 75, 29);
+		JButton btnRemoverPlaylistPrivada = new JButton("REMOVER PLAYLIST PRIVADA");
+		btnRemoverPlaylistPrivada.setBounds(243, 209, 177, 29);
 		contentPane.add(btnRemoverPlaylistPrivada);
 		
 		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int indexPrivada = listPlayListPrivada.getSelectedIndex();
-				for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
-					if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(indexPrivada))) {
-						usuario.removePlayListPrivada(usuario.getPlayListsPrivadas().get(i));
-						listPrivadas.remove(indexPrivada);
-						break;
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover a playlist?", "Confirma��o", dialogButton);
+				if(dialogResult == 0) {
+					int indexPrivada = listPlayListPrivada.getSelectedIndex();
+					for(int i=0; i < usuario.getPlayListsPrivadas().size(); i++) {
+						if(usuario.getPlayListsPrivadas().get(i).getNome().equals(listPrivadas.get(indexPrivada))) {
+							usuario.removePlayListPrivada(usuario.getPlayListsPrivadas().get(i));
+							listPrivadas.remove(indexPrivada);
+							break;
+						}
 					}
 				}
 			}

@@ -51,7 +51,7 @@ public class PlayListPrivada extends PlayList {
 	@Override
 	public String toString() {
 		String out = "";
-		out += "PlayListPrivada [ Nome= " + super.getNome() + " Id= " +id + "]";
+		out += "PlayListPrivada [ Nome= " + super.getNome() + " Id= " +id + ", Dono= "+dono.getNome()+"]";
 		return out;
 	}
 	
@@ -72,6 +72,8 @@ public class PlayListPrivada extends PlayList {
 			listaMusicas.add(associativo);
 			musica.getPlayListsPrivadas().add(associativo);
 			setQuantidadeMusicas(getQuantidadeMusicas()+1);
+			
+			BaseDeDados.shared.musicasPlayListPrivada.add(associativo);
 		}
 		
 		return adicionou;
@@ -95,6 +97,7 @@ public class PlayListPrivada extends PlayList {
 						//retirar a playlist atual da lista de playlists de musica
 						musica.getPlayListsPrivadas().remove(j);
 						//retira musica da playlist
+						BaseDeDados.shared.musicasPlayListPrivada.remove(listaMusicas.get(i));
 						listaMusicas.remove(i);
 						setQuantidadeMusicas(getQuantidadeMusicas()-1);
 						break;

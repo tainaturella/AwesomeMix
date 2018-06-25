@@ -19,7 +19,7 @@ public class MusicaPlayListPublica {
 		id = ++geradorId;
 	}
 	public  MusicaPlayListPublica(PlayListPublica playList, Musica musica){
-		this(playList);
+		this.playList = playList;
 		this.musica = musica;
 		id = ++geradorId;
 	}

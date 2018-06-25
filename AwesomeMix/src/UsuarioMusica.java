@@ -28,7 +28,7 @@ public class UsuarioMusica {
 	public UsuarioMusica(Usuario usuario, Musica musica){
 		id = ++geradorId;
 		this.musica = musica;
-		musica = null;
+		this.usuario = usuario;
 	}
 
 	public int getId() {

@@ -12,7 +12,8 @@ public class MusicaDAO {
         pstmt = null; 
         resultado = null; 
     }
-    
+
+    //insere musica no banco de dados
     public int inserirMusica(Musica musica)  {
 
         int resultado = 0; //numero de registros alterados com a insercao
@@ -33,6 +34,7 @@ public class MusicaDAO {
             pstmt.setDouble(3, musica.getTempoDuracao());
             pstmt.setDouble(4, musica.getAvaliacaoMusica());
             pstmt.setInt(5, musica.getAlbum().getId());
+            System.out.println("query eh essa: "+pstmt.toString());
             resultado = pstmt.executeUpdate(); 
         } catch (SQLException exSQL) { //erro ao inserir no banco
         	System.err.println("\nExcecao na Insercao: "+exSQL);
@@ -60,7 +62,8 @@ public class MusicaDAO {
         return resultado;
     }
   
-    //retorna todos as musicas do banco de dados
+    //retorna todos as musicas do banco de dados em um arraylist
+    //precisa do array de albuns para relacionar as musicas com os albuns
     public ArrayList<Musica> buscarMusicas(ArrayList<Album> albuns) {
     	
         ArrayList<Musica> musicas = new ArrayList<Musica>();
@@ -73,7 +76,7 @@ public class MusicaDAO {
         
         try {
             String sql = "SELECT idMusica, nomeMusica, tempoDuracaoMusica,"
-            		+ " avaliacaoMusica, idAlbum FROM usuario";
+            		+ " avaliacaoMusica, idAlbum FROM musica";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -121,6 +124,91 @@ public class MusicaDAO {
 
         return musicas;
     } 
+    
+    //apaga todas as musicas do banco de dados
+    //retorna o numero de registros apagados
+    public int apagarMusicas() {
+
+        int resultado = 0;
+        String sql;
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM musica";
+            pstmt = conector.getConexao().prepareStatement(sql);  
+            resultado = pstmt.executeUpdate(); 
+        } catch (SQLException exSQL) { //erro ao excluir do banco
+        	System.err.println("\nExcecao na Exclusao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
+        }
+		
+        return resultado;
+    }
+    
+    /*
+    public int apagarMusica(int idMusica) {
+
+        int resultado = 0;
+        String sql;
+        Conexao conector = new Conexao();
+        
+        if(conector.conectar() == false) {
+        	System.out.println("Sem conexao para exclusao!");
+        	return 0;
+        }
+        
+        try { 
+            sql = "DELETE FROM musica WHERE idMusica="+idMusica;
+            pstmt = conector.getConexao().prepareStatement(sql);  
+            resultado = pstmt.executeUpdate(); 
+        } catch (SQLException exSQL) { //erro ao excluir do banco
+        	System.err.println("\nExcecao na Exclusao: "+exSQL);
+        	exSQL.getMessage();
+        	exSQL.printStackTrace();
+        } catch (Exception ex) { //erro generico
+        	System.err.println("\nExcecao: "+ex);
+        	ex.getMessage();
+        	ex.printStackTrace();
+		} finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        	} catch (SQLException exSQL) { //erro ao fechar statement
+            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
+            	exSQL.getMessage();
+            	exSQL.printStackTrace();
+        	} catch (Exception ex) { //erro generico
+            	System.err.println("\nExcecao: "+ex);
+            	ex.getMessage();
+            	ex.printStackTrace();
+        	}
+        	conector.desconectar();
+        }
+		
+        return resultado;
+    }
     
     public ArrayList<Usuario> buscarUsuarioId(int idUsuario) {
 
@@ -276,45 +364,5 @@ public class MusicaDAO {
 		
         return resultado;
     }
-    
-    public int apagarMusicaId(int idMusica) {
-
-        int resultado = 0;
-        String sql;
-        Conexao conector = new Conexao();
-        
-        if(conector.conectar() == false) {
-        	System.out.println("Sem conexao para exclusao!");
-        	return 0;
-        }
-        
-        try { 
-            sql = "DELETE FROM musica WHERE idMusica="+idMusica;
-            pstmt = conector.getConexao().prepareStatement(sql);  
-            resultado = pstmt.executeUpdate(); 
-        } catch (SQLException exSQL) { //erro ao excluir do banco
-        	System.err.println("\nExcecao na Exclusao: "+exSQL);
-        	exSQL.getMessage();
-        	exSQL.printStackTrace();
-        } catch (Exception ex) { //erro generico
-        	System.err.println("\nExcecao: "+ex);
-        	ex.getMessage();
-        	ex.printStackTrace();
-		} finally {
-        	try {
-        		if (pstmt != null) pstmt.close();
-        	} catch (SQLException exSQL) { //erro ao fechar statement
-            	System.err.println("\nExcecao no fechamento do Statement: "+exSQL);
-            	exSQL.getMessage();
-            	exSQL.printStackTrace();
-        	} catch (Exception ex) { //erro generico
-            	System.err.println("\nExcecao: "+ex);
-            	ex.getMessage();
-            	ex.printStackTrace();
-        	}
-        	conector.desconectar();
-        }
-		
-        return resultado;
-    }
+    */
 }
