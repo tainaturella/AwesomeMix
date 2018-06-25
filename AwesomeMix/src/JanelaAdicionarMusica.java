@@ -44,11 +44,11 @@ public class JanelaAdicionarMusica extends JFrame {
 	 */
 
 	public JanelaAdicionarMusica() {
-		setSize(700, 500); //tamanho da janela
+		this.setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setTitle("M\u00FAsica - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 459, 329);
+		//setBounds(100, 100, 459, 329);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
