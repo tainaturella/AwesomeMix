@@ -4,6 +4,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
@@ -42,15 +44,20 @@ public class JanelaPlaylist extends JFrame {
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setBackground(new Color(204, 153, 255));
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
 		
 		JLabel lblTitulo = new JLabel("Playlist");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTitulo.setBounds(10, 11, 73, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTitulo.setBounds(94, 41, 97, 23);
 		contentPane.add(lblTitulo);
 		
 		String nomePlaylist;
@@ -62,8 +69,8 @@ public class JanelaPlaylist extends JFrame {
 		}
 		
 		JLabel lblNome = new JLabel(nomePlaylist);
-		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-		lblNome.setBounds(73, 11, 302, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNome.setBounds(177, 41, 308, 23);
 		contentPane.add(lblNome);
 		
 		final DefaultListModel<String> listMusicas = new DefaultListModel<String>();
@@ -92,16 +99,16 @@ public class JanelaPlaylist extends JFrame {
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
-		listaMusicasScroll.setBounds(39, 54, 180, 162);
+		listaMusicasScroll.setBounds(91, 122, 197, 204);
 		contentPane.add(listaMusicasScroll);
 		
-		JLabel lblMusicas = new JLabel("M\u00FAsicas");
-		lblMusicas.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblMusicas.setBounds(39, 36, 55, 14);
+		JLabel lblMusicas = new JLabel("Musicas");
+		lblMusicas.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblMusicas.setBounds(75, 105, 75, 14);
 		contentPane.add(lblMusicas);
 		
-		JButton btnAdicionarmusica = new JButton("ADICIONAR M\u00DASICA");
-		btnAdicionarmusica.setBounds(239, 57, 136, 23);
+		JButton btnAdicionarmusica = new JButton("ADICIONAR MUSICA");
+		btnAdicionarmusica.setBounds(315, 137, 136, 23);
 		contentPane.add(btnAdicionarmusica);
 		
 		btnAdicionarmusica.addActionListener(new ActionListener() {
@@ -112,8 +119,8 @@ public class JanelaPlaylist extends JFrame {
 				dispose();
 			}
 		});
-		JButton btnRemoverMusica = new JButton("REMOVER M\u00DASICA");
-		btnRemoverMusica.setBounds(239, 91, 136, 23);
+		JButton btnRemoverMusica = new JButton("REMOVER MUSICA");
+		btnRemoverMusica.setBounds(315, 171, 136, 23);
 		contentPane.add(btnRemoverMusica);
 		
 		btnRemoverMusica.addActionListener(new ActionListener() {
@@ -168,7 +175,7 @@ public class JanelaPlaylist extends JFrame {
 		});
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(5, 227, 89, 23);
+		btnVoltar.setBounds(25, 367, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		

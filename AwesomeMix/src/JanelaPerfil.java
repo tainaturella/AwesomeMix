@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -40,38 +42,42 @@ public class JanelaPerfil extends JFrame {
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		contentPane.setBackground(new Color(204, 153, 255));
 		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTitulo.setBounds(10, 11, 70, 14);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTitulo.setBounds(87, 15, 104, 22);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNome = new JLabel(usuario.getNome());
-		lblNome.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNome.setBounds(79, 11, 290, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNome.setBounds(179, 11, 465, 30);
 		contentPane.add(lblNome);
 		
 		JLabel lblNome_1 = new JLabel(usuario.getNome());
-		lblNome_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblNome_1.setBounds(29, 36, 70, 14);
+		lblNome_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		lblNome_1.setBounds(177, 43, 331, 23);
 		contentPane.add(lblNome_1);
 		
 		JLabel lblIdade = new JLabel(Integer.toString(usuario.getIdade()));
-		lblIdade.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblIdade.setBounds(105, 36, 46, 14);
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		lblIdade.setBounds(97, 43, 43, 23);
 		contentPane.add(lblIdade);
 		
 		JLabel lblPlaylists = new JLabel("Playlists");
-		lblPlaylists.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPlaylists.setBounds(54, 61, 70, 14);
+		lblPlaylists.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblPlaylists.setBounds(94, 85, 80, 25);
 		contentPane.add(lblPlaylists);
 		
 		
@@ -85,7 +91,7 @@ public class JanelaPerfil extends JFrame {
 		listPlayListPublica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listPlayListPublica.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listPublicaScroll = new JScrollPane(listPlayListPublica);
-		listPublicaScroll.setBounds(54, 87, 220, 116);
+		listPublicaScroll.setBounds(121, 109, 284, 220);
 		contentPane.add(listPublicaScroll);
 		
 		listPlayListPublica.addMouseListener(new MouseAdapter() {
@@ -106,8 +112,13 @@ public class JanelaPerfil extends JFrame {
 			});
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(10, 227, 89, 23);
+		btnVoltar.setBounds(25, 367, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JLabel lblAnos = new JLabel("anos");
+		lblAnos.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblAnos.setBounds(121, 48, 46, 14);
+		contentPane.add(lblAnos);
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

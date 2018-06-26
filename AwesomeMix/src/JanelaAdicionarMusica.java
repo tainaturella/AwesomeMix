@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class JanelaAdicionarMusica extends JFrame {
@@ -44,12 +46,14 @@ public class JanelaAdicionarMusica extends JFrame {
 	 */
 
 	public JanelaAdicionarMusica() {
+		setResizable(false);
 		this.setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setTitle("M\u00FAsica - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 459, 329);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(204, 153, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -63,79 +67,79 @@ public class JanelaAdicionarMusica extends JFrame {
 			tipoPlaylist = TipoPlaylist.PRIVADA;
 		}
 
-		JLabel lblNomeDaMusica = new JLabel("Nome da M�sica");
-		lblNomeDaMusica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNomeDaMusica.setBounds(22, 71, 96, 16);
+		JLabel lblNomeDaMusica = new JLabel("Nome da Musica");
+		lblNomeDaMusica.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNomeDaMusica.setBounds(53, 125, 114, 16);
 		getContentPane().add(lblNomeDaMusica);
 
-		JLabel lblAlbum = new JLabel("�lbum");
-		lblAlbum.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAlbum.setBounds(22, 138, 61, 16);
+		JLabel lblAlbum = new JLabel("Album");
+		lblAlbum.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAlbum.setBounds(53, 192, 61, 16);
 		getContentPane().add(lblAlbum);
 
 		JLabel lblArtista = new JLabel("Artista");
-		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblArtista.setBounds(22, 104, 61, 16);
+		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblArtista.setBounds(53, 158, 61, 16);
 		getContentPane().add(lblArtista);
 
 		JLabel lblAno = new JLabel("Ano");
-		lblAno.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAno.setBounds(270, 104, 30, 16);
+		lblAno.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAno.setBounds(399, 157, 30, 16);
 		contentPane.add(lblAno);
 
 		JLabel lblEstiloMusical = new JLabel("Estilo Musical");
-		lblEstiloMusical.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEstiloMusical.setBounds(270, 71, 90, 16);
+		lblEstiloMusical.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEstiloMusical.setBounds(399, 124, 90, 16);
 		contentPane.add(lblEstiloMusical);
 
 		txtNomeMusica = new JTextField();
-		txtNomeMusica.setBounds(117, 65, 134, 28);
+		txtNomeMusica.setBounds(164, 120, 201, 28);
 		getContentPane().add(txtNomeMusica);
 		txtNomeMusica.setColumns(10);
 
 		txtArtista = new JTextField();
-		txtArtista.setBounds(117, 98, 134, 28);
+		txtArtista.setBounds(164, 152, 201, 28);
 		getContentPane().add(txtArtista);
 		txtArtista.setColumns(10);
 
 		txtAlbum = new JTextField();
-		txtAlbum.setBounds(117, 131, 134, 28);
+		txtAlbum.setBounds(164, 186, 201, 28);
 		getContentPane().add(txtAlbum);
 		txtAlbum.setColumns(10);		
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(10, 250, 90, 29);
+		btnVoltar.setBounds(28, 362, 90, 29);
 		getContentPane().add(btnVoltar);
 		
-		JLabel lblMusica = new JLabel("M�sica");
-		lblMusica.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblMusica.setBounds(10, 11, 68, 14);
+		JLabel lblMusica = new JLabel("Musica");
+		lblMusica.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblMusica.setBounds(94, 34, 125, 27);
 		contentPane.add(lblMusica);
 		
 		JButton btnLimpar = new JButton("LIMPAR");
-		btnLimpar.setBounds(328, 250, 105, 29);
+		btnLimpar.setBounds(540, 362, 105, 29);
 		contentPane.add(btnLimpar);
 		
 		
 
 		txtAno = new JTextField();
-		txtAno.setBounds(354, 98, 79, 28);
+		txtAno.setBounds(497, 151, 79, 28);
 		contentPane.add(txtAno);
 		txtAno.setColumns(10);
 
 		String[] estilosMusicais = { "Jazz", "Folk", "Gospel", "Samba", "Rap", "Reggae", "Rock", "MPB", "Funk", "Sertanejo", "Axe", "Forro", "Frevo", "Pagode", "Soul", "POP", "Classico", "Blues", "Indie", "Eletronico" };
 
 		JComboBox<?> comboBox = new JComboBox<Object>(estilosMusicais);
-		comboBox.setBounds(354, 66, 79, 27);
+		comboBox.setBounds(497, 120, 79, 27);
 		contentPane.add(comboBox);
 
-		JLabel lblDurao = new JLabel("Dura��o");
-		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDurao.setBounds(270, 138, 61, 16);
+		JLabel lblDurao = new JLabel("Duracao");
+		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblDurao.setBounds(399, 191, 61, 16);
 		contentPane.add(lblDurao);
 
 		txtDuracao = new JTextField();
-		txtDuracao.setBounds(354, 132, 79, 28);
+		txtDuracao.setBounds(497, 185, 79, 28);
 		contentPane.add(txtDuracao);
 		txtDuracao.setColumns(10);
 
@@ -158,8 +162,8 @@ public class JanelaAdicionarMusica extends JFrame {
 			}
 		});
 
-		JButton btnAdicionarMusica = new JButton("ADICIONAR M�SICA");
-		btnAdicionarMusica.setBounds(72, 188, 139, 29);
+		JButton btnAdicionarMusica = new JButton("ADICIONAR MUSICA");
+		btnAdicionarMusica.setBounds(108, 259, 139, 29);
 		getContentPane().add(btnAdicionarMusica);
 
 		btnAdicionarMusica.addActionListener(new ActionListener() {
@@ -223,9 +227,14 @@ public class JanelaAdicionarMusica extends JFrame {
 		});
 
 
-		JButton btnAdicionarAlbum = new JButton("ADICIONAR �LBUM");
-		btnAdicionarAlbum.setBounds(236, 188, 139, 29);
+		JButton btnAdicionarAlbum = new JButton("ADICIONAR ALBUM");
+		btnAdicionarAlbum.setBounds(399, 259, 139, 29);
 		getContentPane().add(btnAdicionarAlbum);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
 
 		btnAdicionarAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
