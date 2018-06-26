@@ -88,54 +88,6 @@ public class Main {
 		}
 
 
-		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		
-		// @@@@@@@@@@@@@@@@@@@@@@@@@ CRIACAO NA MEMORIA @@@@@@@@@@@@@@@@@@@@@@@@
-
-		//*********************** USUARIOS ****************************
-		/*
-		Usuario usuarioA = new Usuario("Peter Quill", 31, "starlord@galaxy.com", "pass");
-		Usuario usuarioB = new Usuario("Groot", 100, "iamgroot@galaxy.com", "iamgroot");
-		Usuario usuarioC = new Usuario("Gamora", 30, "gamora@galaxy.com", "green");
-
-		BaseDeDados.shared.usuarios.add(usuarioA);
-		BaseDeDados.shared.usuarios.add(usuarioB);
-		BaseDeDados.shared.usuarios.add(usuarioC);
-
-		//********************** ALBUM ********************************
-
-		Album album = new Album("AM", "Arctic Monkeys", 2013, EstilosMusicais.INDIE);
-
-		BaseDeDados.shared.albuns.add(album);
-
-		//*********************** MUSICAS *****************************
-
-		Musica m1 = new Musica("Do i wanna know?", 4.5, album);
-		Musica m2 = new Musica("Are U Mine?", 3.0, album);
-
-		usuarioA.avaliaMusica(m1, 3.0);
-		usuarioA.avaliaMusica(m2, 5.0);
-
-		usuarioB.avaliaMusica(m1, 2.5);
-		usuarioB.avaliaMusica(m2, 4.0);
-
-		usuarioC.avaliaMusica(m1, 4.5);
-		usuarioC.avaliaMusica(m2, 3.8);
-
-		BaseDeDados.shared.musicas.add(m1);
-		BaseDeDados.shared.musicas.add(m2);
-
-
-		//************************ PLAYLIST PUBLICA ***********************
-
-		PlayListPublica publica = usuarioA.criaPlayListPublica("Comunidade Artic");
-
-		usuarioA.adicionaMusicaPlayList(m1, publica);
-		usuarioC.adicionaMusicaPlayList(m2, publica);
-
-*/
-
-
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
 		
