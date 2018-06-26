@@ -5,7 +5,7 @@ public class MusicaPlayListPublica {
 	//atributos
 	private Musica musica;
 	private PlayListPublica playList;
-	private static int geradorId = 0;
+	private static int geradorId = (int) (Math.random()*2147483647);
 	private int id;
 	
 	//construtores

@@ -4,7 +4,7 @@
 public class UsuarioPlayListPublica {
 	
 	private int id;
-	private static int qtdUsuarioPlayListPublica = 0;
+	private static int qtdUsuarioPlayListPublica = (int) (Math.random()*2147483647);
 	private Usuario usuario;
 	private PlayListPublica playListPublica;
 	

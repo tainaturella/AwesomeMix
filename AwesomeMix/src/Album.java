@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Album {
 	
 	private int id;
-	private static int qtdAlbuns = 0;
+	private static int qtdAlbuns = (int) (Math.random()*2147483647);
 	private String nomeAlbum;
 	private String artista;
 	private int anoLancamento;

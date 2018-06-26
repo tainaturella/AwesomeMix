@@ -250,8 +250,8 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		pwdSenhasemedit = new JPasswordField();
 		pwdSenhasemedit.setEditable(false);
-		pwdSenhasemedit.setText("SenhaSemEdit");
 		pwdSenhasemedit.setBounds(394, 153, 86, 20);
+		pwdSenhasemedit.setText(BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getSenha());
 		contentPane.add(pwdSenhasemedit);
 		
 		JButton btnBuscarPerfis = new JButton("BUSCAR PERFIS");
@@ -289,14 +289,14 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(btnEditar.getText() == "Editar") {
-					btnEditar.setText("Salvar");
+				if(btnEditar.getText() == "EDITAR") {
+					btnEditar.setText("SALVAR");
 					txtIdade.setEditable(true);
 					txtNome.setEditable(true);
 					pwdSenhasemedit.setEditable(true);
 				}
 				else {
-					btnEditar.setText("Editar");
+					btnEditar.setText("EDITAR");
 					txtIdade.setEditable(false);
 					txtNome.setEditable(false);
 					pwdSenhasemedit.setEditable(false);

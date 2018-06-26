@@ -6,7 +6,7 @@ public class Usuario {
 	private int idade;
 	private String login;
 	private String senha;
-	private static int qtdUsuarios = 0;
+	private static int qtdUsuarios = (int) (Math.random()*2147483647);
 	private final ArrayList<UsuarioPlayListPublica> playListsPublicas;
 	private final ArrayList<PlayListPrivada> playListsPrivadas;
 	private final ArrayList<UsuarioMusica> musicasAvaliadas;
@@ -101,6 +101,8 @@ public class Usuario {
 		PlayListPublica novaPlayListPublica = new PlayListPublica(nome); //cria playlist publica
 		novaPlayListPublica.adicionarContribuinte(this);
 		
+		BaseDeDados.shared.playListsPublicas.add(novaPlayListPublica);
+		
 		//System.out.println("Adicionou como contribuinte!");
 		//BaseDeDados.shared.usuariosPlayListPublicas.add(novaPlayListAssociativa);
 		
@@ -116,6 +118,7 @@ public class Usuario {
 		}
 		PlayListPrivada novaPlayListPrivada = new PlayListPrivada(nome, this); //adiciona este usuario como dono da novaPlaylist
 		playListsPrivadas.add(novaPlayListPrivada); //Adciona a playList criada a lista de playLists do usuario.
+		BaseDeDados.shared.playListsPrivadas.add(novaPlayListPrivada);
 		return novaPlayListPrivada;
 	}
 	
@@ -128,7 +131,10 @@ public class Usuario {
 		//remove o usuario da lista de contribuintes da playList publica
 		for(int i = 0; i < playListPublica.getContribuintesPlayList().size(); i++){
 			if(playListPublica.getContribuintesPlayList().get(i).getUsuario().getId() == this.getId()){
+				int j = BaseDeDados.shared.usuariosPlayListPublicas.indexOf(playListPublica.getContribuintesPlayList().get(i));
+				BaseDeDados.shared.usuariosPlayListPublicas.remove(j);
 				playListPublica.getContribuintesPlayList().remove(i);
+				
 				removeu = true;
 				break;
 			}
@@ -137,7 +143,7 @@ public class Usuario {
 		//remove a playList da lista de playlists publicas do usuario
 		for(int i = 0; i < playListsPublicas.size(); i++){
 			if( playListsPublicas.get(i).getPlayListPublica().getId() == playListPublica.getId()){
-				BaseDeDados.shared.playListsPublicas.remove(playListsPublicas.get(i));
+				BaseDeDados.shared.playListsPublicas.remove(playListsPublicas.get(i).getPlayListPublica());
 				playListsPublicas.remove(i);
 				if(removeu != false) removeu = true;
 				break;
@@ -155,6 +161,7 @@ public class Usuario {
 		//remove a playlist privada da lista do usuario
 		for(int i = 0; i < playListsPrivadas.size(); i++){
 			if( playListsPrivadas.get(i).getId() == playListPrivada.getId()){
+				BaseDeDados.shared.playListsPrivadas.remove(playListsPrivadas.get(i));
 				playListsPrivadas.remove(i);
 				removeu = true;
 				break;
