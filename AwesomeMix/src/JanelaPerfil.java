@@ -51,7 +51,7 @@ public class JanelaPerfil extends JFrame {
 		final Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setIcon(new ImageIcon("logop.png"));
 		lblNewLabel.setBounds(10, 11, 74, 88);
 		contentPane.add(lblNewLabel);
 		

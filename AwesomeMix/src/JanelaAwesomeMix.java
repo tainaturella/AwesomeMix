@@ -71,7 +71,7 @@ public class JanelaAwesomeMix extends JFrame {
 			}
 		});
 		
-		JLabel lblAwesomemix = new JLabel(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logog.png"),JLabel.CENTER);
+		JLabel lblAwesomemix = new JLabel(new ImageIcon("logog.png"),JLabel.CENTER);
 		lblAwesomemix.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 60));
 		lblAwesomemix.setBounds(137, 25, 347, 311);
 		contentPane.add(lblAwesomemix);

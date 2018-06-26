@@ -59,7 +59,7 @@ public class JanelaCadastro extends JFrame {
 		contentPane.add(lblCadastro);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setIcon(new ImageIcon("logop.png"));
 		lblNewLabel.setBounds(10, 11, 74, 88);
 		contentPane.add(lblNewLabel);
 		
@@ -120,7 +120,7 @@ public class JanelaCadastro extends JFrame {
 				new JanelaMeuPerfil().setVisible(true);
 				setVisible(false);
 				dispose();
-				JOptionPane.showMessageDialog (null, "Usuário Cadastrado", "Sucesso!!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog (null, "Usuï¿½rio Cadastrado", "Sucesso!!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
@@ -131,7 +131,7 @@ public class JanelaCadastro extends JFrame {
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja Apagar os dados fornecidos até aqui?", "Confirmação", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja Apagar os dados fornecidos atï¿½ aqui?", "Confirmaï¿½ï¿½o", dialogButton);
 				if(dialogResult == 0) {
 					txtSenha.setText(" ");
 					txtIdade.setText(" ");

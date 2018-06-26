@@ -49,7 +49,7 @@ public class JanelaAdicionarMusica extends JFrame {
 		setResizable(false);
 		this.setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
-		setTitle("M\u00FAsica - AwesomeMix");
+		setTitle("Musica - AwesomeMix");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 459, 329);
 		contentPane = new JPanel();
@@ -176,7 +176,7 @@ public class JanelaAdicionarMusica extends JFrame {
 				int ano = Integer.parseInt(txtAno.getText());
 				EstilosMusicais estiloMusical = EstilosMusicais.values()[comboBox.getSelectedIndex()];
 
-				if(nome.equals("") || album.equals("") || artista.equals("")) {
+				if(nome.equals("") || album.equals("") || artista.equals("") || txtDuracao.getText().equals("") ||txtAno.getText().equals("")) {
 					System.out.println("Voce deve preencher todos os campos");
 					return;
 				}
@@ -221,7 +221,6 @@ public class JanelaAdicionarMusica extends JFrame {
 					dispose();
 					return;
 				}
-				//JOptionPane.showMessageDialog (null, "M�sica foi adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			}
 		});
@@ -232,7 +231,7 @@ public class JanelaAdicionarMusica extends JFrame {
 		getContentPane().add(btnAdicionarAlbum);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setIcon(new ImageIcon("logop.png"));
 		lblNewLabel.setBounds(10, 11, 74, 88);
 		contentPane.add(lblNewLabel);
 
@@ -240,8 +239,8 @@ public class JanelaAdicionarMusica extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String album = txtAlbum.getText();
 				String artista = txtArtista.getText();
-				if(album.equals("") || artista.equals("")) {
-					System.out.println("Você Deve Preencher corretamente os capos");
+				if(album.equals("") || artista.equals("") ) {
+					System.out.println("Voce Deve Preencher corretamente os campos");
 					return;
 				}
 
@@ -264,8 +263,8 @@ public class JanelaAdicionarMusica extends JFrame {
 						}
 					}
 				}
-				JOptionPane.showMessageDialog (null, "�lbum foi criado com sucesso!!Adicione m�sicas!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-				System.out.println("Esse album n�o cont�m nenhuma m�sica");		
+				JOptionPane.showMessageDialog (null, "Album foi criado com sucesso!!Adicione musicas!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("Esse album nao contwm nenhuma musica");		
 			}
 		});
 

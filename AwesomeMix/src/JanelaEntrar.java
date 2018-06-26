@@ -51,7 +51,7 @@ public class JanelaEntrar extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setIcon(new ImageIcon("logop.png"));
 		lblNewLabel.setBounds(188, 28, 74, 88);
 		contentPane.add(lblNewLabel);
 		
