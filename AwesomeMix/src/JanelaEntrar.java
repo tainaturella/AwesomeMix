@@ -78,18 +78,11 @@ public class JanelaEntrar extends JFrame {
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				for(int i=0; i < BaseDeDados.shared.usuarios.size(); i++) {
-					if(BaseDeDados.shared.usuarios.get(i).getLogin().equals(txtLogin.getText())) {
-						if(BaseDeDados.shared.usuarios.get(i).getSenha().equals(new String(pwdSenha.getPassword()))) {
-							BaseDeDados.shared.usuario_logado = i;
-							new JanelaMeuPerfil().setVisible(true);
-							setVisible(false);
-							dispose();
-							return;
-						}
-					}
+				try {
+					logar();
+				} catch (Exception e) {
+					System.err.println("Erro de login");
 				}
-				JOptionPane.showMessageDialog (null, "Usuário ou senha inválidas", "Aviso", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		
@@ -104,6 +97,22 @@ public class JanelaEntrar extends JFrame {
 				dispose();
 			}
 		});
+		
+	}
+	
+	private void logar() throws AwesomeException{
+		for(int i=0; i < BaseDeDados.shared.usuarios.size(); i++) {
+			if(BaseDeDados.shared.usuarios.get(i).getLogin().equals(txtLogin.getText())) {
+				if(BaseDeDados.shared.usuarios.get(i).getSenha().equals(new String(pwdSenha.getPassword()))) {
+					BaseDeDados.shared.usuario_logado = i;
+					new JanelaMeuPerfil().setVisible(true);
+					setVisible(false);
+					dispose();
+					return;
+				}
+			}
+		}
+		throw new AwesomeException("Usuario ou senha incorreto!");
 		
 	}
 }
