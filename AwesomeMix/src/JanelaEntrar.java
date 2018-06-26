@@ -57,21 +57,21 @@ public class JanelaEntrar extends JFrame {
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblLogin.setBounds(286, 132, 46, 14);
+		lblLogin.setBounds(286, 132, 74, 14);
 		contentPane.add(lblLogin);
 		
 		txtLogin = new JTextField();
-		txtLogin.setBounds(342, 129, 86, 20);
+		txtLogin.setBounds(342, 129, 97, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblSenha.setBounds(286, 188, 46, 14);
+		lblSenha.setBounds(286, 188, 74, 14);
 		contentPane.add(lblSenha);
 		
 		pwdSenha = new JPasswordField();
-		pwdSenha.setBounds(342, 185, 86, 20);
+		pwdSenha.setBounds(342, 185, 97, 20);
 		contentPane.add(pwdSenha);
 		
 		JLabel lblEntrar = new JLabel("Entrar na Conta");

@@ -47,7 +47,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPropriedadesMusica() {
-		setTitle("Informa\u00E7\u00F5es- AwesomeMix");
+		setTitle("Informacoes- AwesomeMix");
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		final Musica musica = BaseDeDados.shared.musicaAtual;
@@ -84,7 +84,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 		
 		JLabel lblAvaliao = new JLabel("Avaliacao");
 		lblAvaliao.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblAvaliao.setBounds(84, 213, 64, 14);
+		lblAvaliao.setBounds(84, 213, 89, 14);
 		contentPane.add(lblAvaliao);
 		
 		JLabel lblArtista = new JLabel("Artista");
@@ -94,7 +94,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 		
 		JLabel lblEstilo = new JLabel("Estilo");
 		lblEstilo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblEstilo.setBounds(364, 182, 46, 14);
+		lblEstilo.setBounds(364, 182, 73, 14);
 		contentPane.add(lblEstilo);
 		
 		JLabel lblAno = new JLabel("Ano");
@@ -104,7 +104,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 		
 		JLabel lblDurao = new JLabel("Duracao");
 		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblDurao.setBounds(363, 140, 59, 14);
+		lblDurao.setBounds(363, 140, 74, 14);
 		contentPane.add(lblDurao);
 		
 		//text field
@@ -169,7 +169,7 @@ public class JanelaPropriedadesMusica extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JButton btnIrParaAlbum = new JButton("IR PARA ALBUM");
-		btnIrParaAlbum.setBounds(347, 254, 138, 23);
+		btnIrParaAlbum.setBounds(282, 254, 203, 23);
 		contentPane.add(btnIrParaAlbum);
 		
 		//Listeners

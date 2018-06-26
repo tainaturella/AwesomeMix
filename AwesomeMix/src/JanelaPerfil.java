@@ -57,7 +57,7 @@ public class JanelaPerfil extends JFrame {
 		
 		JLabel lblTitulo = new JLabel("Perfil de");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTitulo.setBounds(87, 15, 104, 22);
+		lblTitulo.setBounds(87, 15, 113, 22);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNome = new JLabel(usuario.getNome());

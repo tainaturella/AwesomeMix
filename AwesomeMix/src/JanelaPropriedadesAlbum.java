@@ -46,7 +46,7 @@ public class JanelaPropriedadesAlbum extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPropriedadesAlbum() {
-		setTitle("Informa\u00E7\u00F5es - AwesomeMix");
+		setTitle("Informacoes - AwesomeMix");
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,7 +59,7 @@ public class JanelaPropriedadesAlbum extends JFrame {
 		//labels
 		JLabel lblTitulo = new JLabel("Informacoes do Album");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTitulo.setBounds(94, 41, 304, 20);
+		lblTitulo.setBounds(94, 41, 339, 20);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -69,32 +69,32 @@ public class JanelaPropriedadesAlbum extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNome.setBounds(88, 91, 46, 14);
+		lblNome.setBounds(88, 91, 79, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblArtista = new JLabel("Artista");
 		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblArtista.setBounds(88, 134, 46, 14);
+		lblArtista.setBounds(88, 134, 79, 14);
 		contentPane.add(lblArtista);
 		
 		JLabel lblQuantidadeDeMusicas = new JLabel("Quantidade de Musicas");
 		lblQuantidadeDeMusicas.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblQuantidadeDeMusicas.setBounds(354, 265, 168, 14);
+		lblQuantidadeDeMusicas.setBounds(354, 265, 189, 14);
 		contentPane.add(lblQuantidadeDeMusicas);
 		
 		JLabel lblAnoDeLancamento = new JLabel("Lancamento");
 		lblAnoDeLancamento.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblAnoDeLancamento.setBounds(88, 205, 79, 20);
+		lblAnoDeLancamento.setBounds(88, 205, 122, 20);
 		contentPane.add(lblAnoDeLancamento);
 		
 		JLabel lblEstiloMusical = new JLabel("Estilo Musical");
 		lblEstiloMusical.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblEstiloMusical.setBounds(88, 176, 97, 14);
+		lblEstiloMusical.setBounds(88, 176, 138, 14);
 		contentPane.add(lblEstiloMusical);
 		
 		JLabel lblAvaliacao = new JLabel("Avaliacao");
 		lblAvaliacao.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblAvaliacao.setBounds(88, 244, 69, 14);
+		lblAvaliacao.setBounds(88, 244, 122, 14);
 		contentPane.add(lblAvaliacao);
 		
 		//text field

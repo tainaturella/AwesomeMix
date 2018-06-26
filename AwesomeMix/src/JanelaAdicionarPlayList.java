@@ -87,13 +87,13 @@ public class JanelaAdicionarPlayList extends JFrame {
 		rdbtnNewRadioButton.setFont(new Font("Dialog", Font.PLAIN, 13));
 
 		rdbtnNewRadioButton.setBackground(new Color(204, 153, 255));
-		rdbtnNewRadioButton.setBounds(164, 146, 69, 23);
+		rdbtnNewRadioButton.setBounds(164, 146, 100, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		final JRadioButton rdbtnPrivada = new JRadioButton("Privada");
 		rdbtnPrivada.setFont(new Font("Dialog", Font.PLAIN, 13));
 		rdbtnPrivada.setBackground(new Color(204, 153, 255));
-		rdbtnPrivada.setBounds(164, 172, 69, 23);
+		rdbtnPrivada.setBounds(164, 172, 113, 23);
 		contentPane.add(rdbtnPrivada);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -101,7 +101,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 		group.add(rdbtnPrivada);
 		
 		//botao pra criar uma nova playlist
-		JButton btnCriar = new JButton("CRIAR PLAYLIST");
+		JButton btnCriar = new JButton("CRIAR");
 		btnCriar.setBounds(120, 234, 113, 25);
 		contentPane.add(btnCriar);
 		

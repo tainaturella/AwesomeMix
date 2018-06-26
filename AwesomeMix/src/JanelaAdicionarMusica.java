@@ -69,27 +69,27 @@ public class JanelaAdicionarMusica extends JFrame {
 
 		JLabel lblNomeDaMusica = new JLabel("Nome da Musica");
 		lblNomeDaMusica.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNomeDaMusica.setBounds(53, 125, 114, 16);
+		lblNomeDaMusica.setBounds(53, 125, 132, 16);
 		getContentPane().add(lblNomeDaMusica);
 
 		JLabel lblAlbum = new JLabel("Album");
 		lblAlbum.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAlbum.setBounds(53, 192, 61, 16);
+		lblAlbum.setBounds(53, 192, 84, 16);
 		getContentPane().add(lblAlbum);
 
 		JLabel lblArtista = new JLabel("Artista");
 		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblArtista.setBounds(53, 158, 61, 16);
+		lblArtista.setBounds(53, 158, 84, 16);
 		getContentPane().add(lblArtista);
 
 		JLabel lblAno = new JLabel("Ano");
 		lblAno.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAno.setBounds(399, 157, 30, 16);
+		lblAno.setBounds(399, 157, 68, 16);
 		contentPane.add(lblAno);
 
 		JLabel lblEstiloMusical = new JLabel("Estilo Musical");
 		lblEstiloMusical.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEstiloMusical.setBounds(399, 124, 90, 16);
+		lblEstiloMusical.setBounds(399, 124, 118, 16);
 		contentPane.add(lblEstiloMusical);
 
 		txtNomeMusica = new JTextField();
@@ -123,23 +123,23 @@ public class JanelaAdicionarMusica extends JFrame {
 		
 
 		txtAno = new JTextField();
-		txtAno.setBounds(497, 151, 79, 28);
+		txtAno.setBounds(497, 151, 105, 28);
 		contentPane.add(txtAno);
 		txtAno.setColumns(10);
 
 		String[] estilosMusicais = { "Jazz", "Folk", "Gospel", "Samba", "Rap", "Reggae", "Rock", "MPB", "Funk", "Sertanejo", "Axe", "Forro", "Frevo", "Pagode", "Soul", "POP", "Classico", "Blues", "Indie", "Eletronico" };
 
 		JComboBox<?> comboBox = new JComboBox<Object>(estilosMusicais);
-		comboBox.setBounds(497, 120, 79, 27);
+		comboBox.setBounds(497, 120, 105, 27);
 		contentPane.add(comboBox);
 
 		JLabel lblDurao = new JLabel("Duracao");
 		lblDurao.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDurao.setBounds(399, 191, 61, 16);
+		lblDurao.setBounds(399, 191, 90, 16);
 		contentPane.add(lblDurao);
 
 		txtDuracao = new JTextField();
-		txtDuracao.setBounds(497, 185, 79, 28);
+		txtDuracao.setBounds(497, 185, 105, 28);
 		contentPane.add(txtDuracao);
 		txtDuracao.setColumns(10);
 
@@ -163,7 +163,7 @@ public class JanelaAdicionarMusica extends JFrame {
 		});
 
 		JButton btnAdicionarMusica = new JButton("ADICIONAR MUSICA");
-		btnAdicionarMusica.setBounds(108, 259, 139, 29);
+		btnAdicionarMusica.setBounds(108, 259, 162, 29);
 		getContentPane().add(btnAdicionarMusica);
 
 		btnAdicionarMusica.addActionListener(new ActionListener() {
@@ -227,7 +227,7 @@ public class JanelaAdicionarMusica extends JFrame {
 
 
 		JButton btnAdicionarAlbum = new JButton("ADICIONAR ALBUM");
-		btnAdicionarAlbum.setBounds(399, 259, 139, 29);
+		btnAdicionarAlbum.setBounds(399, 259, 177, 29);
 		getContentPane().add(btnAdicionarAlbum);
 		
 		JLabel lblNewLabel = new JLabel("New label");

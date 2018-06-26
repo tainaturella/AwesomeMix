@@ -65,7 +65,7 @@ public class JanelaCadastro extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNome.setBounds(101, 130, 46, 14);
+		lblNome.setBounds(101, 130, 63, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblIdade = new JLabel("Idade");
@@ -75,12 +75,12 @@ public class JanelaCadastro extends JFrame {
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblLogin.setBounds(101, 182, 46, 20);
+		lblLogin.setBounds(101, 182, 63, 20);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblSenha.setBounds(101, 233, 46, 14);
+		lblSenha.setBounds(101, 233, 83, 14);
 		contentPane.add(lblSenha);
 		
 		txtNome = new JTextField();
@@ -103,7 +103,7 @@ public class JanelaCadastro extends JFrame {
 		contentPane.add(pwdSenha);
 		
 		JButton btnCadastrar = new JButton("CADASTRAR");
-		btnCadastrar.setBounds(136, 286, 109, 23);
+		btnCadastrar.setBounds(136, 286, 127, 23);
 		contentPane.add(btnCadastrar);
 		
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -125,7 +125,7 @@ public class JanelaCadastro extends JFrame {
 		});
 		
 		JButton btnLimpar = new JButton("LIMPAR");
-		btnLimpar.setBounds(386, 286, 89, 23);
+		btnLimpar.setBounds(366, 286, 109, 23);
 		contentPane.add(btnLimpar);
 		
 		btnLimpar.addActionListener(new ActionListener() {
