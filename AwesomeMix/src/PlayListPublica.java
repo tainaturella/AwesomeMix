@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class PlayListPublica  extends PlayList {
 	
-	private static int geradorId = 0;
+	private static int geradorId = (int) (Math.random()*2147483647);
 	private int id;
 	private final ArrayList <UsuarioPlayListPublica> contribuintesPlayList;
 	private final ArrayList<MusicaPlayListPublica> listaMusicas;

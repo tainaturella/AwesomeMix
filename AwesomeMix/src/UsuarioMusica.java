@@ -5,7 +5,7 @@ public class UsuarioMusica {
 	private Usuario usuario;
 	private Musica musica;
 	private double avaliacao;
-	private static int geradorId = 0;
+	private static int geradorId = (int) (Math.random()*2147483647);
 	
 	public UsuarioMusica(){
 		usuario = null;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PlayListPrivada extends PlayList {
 	
 	//atributos e variaveis de classe.
-	private static int geradorId = 0;
+	private static int geradorId = (int) (Math.random()*2147483647);
 	private int id;
 	private Usuario dono;
 	private final ArrayList<MusicaPlayListPrivada> listaMusicas;

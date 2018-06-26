@@ -119,7 +119,7 @@ public class JanelaPlaylist extends JFrame {
 		btnRemoverMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover esta música?", "Confirmação", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja remover esta mï¿½sica?", "Confirmaï¿½ï¿½o", dialogButton);
 				if(dialogResult == 0) {
 					String string = listMusicas.get(listaMusicas.getSelectedIndex()); 
 					String[] parts = string.split("-");
@@ -139,7 +139,7 @@ public class JanelaPlaylist extends JFrame {
 									if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
 										playList.removerMusica(musica);
 										listMusicas.remove(listaMusicas.getSelectedIndex());
-										JOptionPane.showMessageDialog (null, "Música excluída com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+										JOptionPane.showMessageDialog (null, "Mï¿½sica excluï¿½da com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 									}
 								}
 							}	
@@ -156,7 +156,7 @@ public class JanelaPlaylist extends JFrame {
 									if(listaMusica.get(i).getMusica().getAlbum().getArtista().equals(artista)) {
 										playList.removerMusica(musica);
 										listMusicas.remove(listaMusicas.getSelectedIndex());
-										JOptionPane.showMessageDialog (null, "Música excluída com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+										JOptionPane.showMessageDialog (null, "Mï¿½sica excluï¿½da com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 									
 									}
 								}
@@ -174,8 +174,12 @@ public class JanelaPlaylist extends JFrame {
 		
 		
 		listaMusicas.addMouseListener(new MouseAdapter() {
-			ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
 			public void mouseClicked(MouseEvent evt) {
+				
+				if(BaseDeDados.shared.tipoPlaylist == TipoPlaylist.PUBLICA) {
+
+				ArrayList<MusicaPlayListPublica> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPublicas().get(BaseDeDados.shared.playList_atual).getPlayListPublica().getListaMusicas();
+
 				int index = listaMusicas.getSelectedIndex();
 			    if (evt.getClickCount() == 2) {
 				      BaseDeDados.shared.musicaAtual = listaMusica.get(index).getMusica();
@@ -184,7 +188,20 @@ public class JanelaPlaylist extends JFrame {
 				      setVisible(false);
 				      dispose();
 			    }
+			  } else {
+				  ArrayList<MusicaPlayListPrivada> listaMusica = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario_logado).getPlayListsPrivadas().get(BaseDeDados.shared.playList_atual).getListaMusicas();
+
+					int index = listaMusicas.getSelectedIndex();
+				    if (evt.getClickCount() == 2) {
+					      BaseDeDados.shared.musicaAtual = listaMusica.get(index).getMusica();
+					      //System.out.println("nome da musica " + listaMusica.get(index).getMusica().getNomeMusica());
+					      new JanelaPropriedadesMusica().setVisible(true);
+					      setVisible(false);
+					      dispose();
+				    } 
 			  }
+			} 
+			
 			});
 	
 		btnVoltar.addActionListener(new ActionListener() {

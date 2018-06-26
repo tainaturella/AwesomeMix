@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Musica{
 	private int id;
-	private static int qtdMusicasTotal = 0;
+	private static int qtdMusicasTotal = (int) (Math.random()*2147483647);
 	private String nomeMusica;
 	private double tempoDuracao;
 	private Album album;
@@ -58,6 +58,9 @@ public class Musica{
 	public double getAvaliacaoMusica() {
 		double avaliacaoMusica = 0;
 		int tam = avaliacoesRecebidas.size();
+		if(tam == 0){
+			return 0;
+		}
 		for(int i = 0; i < tam; i++){
 			avaliacaoMusica += avaliacoesRecebidas.get(i).getAvaliacao();
 		}
