@@ -71,7 +71,7 @@ public class UsuarioPlayListPublicaDAO {
         }
         
         try {
-            String sql = "SELECT idPlayListPublicaMusica, idPlayListPublica, idMusica FROM playListPublicaMusica";
+            String sql = "SELECT idUsuarioPlayListPublica, idUsuario, idPlayListPublica  FROM usuarioPlayListPublica ";
             pstmt = conector.getConexao().prepareStatement(sql);
             resultado = pstmt.executeQuery();
 
@@ -79,8 +79,18 @@ public class UsuarioPlayListPublicaDAO {
             	UsuarioPlayListPublica usuPub = new UsuarioPlayListPublica();
             	usuPub.setId(resultado.getInt(1)); 
             	
+            	
+            	//procura o usuario na lista de usuarios
+            	int idUsuario = resultado.getInt(2);
+            	for(int i = 0; i < usuarios.size(); i++) {
+            		if(usuarios.get(i).getId() == idUsuario) {
+            			usuPub.setUsuario(usuarios.get(i));
+            			break;
+            		}
+            	}
+            	
             	//procura a playlist publica na lista de publicas
-            	int idPublica = resultado.getInt(2);
+            	int idPublica = resultado.getInt(3);
             	for(int i = 0; i < publicas.size(); i++) {
             		if(publicas.get(i).getId() == idPublica) {
             			usuPub.setPlayListPublica(publicas.get(i));
@@ -88,14 +98,7 @@ public class UsuarioPlayListPublicaDAO {
             		}
             	}
             	
-            	//procura o usuario na lista de usuarios
-            	int idUsuario = resultado.getInt(3);
-            	for(int i = 0; i < usuarios.size(); i++) {
-            		if(usuarios.get(i).getId() == idUsuario) {
-            			usuPub.setUsuario(usuarios.get(i));
-            			break;
-            		}
-            	}
+            	
             	
             	usuariosPublicas.add(usuPub);         	
             }
