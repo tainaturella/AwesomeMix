@@ -13,8 +13,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -46,16 +48,22 @@ public class JanelaUsuarios extends JFrame {
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+
+		contentPane.setBackground(new Color(204, 153, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Usu\u00E1rios");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTitulo.setBounds(10, 23, 89, 14);
+		JLabel lblTitulo = new JLabel("Usuarios");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTitulo.setBounds(94, 40, 104, 23);
 		contentPane.add(lblTitulo);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
 		
 		final ArrayList<Usuario> usuarios = BaseDeDados.shared.usuarios;
 		
@@ -74,7 +82,7 @@ public class JanelaUsuarios extends JFrame {
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listScroll = new JScrollPane(list);
-		listScroll.setBounds(28, 57, 227, 138);
+		listScroll.setBounds(109, 92, 280, 223);
 		contentPane.add(listScroll);
 		
 		list.addMouseListener(new MouseAdapter() {
@@ -96,7 +104,7 @@ public class JanelaUsuarios extends JFrame {
 			});
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(10, 227, 89, 23);
+		btnVoltar.setBounds(25, 367, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {

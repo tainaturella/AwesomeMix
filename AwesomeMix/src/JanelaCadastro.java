@@ -6,8 +6,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -45,58 +47,63 @@ public class JanelaCadastro extends JFrame {
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(204, 153, 255));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCadastro = new JLabel("Cadastro de Usu\u00E1rio");
-		lblCadastro.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCadastro.setBounds(10, 25, 171, 14);
+		JLabel lblCadastro = new JLabel("Cadastro de Usuario");
+		lblCadastro.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCadastro.setBounds(93, 35, 268, 32);
 		contentPane.add(lblCadastro);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
+		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNome.setBounds(35, 71, 46, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNome.setBounds(101, 130, 46, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblIdade = new JLabel("Idade");
-		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblIdade.setBounds(207, 71, 33, 14);
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblIdade.setBounds(386, 130, 54, 14);
 		contentPane.add(lblIdade);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblLogin.setBounds(35, 125, 30, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblLogin.setBounds(101, 182, 46, 20);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSenha.setBounds(207, 125, 35, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblSenha.setBounds(101, 233, 46, 14);
 		contentPane.add(lblSenha);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(72, 68, 86, 20);
+		txtNome.setBounds(154, 128, 222, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtIdade = new JTextField();
-		txtIdade.setBounds(248, 68, 86, 20);
+		txtIdade.setBounds(442, 128, 46, 20);
 		contentPane.add(txtIdade);
 		txtIdade.setColumns(10);
 		
 		txtLogin = new JTextField();
-		txtLogin.setBounds(72, 122, 86, 20);
+		txtLogin.setBounds(154, 182, 109, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		pwdSenha = new JPasswordField();
-		pwdSenha.setBounds(248, 122, 86, 20);
+		pwdSenha.setBounds(157, 233, 106, 20);
 		contentPane.add(pwdSenha);
 		
 		JButton btnCadastrar = new JButton("CADASTRAR");
-		btnCadastrar.setBounds(72, 165, 109, 23);
+		btnCadastrar.setBounds(136, 286, 109, 23);
 		contentPane.add(btnCadastrar);
 		
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -118,7 +125,7 @@ public class JanelaCadastro extends JFrame {
 		});
 		
 		JButton btnLimpar = new JButton("LIMPAR");
-		btnLimpar.setBounds(207, 165, 89, 23);
+		btnLimpar.setBounds(386, 286, 89, 23);
 		contentPane.add(btnLimpar);
 		
 		btnLimpar.addActionListener(new ActionListener() {
@@ -136,8 +143,9 @@ public class JanelaCadastro extends JFrame {
 			
 	
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(10, 227, 89, 23);
+		btnVoltar.setBounds(25, 367, 89, 23);
 		contentPane.add(btnVoltar);
+		
 		
 		
 		btnVoltar.addActionListener(new ActionListener() {

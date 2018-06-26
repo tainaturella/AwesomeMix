@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 
@@ -43,18 +45,23 @@ public class JanelaPlaylistsPublicas extends JFrame {
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setBackground(new Color(204, 153, 255));
 		
 		Usuario usuario = BaseDeDados.shared.usuarios.get(BaseDeDados.shared.usuario);
 		
-		JLabel lblTitulo = new JLabel("Playlists P\u00FAblicas");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTitulo.setBounds(10, 23, 150, 14);
+		JLabel lblTitulo = new JLabel("Playlists Publicas");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTitulo.setBounds(94, 40, 230, 23);
 		contentPane.add(lblTitulo);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logop.png"));
+		lblNewLabel.setBounds(10, 11, 74, 88);
+		contentPane.add(lblNewLabel);
 		
 		
 		DefaultListModel<String> listMusicas = new DefaultListModel<String>();
@@ -73,12 +80,12 @@ public class JanelaPlaylistsPublicas extends JFrame {
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
-		listaMusicasScroll.setBounds(28, 57, 227, 138);
+		listaMusicasScroll.setBounds(107, 91, 268, 232);
 		contentPane.add(listaMusicasScroll);
 		
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(10, 227, 89, 23);
+		btnVoltar.setBounds(25, 367, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {

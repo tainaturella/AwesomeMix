@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,13 +36,13 @@ public class JanelaAwesomeMix extends JFrame {
 	 */
 	public JanelaAwesomeMix() {
 		setTitle("Home - AwesomeMix");
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //fecha o programa ao fechar a janela
 		setSize(700, 500); //tamanho da janela
 		setResizable(false);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPane.setBackground(new Color(204, 153, 255));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -70,9 +71,9 @@ public class JanelaAwesomeMix extends JFrame {
 			}
 		});
 		
-		JLabel lblAwesomemix = new JLabel(new ImageIcon("//src//logo.png"),JLabel.CENTER);
+		JLabel lblAwesomemix = new JLabel(new ImageIcon("C:\\Users\\Tai\\Documents\\vai carai\\AwesomeMix\\AwesomeMix\\src\\logog.png"),JLabel.CENTER);
 		lblAwesomemix.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 60));
-		lblAwesomemix.setBounds(66, 25, 521, 311);
+		lblAwesomemix.setBounds(137, 25, 347, 311);
 		contentPane.add(lblAwesomemix);
 		
 		setLocationRelativeTo(null); //centraliza janela
