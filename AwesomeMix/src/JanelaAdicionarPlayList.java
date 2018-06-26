@@ -125,6 +125,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 					usuario.criaPlayListPublica(textField.getText());
 					new JanelaMeuPerfil().setVisible(true);
 					setVisible(false);
+					JOptionPane.showMessageDialog (null, "Playlist foi criada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}else if(rdbtnPrivada.isSelected()) {
 					usuario.criaPlayListPrivada(textField.getText());
@@ -133,7 +134,7 @@ public class JanelaAdicionarPlayList extends JFrame {
 					JOptionPane.showMessageDialog (null, "Playlist foi criada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}else {
-					JOptionPane.showMessageDialog (null, "Você precisa escolher o tipo de Playlist", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog (null, "Vocï¿½ precisa escolher o tipo de Playlist", "Aviso", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

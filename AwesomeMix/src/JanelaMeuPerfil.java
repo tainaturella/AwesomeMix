@@ -198,7 +198,6 @@ public class JanelaMeuPerfil extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				new JanelaAdicionarPlayList().setVisible(true);
 				setVisible(false);
-				JOptionPane.showMessageDialog (null, "Playlist adicionada com sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
