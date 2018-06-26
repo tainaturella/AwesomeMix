@@ -101,6 +101,7 @@ public class Usuario {
 		PlayListPublica novaPlayListPublica = new PlayListPublica(nome); //cria playlist publica
 		novaPlayListPublica.adicionarContribuinte(this);
 		
+		
 		BaseDeDados.shared.playListsPublicas.add(novaPlayListPublica);
 		
 		//System.out.println("Adicionou como contribuinte!");

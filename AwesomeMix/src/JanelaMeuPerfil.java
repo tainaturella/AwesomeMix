@@ -111,7 +111,7 @@ public class JanelaMeuPerfil extends JFrame {
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirma��o", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(contentPane, "Deseja sair?", "Confirmacao", dialogButton);
 				if(dialogResult == 0) {
 					new JanelaAwesomeMix().setVisible(true);
 					setVisible(false);

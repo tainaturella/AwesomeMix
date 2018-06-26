@@ -61,7 +61,7 @@ public class UsuarioPlayListPublica {
 
 	@Override
 	public String toString() {
-		return "UsuarioPlayListPublica [playListPublica=" + playListPublica.getId() + "]";
+		return "UsuarioPlayListPublica [playListPublica=" + playListPublica.getId() + "usuario=" + usuario.getNome() + "]";
 	}
 	
 }

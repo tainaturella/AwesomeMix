@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -123,7 +124,7 @@ public class JanelaPropriedadesAlbum extends JFrame {
 		
 		txtQuantidademusicas = new JTextField();
 		txtQuantidademusicas.setEditable(false);
-		txtQuantidademusicas.setText("" + album.getQtdMusicas());
+		txtQuantidademusicas.setText("" + album.getMusicas().size());
 		txtQuantidademusicas.setBounds(517, 263, 26, 20);
 		contentPane.add(txtQuantidademusicas);
 		txtQuantidademusicas.setColumns(10);
@@ -151,13 +152,17 @@ public class JanelaPropriedadesAlbum extends JFrame {
 		for(int i = 0; i < album.getMusicas().size(); i++){
 			listaStrMusicas.addElement(album.getMusicas().get(i).getNomeMusica());
 		} 
+		
+
+		System.out.println(album.getMusicas().toString());
 		JList<String> listaMusicas = new JList<String>(listaStrMusicas);
-		listaMusicas.setBounds(372, 90, 207, 159);
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
-		//JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
-		//contentPane.add(listaMusicasScroll);
-		contentPane.add(listaMusicas);
+		JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
+		listaMusicasScroll.setBounds(372, 90, 207, 159);
+		contentPane.add(listaMusicasScroll);
+		
+		//contentPane.add(listaMusicas);
 		
 		
 		

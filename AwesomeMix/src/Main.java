@@ -4,6 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		//1459187676
 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ RETIRANDO DO BANCO @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 		// ************************** USUARIOS ******************************
@@ -27,8 +28,10 @@ public class Main {
 		MusicaDAO musicaDAO = new MusicaDAO();
 		ArrayList<Musica> musicas = musicaDAO.buscarMusicas(BaseDeDados.shared.albuns);
 
-		for(int i = 0; i < musicas.size(); i++) 
+		for(int i = 0; i < musicas.size(); i++) {
+			musicas.get(i).getAlbum().adicionarMusica(musicas.get(i));
 			BaseDeDados.shared.musicas.add(musicas.get(i));
+		}
 
 		// ***************************** PLAYLISTS PUBLICAS *******************
 
@@ -43,37 +46,46 @@ public class Main {
 		PlayListPrivadaDAO playPrivadaDAO = new PlayListPrivadaDAO();
 		ArrayList<PlayListPrivada> playsPrivadas = playPrivadaDAO.buscarPlayListPrivada(BaseDeDados.shared.usuarios);		
 
-		for(int i = 0; i < playsPrivadas.size(); i++) 
+		for(int i = 0; i < playsPrivadas.size(); i++) {
+			playsPrivadas.get(i).getDono().getPlayListsPrivadas().add(playsPrivadas.get(i));
 			BaseDeDados.shared.playListsPrivadas.add(playsPrivadas.get(i));
+		}
 
 		// *************************** ASSOCIATIVOS *****************************
 
 		UsuarioMusicaDAO usuarioMusicaDAO = new UsuarioMusicaDAO();
 		ArrayList<UsuarioMusica> ususMusica = usuarioMusicaDAO.buscarUsuarioMusica(BaseDeDados.shared.usuarios, BaseDeDados.shared.musicas);		
 
-		for(int i = 0; i < ususMusica.size(); i++) 
+		for(int i = 0; i < ususMusica.size(); i++) {
+			ususMusica.get(i).getUsuario().getMusicasAvaliadas().add(ususMusica.get(i));
 			BaseDeDados.shared.usuariosMusica.add(ususMusica.get(i));
-
+		}
 
 		UsuarioPlayListPublicaDAO usuPlayPublicaDAO = new UsuarioPlayListPublicaDAO();
 		ArrayList<UsuarioPlayListPublica> usuPlayPublica = usuPlayPublicaDAO.buscarUsuarioPlayListPublica(BaseDeDados.shared.playListsPublicas, BaseDeDados.shared.usuarios);	
 
-		for(int i = 0; i < usuPlayPublica.size(); i++) 
+		for(int i = 0; i < usuPlayPublica.size(); i++) {
+			usuPlayPublica.get(i).getUsuario().getPlayListsPublicas().add(usuPlayPublica.get(i));
 			BaseDeDados.shared.usuariosPlayListPublicas.add(usuPlayPublica.get(i));
+		}
 
 
 		MusicaPlayListPrivadaDAO musicaPlayPrivadaDAO = new MusicaPlayListPrivadaDAO();
 		ArrayList<MusicaPlayListPrivada> musicasPlayPrivada = musicaPlayPrivadaDAO.buscarMusicaPlayListPrivada(BaseDeDados.shared.playListsPrivadas, BaseDeDados.shared.musicas);	
 
-		for(int i = 0; i < musicasPlayPrivada.size(); i++) 
+		for(int i = 0; i < musicasPlayPrivada.size(); i++) {
+			musicasPlayPrivada.get(i).getPlayList().adicionarMusica(musicasPlayPrivada.get(i).getMusica());
 			BaseDeDados.shared.musicasPlayListPrivada.add(musicasPlayPrivada.get(i));
+		}
 
 
 		MusicaPlayListPublicaDAO musicaPlayPublicaDAO = new MusicaPlayListPublicaDAO();
 		ArrayList<MusicaPlayListPublica> musicasPlayPublica = musicaPlayPublicaDAO.buscarMusicaPlayListPublica(BaseDeDados.shared.playListsPublicas, BaseDeDados.shared.musicas);
 
-		for(int i = 0; i < musicasPlayPublica.size(); i++) 
+		for(int i = 0; i < musicasPlayPublica.size(); i++) {
+			musicasPlayPublica.get(i).getPlayList().adicionarMusica(musicasPlayPublica.get(i).getMusica());
 			BaseDeDados.shared.musicasPlayListPublica.add(musicasPlayPublica.get(i));
+		}
 
 
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -121,82 +133,15 @@ public class Main {
 		usuarioA.adicionaMusicaPlayList(m1, publica);
 		usuarioC.adicionaMusicaPlayList(m2, publica);
 
-
-		//************************ PLAYLIST PRIVADA ***********************
-
-		PlayListPrivada privada = usuarioC.criaPlayListPrivada("Pra ficar feliz");
-
-		usuarioC.adicionaMusicaPlayList(m1, privada);
-
-		//**************************************************************
-
-		//@@@@@@@@@@@@@@@@@@ INSERE NO BANCO DE DADOS @@@@@@@@@@@@@@@@@@@@@@
-		/*
-		// ************************** USUARIOS ******************************
-
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.usuarios.size(); i++) 
-			usuarioDAO.inserirUsuario(BaseDeDados.shared.usuarios.get(i));
-
-		// ************************** ALBUM **********************************
-
-		AlbumDAO albumDAO = new AlbumDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.albuns.size(); i++) 
-			albumDAO.inserirAlbum(BaseDeDados.shared.albuns.get(i));
-
-		// ***************************** MUSICAS *****************************
-
-		MusicaDAO musicaDAO = new MusicaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.musicas.size(); i++) 
-			musicaDAO.inserirMusica(BaseDeDados.shared.musicas.get(i));
-
-		// ***************************** PLAYLISTS PUBLICAS *******************
-
-		PlayListPublicaDAO playPublicaDAO = new PlayListPublicaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.playListsPublicas.size(); i++) 
-			playPublicaDAO.inserirPlayListPublica(BaseDeDados.shared.playListsPublicas.get(i));
-
-		// **************************** PLAYLISTS PRIVADAS ********************
-
-		PlayListPrivadaDAO playPrivadaDAO = new PlayListPrivadaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.playListsPrivadas.size(); i++) 
-			playPrivadaDAO.inserirPlayListPrivada(BaseDeDados.shared.playListsPrivadas.get(i));
-
-		// *************************** ASSOCIATIVOS *****************************
-
-		UsuarioMusicaDAO usuarioMusicaDAO = new UsuarioMusicaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.usuariosMusica.size(); i++) 
-			usuarioMusicaDAO.inserirUsuarioMusica(BaseDeDados.shared.usuariosMusica.get(i));
-
-
-		UsuarioPlayListPublicaDAO usuPlayPublicaDAO = new UsuarioPlayListPublicaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.usuariosPlayListPublicas.size(); i++) 
-			usuPlayPublicaDAO.inserirUsuarioPlayListPublica(BaseDeDados.shared.usuariosPlayListPublicas.get(i));
-
-
-		MusicaPlayListPrivadaDAO musicaPlayPrivadaDAO = new MusicaPlayListPrivadaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.musicasPlayListPrivada.size(); i++) 
-			musicaPlayPrivadaDAO.inserirMusicaPlayListPrivada(BaseDeDados.shared.musicasPlayListPrivada.get(i));
-
-
-		MusicaPlayListPublicaDAO musicaPlayPublicaDAO = new MusicaPlayListPublicaDAO();
-
-		for(int i = 0; i < BaseDeDados.shared.musicasPlayListPublica.size(); i++) 
-			musicaPlayPublicaDAO.inserirMusicaPlayListPublica(BaseDeDados.shared.musicasPlayListPublica.get(i));
-
 */
 
 
 		JanelaAwesomeMix janela = new JanelaAwesomeMix();
 		janela.setVisible(true);
+		
+		for(int i=0; i< BaseDeDados.shared.usuariosPlayListPublicas.size(); i++) {
+			System.out.println(BaseDeDados.shared.usuariosPlayListPublicas.get(i).toString());
+		}
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {
@@ -260,14 +205,17 @@ public class Main {
 
 				// *************************** ASSOCIATIVOS *****************************
 
+				
 
 				for(int i = 0; i < BaseDeDados.shared.usuariosMusica.size(); i++) 
 					usuarioMusicaDAO.inserirUsuarioMusica(BaseDeDados.shared.usuariosMusica.get(i));
 
 
 
-				for(int i = 0; i < BaseDeDados.shared.usuariosPlayListPublicas.size(); i++) 
+				for(int i = 0; i < BaseDeDados.shared.usuariosPlayListPublicas.size(); i++) {
+					System.out.println(BaseDeDados.shared.usuariosPlayListPublicas.get(i).toString());
 					usuPlayPublicaDAO.inserirUsuarioPlayListPublica(BaseDeDados.shared.usuariosPlayListPublicas.get(i));
+				}
 
 
 
