@@ -44,7 +44,7 @@ public class JanelaUsuarios extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaUsuarios() {
-		setTitle("Usu\u00E1rios - AwesomeMix");
+		setTitle("Usuarios - AwesomeMix");
 		setSize(700, 500); //tamanho da janela
 		setLocationRelativeTo(null); //centraliza janela
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class JanelaUsuarios extends JFrame {
 		
 		JLabel lblTitulo = new JLabel("Usuarios");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTitulo.setBounds(94, 40, 104, 23);
+		lblTitulo.setBounds(94, 40, 176, 23);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNewLabel = new JLabel("New label");

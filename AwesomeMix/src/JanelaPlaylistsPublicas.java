@@ -55,7 +55,7 @@ public class JanelaPlaylistsPublicas extends JFrame {
 		
 		JLabel lblTitulo = new JLabel("Playlists Publicas");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTitulo.setBounds(94, 40, 230, 23);
+		lblTitulo.setBounds(94, 40, 281, 23);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblNewLabel = new JLabel("New label");

@@ -108,7 +108,7 @@ public class JanelaPlaylist extends JFrame {
 		contentPane.add(lblMusicas);
 		
 		JButton btnAdicionarmusica = new JButton("ADICIONAR MUSICA");
-		btnAdicionarmusica.setBounds(315, 137, 136, 23);
+		btnAdicionarmusica.setBounds(315, 137, 154, 23);
 		contentPane.add(btnAdicionarmusica);
 		
 		btnAdicionarmusica.addActionListener(new ActionListener() {
@@ -120,7 +120,7 @@ public class JanelaPlaylist extends JFrame {
 			}
 		});
 		JButton btnRemoverMusica = new JButton("REMOVER MUSICA");
-		btnRemoverMusica.setBounds(315, 171, 136, 23);
+		btnRemoverMusica.setBounds(315, 171, 154, 23);
 		contentPane.add(btnRemoverMusica);
 		
 		btnRemoverMusica.addActionListener(new ActionListener() {

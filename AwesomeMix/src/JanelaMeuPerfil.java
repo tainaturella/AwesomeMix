@@ -76,27 +76,27 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		JLabel lblDadosPessoais = new JLabel("Dados Pessoais");
 		lblDadosPessoais.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblDadosPessoais.setBounds(43, 108, 101, 14);
+		lblDadosPessoais.setBounds(43, 108, 141, 14);
 		contentPane.add(lblDadosPessoais);
 		
 		JLabel lblNome_1 = new JLabel("Nome");
 		lblNome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNome_1.setBounds(51, 130, 46, 14);
+		lblNome_1.setBounds(51, 130, 63, 14);
 		contentPane.add(lblNome_1);
 		
 		JLabel lblIdade = new JLabel("Idade");
 		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIdade.setBounds(342, 130, 46, 14);
+		lblIdade.setBounds(342, 130, 63, 14);
 		contentPane.add(lblIdade);
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblLogin.setBounds(53, 155, 46, 23);
+		lblLogin.setBounds(53, 155, 61, 23);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblSenha.setBounds(342, 155, 46, 14);
+		lblSenha.setBounds(342, 155, 63, 14);
 		contentPane.add(lblSenha);
 		
 		final JButton btnEditar = new JButton("EDITAR");
@@ -122,7 +122,7 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		JLabel lblPlaylistspublicas = new JLabel("Playlists Publicas");
 		lblPlaylistspublicas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblPlaylistspublicas.setBounds(46, 187, 118, 14);
+		lblPlaylistspublicas.setBounds(46, 187, 187, 14);
 		contentPane.add(lblPlaylistspublicas);
 		
 		final DefaultListModel<String> listPublicas = new DefaultListModel<String>();
@@ -157,7 +157,7 @@ public class JanelaMeuPerfil extends JFrame {
 		
 		JLabel lblPlaylistsprivadas = new JLabel("Playlists Privadas");
 		lblPlaylistsprivadas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblPlaylistsprivadas.setBounds(339, 189, 110, 14);
+		lblPlaylistsprivadas.setBounds(339, 189, 158, 14);
 		contentPane.add(lblPlaylistsprivadas);
 		
 		final DefaultListModel<String> listPrivadas = new DefaultListModel<String>();
@@ -191,7 +191,7 @@ public class JanelaMeuPerfil extends JFrame {
 			});
 		
 		JButton btnAdicionarPlaylist = new JButton("ADICIONAR PLAYLIST");
-		btnAdicionarPlaylist.setBounds(74, 384, 139, 26);
+		btnAdicionarPlaylist.setBounds(63, 384, 172, 26);
 		contentPane.add(btnAdicionarPlaylist);
 		
 		btnAdicionarPlaylist.addActionListener(new ActionListener() {
@@ -204,7 +204,7 @@ public class JanelaMeuPerfil extends JFrame {
 		});
 		
 		JButton btnRemoverPlaylistPublica = new JButton("REMOVER PLAYLIST PUBLICA");
-		btnRemoverPlaylistPublica.setBounds(56, 332, 177, 29);
+		btnRemoverPlaylistPublica.setBounds(43, 332, 214, 29);
 		contentPane.add(btnRemoverPlaylistPublica);
 		
 		btnRemoverPlaylistPublica.addActionListener(new ActionListener() {
@@ -255,7 +255,7 @@ public class JanelaMeuPerfil extends JFrame {
 		contentPane.add(pwdSenhasemedit);
 		
 		JButton btnBuscarPerfis = new JButton("BUSCAR PERFIS");
-		btnBuscarPerfis.setBounds(393, 383, 117, 29);
+		btnBuscarPerfis.setBounds(356, 383, 154, 29);
 		contentPane.add(btnBuscarPerfis);
 		
 		btnBuscarPerfis.addActionListener(new ActionListener() {
@@ -267,7 +267,7 @@ public class JanelaMeuPerfil extends JFrame {
 		});
 		
 		JButton btnRemoverPlaylistPrivada = new JButton("REMOVER PLAYLIST PRIVADA");
-		btnRemoverPlaylistPrivada.setBounds(364, 332, 177, 29);
+		btnRemoverPlaylistPrivada.setBounds(327, 332, 214, 29);
 		contentPane.add(btnRemoverPlaylistPrivada);
 		
 		btnRemoverPlaylistPrivada.addActionListener(new ActionListener() {
